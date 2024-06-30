@@ -7,15 +7,19 @@ import { useState, useEffect } from "react";
 
 function App() {
 
-  const [budget, setBudget] = useState('');
+  const [input, setInput] = useState('');
+  const [budget, setBudget] = useState([]);
+  const [field, setField] = useState(true);
 
 
   const handleChange = (e) => {
-    setBudget(e.target.value);
+    setInput(e.target.value);
   }
 
   const handleSubmit = () => {
-    alert(`The name you entered was: ${budget}`)
+    setBudget([...budget, input]);
+    setInput('');
+    setField(false);
   }
 
 
@@ -31,23 +35,22 @@ function App() {
     <div className="App">
       <span>Expense Tracker</span>
 
-      <div className="tab">
-        <div className="income">
 
-          <input
-            type="number"
-            className="data"
-            placeholder="Enter your budget"
-            value={budget}
-            onChange={(e) => handleChange(e)}
-            onKeyUp={detectKey}
-          ></input>
+      <div className="income">
 
-
-          <span>Budget:{budget}</span>
-
-
-        </div>
+        {field && (<input
+          type="number"
+          className="data"
+          placeholder="Enter your budget"
+          value={input}
+          onChange={(e) => handleChange(e)}
+          onKeyUp={detectKey}
+        />)}
+ 
+        <span> My Budget:
+          {budget.map((input, index) => ( <div key={index}>{input}</div>
+          ))}
+        </span>
 
       </div>
     </div>
