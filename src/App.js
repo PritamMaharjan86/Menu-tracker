@@ -38,8 +38,6 @@ function App() {
   const detectKey = (e) => {
     if (e.key === "Enter") {
       handleSubmit();
-     
-
     }
   }
 
