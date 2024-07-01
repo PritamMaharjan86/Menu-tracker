@@ -48,20 +48,8 @@
   }
 }
 
-.tab {
+.display {
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
-
-.income {
-  background: #282c34;
-
-
-  
-}
-
-.expenses {
-  background: #282c34;
-
 }
