@@ -5,9 +5,7 @@ import Button from '@mui/joy/Button';
 import Box from '@mui/joy/Box';
 
 
-
-
-function App() {
+export default function App() {
 
   const [input, setInput] = useState('');
   const [budget, setBudget] = useState([]);
@@ -17,7 +15,7 @@ function App() {
 
   const handleChange = (e) => {
     setInput(e.target.value);
-    
+
   }
 
   const handleSubmit = () => {
@@ -73,6 +71,6 @@ function App() {
     </div>
 
   );
+
 }
 
-export default App;
