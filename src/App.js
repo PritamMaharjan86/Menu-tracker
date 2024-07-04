@@ -54,21 +54,22 @@ export default function App() {
       case "a":
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
-          name: (client) + (name) + '/' + (number),
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
           category: "Category A"
         };
         break;
       case "b":
         newItem = {
           id: items.length + 1,
-          name:  (client) + (name) + '/' + (number),
+          name: (client) + " " + (name) + '/' + (number),
           category: "Category B"
         };
         break;
       case "c":
         newItem = {
           id: items.length + 1,
-          name:  (client) + (name) + '/' + (number),
+          name: (client) + " " + (name) + '/' + (number),
           category: "Category C"
         };
         break;
@@ -76,7 +77,7 @@ export default function App() {
       case "d":
         newItem = {
           id: items.length + 1,
-          name:  (client) + (name) + '/' + (number),
+          name: (client) + " " + (name) + '/' + (number),
           category: "Category D"
         };
         break;
@@ -107,6 +108,7 @@ export default function App() {
     setClient('');
     setName('');
     setNumber('');
+   
   }
 
 
@@ -161,10 +163,10 @@ export default function App() {
 
       <div className='menu'>
 
-      <div>
+        <div>
           <span className='title'>Club Sandwiches</span>
           <div>
-          {items
+            {items
               .filter(item => item.category === "Category C" || item.category === "Category D")
               .map(item => (
                 <li key={item.id}>{item.name}</li>
@@ -175,7 +177,7 @@ export default function App() {
         <div>
           <span className='title'>Ribbon Sandwiches</span>
           <div>
-          {items
+            {items
               .filter(item => item.category === "Category D")
               .map(item => (
                 <li key={item.id}>{item.name}</li>
@@ -186,7 +188,7 @@ export default function App() {
         <div>
           <span className='title'>Macarons</span>
           <div>
-          {items
+            {items
               .filter(item => item.category === "Category C" || item.category === "Category D")
               .map(item => (
                 <li key={item.id}>{item.name}</li>
@@ -197,7 +199,7 @@ export default function App() {
         <div>
           <span className='title'>Savoury</span>
           <div>
-          {items
+            {items
               .filter(item => item.category === "Category B" || item.category === "Category C")
               .map(item => (
                 <li key={item.id}>{item.name}</li>
@@ -209,10 +211,19 @@ export default function App() {
         <div>
           <span className='title'>Scones</span>
           <div>
-          {items
-              .filter(item => item.category === "Category A")
+            {items
+              .filter(item => item.category === 'Category A')
               .map(item => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}>
+                  {item.name} {item.pax * 1.5 + "each"}
+                  {item.pax <  30 ? (
+                    <span> {(item.pax  * 1.5)  / 15} Small Platters </span>
+                  ) : (
+                    <div>
+                      <span> {(item.pax * 1.5) / 24} Large Platters</span>
+                    </div>
+                  )}
+                </li>
               ))}
           </div>
         </div>
@@ -220,20 +231,20 @@ export default function App() {
         <div>
           <span className='title'>Savoury Muffin</span>
           <div>
-          {items
+            {items
               .filter(item => item.category === "Category A")
               .map(item => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}>{item.name} {item.pax * 1.5 + " bacon puff"} {item.pax * 1.5 + " spinach puff"}</li>
               ))}
           </div>
         </div>
 
 
-        
+
         <div>
           <span className='title'>Fruits</span>
           <div>
-          {items
+            {items
               .filter(item => item.category === "Category D")
               .map(item => (
                 <li key={item.id}>{item.name}</li>
@@ -244,7 +255,7 @@ export default function App() {
         <div>
           <span className='title'>Slice</span>
           <div>
-          {items
+            {items
               .filter(item => item.category === "Category B")
               .map(item => (
                 <li key={item.id}>{item.name}</li>
@@ -255,7 +266,7 @@ export default function App() {
         <div>
           <span className='title'>Meatballs</span>
           <div>
-          {items
+            {items
               .filter(item => item.category === "Category D")
               .map(item => (
                 <li key={item.id}>{item.name}</li>
