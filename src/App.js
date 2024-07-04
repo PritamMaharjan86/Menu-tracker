@@ -63,6 +63,7 @@ export default function App() {
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
           category: "Category B"
         };
         break;
@@ -70,6 +71,7 @@ export default function App() {
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
           category: "Category C"
         };
         break;
@@ -78,6 +80,7 @@ export default function App() {
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
           category: "Category D"
         };
         break;
@@ -108,7 +111,7 @@ export default function App() {
     setClient('');
     setName('');
     setNumber('');
-   
+
   }
 
 
@@ -143,11 +146,11 @@ export default function App() {
 
 
 
-        <Box sx={{ display: 'flex', gap: 9, flexWrap: 'wrap' }}>
+        <Box sx={{ display: 'flex', gap: 19, flexWrap: 'wrap' }}>
           <Button disabled={saveDisabled} onClick={handleAddItem}>Save</Button>
         </Box>
 
-        <Box sx={{ display: 'flex', gap: 9, flexWrap: 'wrap' }}>
+        <Box sx={{ display: 'flex', gap: 19, flexWrap: 'wrap' }}>
           <Button disabled={editDisabled} onClick={handleEdit}>Edit</Button>
         </Box>
 
@@ -216,12 +219,12 @@ export default function App() {
               .map(item => (
                 <li key={item.id}>
                   {item.name} {item.pax * 1.5 + "each"}
-                  {item.pax <  30 ? (
-                    <span> {(item.pax  * 1.5)  / 15} Small Platters </span>
+                  {item.pax < 30 ? (
+                    <span> {(item.pax * 1.5) / 15}small platters </span>
                   ) : (
-                    <div>
-                      <span> {(item.pax * 1.5) / 24} Large Platters</span>
-                    </div>
+
+                    <span> {(item.pax * 1.5) / 24}large platters</span>
+
                   )}
                 </li>
               ))}
@@ -234,7 +237,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category A")
               .map(item => (
-                <li key={item.id}>{item.name} {item.pax * 1.5 + " bacon puff"} {item.pax * 1.5 + " spinach puff"}</li>
+                <li key={item.id}>{item.name} {item.pax * 1.5 + "bacon puff"} {item.pax * 1.5 + "spinach puff"}</li>
               ))}
           </div>
         </div>
