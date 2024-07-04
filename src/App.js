@@ -21,7 +21,7 @@ export default function App() {
 
 
   const handleName = (e) => {
-    const name = e.target.value;
+    const name = e.target.value.toUpperCase();
     if (/^[a-zA-Z]?$/.test(name)) { // Only allow digits
       setName(name);
     }
@@ -35,7 +35,7 @@ export default function App() {
   };
 
   const handleClient = (e) => {
-    const client = e.target.value;
+    const client = e.target.value.toUpperCase();
     if (/^[a-zA-Z]*$/.test(client)) {
       setClient(client);
     }
@@ -51,7 +51,7 @@ export default function App() {
 
 
     switch (name) {
-      case "a":
+      case "A":
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
@@ -59,7 +59,7 @@ export default function App() {
           category: "Category A"
         };
         break;
-      case "b":
+      case "B":
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
@@ -67,7 +67,7 @@ export default function App() {
           category: "Category B"
         };
         break;
-      case "c":
+      case "C":
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
@@ -76,7 +76,7 @@ export default function App() {
         };
         break;
       // Add more cases as needed
-      case "d":
+      case "D":
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
@@ -194,7 +194,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category C" || item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}>{item.name} {item.pax * 1 + "pcs"}</li>
               ))}
           </div>
         </div>
@@ -205,7 +205,14 @@ export default function App() {
             {items
               .filter(item => item.category === "Category B" || item.category === "Category C")
               .map(item => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}>{item.name}
+                  {(item.pax <= 15) ? (
+                    <span> 1 platters </span>
+                  ) : (
+
+                    <span> {item.pax / 15}large platters</span>
+
+                  )}</li>
               ))}
           </div>
         </div>
@@ -261,7 +268,13 @@ export default function App() {
             {items
               .filter(item => item.category === "Category B")
               .map(item => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}>{item.name}{(item.pax < 20) ? (
+                  <span> 1 small platter</span>
+                ) : (
+
+                  <span> {item.pax / 20}large platters</span>
+
+                )}</li>
               ))}
           </div>
         </div>
