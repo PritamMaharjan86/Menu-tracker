@@ -3,6 +3,10 @@ import './App.css';
 import { useState, useEffect } from "react";
 import Button from '@mui/joy/Button';
 import Box from '@mui/joy/Box';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 
 export default function App() {
@@ -13,17 +17,22 @@ export default function App() {
   const [items, setItems] = useState([]);
   const [field, setField] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
-  const [saveDisabled, setSavedisabled] = useState(false);
+  const [saveDisabled, setSavedisabled] = useState(true);
   const [editDisabled, setEditdisabled] = useState(true);
 
 
+  useEffect(() => {
+    checkFormValidity();
+  }, [client, name, number]);
 
 
 
   const handleName = (e) => {
     const name = e.target.value.toUpperCase();
-    if (/^[a-zA-Z]?$/.test(name)) { // Only allow digits
+    if (/^[a-zA-Z]*$/.test(name)) { // Only allow digits
       setName(name);
+      checkFormValidity();
+
     }
   };
 
@@ -31,6 +40,8 @@ export default function App() {
     const number = e.target.value;
     if (/^\d{0,3}$/.test(number)) {
       setNumber(number);
+      checkFormValidity();
+
     }
   };
 
@@ -38,6 +49,16 @@ export default function App() {
     const client = e.target.value.toUpperCase();
     if (/^[a-zA-Z]*$/.test(client)) {
       setClient(client);
+      checkFormValidity();
+
+    }
+  };
+
+  const checkFormValidity = () => {
+    if (client.trim() !== '' && name.trim() !== '' && number.trim() !== '') {
+      setSavedisabled(false);
+    } else {
+      setSavedisabled(true);
     }
   };
 
@@ -49,8 +70,8 @@ export default function App() {
 
     let newItem;
 
-
     switch (name) {
+
       case "A":
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
@@ -75,7 +96,7 @@ export default function App() {
           category: "Category C"
         };
         break;
-      // Add more cases as needed
+      
       case "D":
         newItem = {
           id: items.length + 1,
@@ -84,6 +105,37 @@ export default function App() {
           category: "Category D"
         };
         break;
+
+        case "ITALIAN":
+        newItem = {
+          id: items.length + 1,
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          category: "Category E"
+        };
+        break;
+
+        case "GREEK LIGHT":
+        newItem = {
+          id: items.length + 1,
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          category: "Category F"
+        };
+        break;
+
+        case "GREEK DELUXE":
+        newItem = {
+          id: items.length + 1,
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          category: "Category G"
+        };
+        break;
+
+        default:
+          toast.error("Error! Menu name invalid");
+          return null;
     }
     setItems([...items, newItem]);
   };
@@ -125,9 +177,10 @@ export default function App() {
         {field && (<input
 
           className="data"
-          placeholder="Enter client number"
+          placeholder="Enter client name"
           value={client}
           onChange={(e) => handleClient(e)}
+          required
         />)}
         {field && (<input
           type="text"
@@ -135,6 +188,7 @@ export default function App() {
           placeholder="Enter menu name"
           value={name}
           onChange={(e) => handleName(e)}
+          required
         />)}
         {field && (<input
           type="number"
@@ -142,6 +196,7 @@ export default function App() {
           placeholder="Enter menu number"
           value={number}
           onChange={(e) => handleNumber(e)}
+          required
         />)}
 
 
@@ -166,13 +221,39 @@ export default function App() {
 
       <div className='menu'>
 
+      <ToastContainer />
+
         <div>
           <span className='title'>Club Sandwiches</span>
           <div>
             {items
-              .filter(item => item.category === "Category C" || item.category === "Category D")
+              .filter(item => item.category === "Category C")
               .map(item => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}>{item.name}
+                  {(item.pax <= 10) ? (
+                    <span> 1 platters sandwich </span>
+                  ) : (
+
+                    <span> {Math.round(item.pax / 10)}large platters</span>
+
+                  )}
+                </li>
+              ))}
+          </div>
+
+          <div>
+            {items
+              .filter(item => item.category === "Category D")
+              .map(item => (
+                <li key={item.id}>{item.name}
+                  {(item.pax <= 25) ? (
+                    <span> 1 platters sandwich </span>
+                  ) : (
+
+                    <span> {Math.round(item.pax / 25)}large platters</span>
+
+                  )}
+                </li>
               ))}
           </div>
         </div>
@@ -183,7 +264,14 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}>{item.name}
+                  {(item.pax <= 25) ? (
+                    <span> 1 platters sandwich </span>
+                  ) : (
+
+                    <span> {Math.round(item.pax / 25)}large platters</span>
+
+                  )}</li>
               ))}
           </div>
         </div>
@@ -206,11 +294,11 @@ export default function App() {
               .filter(item => item.category === "Category B" || item.category === "Category C")
               .map(item => (
                 <li key={item.id}>{item.name}
-                  {(item.pax <= 15) ? (
+                  {(item.pax <= 10) ? (
                     <span> 1 platters </span>
                   ) : (
 
-                    <span> {item.pax / 15}large platters</span>
+                    <span> {Math.round(item.pax / 10)}large platters</span>
 
                   )}</li>
               ))}
@@ -227,10 +315,10 @@ export default function App() {
                 <li key={item.id}>
                   {item.name} {item.pax * 1.5 + "each"}
                   {item.pax < 30 ? (
-                    <span> {(item.pax * 1.5) / 15}small platters </span>
+                    <span> {Math.round((item.pax * 1.5) / 15)}small platters </span>
                   ) : (
 
-                    <span> {(item.pax * 1.5) / 24}large platters</span>
+                    <span> {Math.round((item.pax * 1.5) / 24)} large platters</span>
 
                   )}
                 </li>
@@ -257,7 +345,14 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}>{item.name}
+                {(item.pax <= 30) ? (
+                  <span> 1 large platter</span>
+                ) : (
+
+                  <span> {Math.round(item.pax / 30)}large platters</span> //Math.round is for getting answer in round figure
+
+                )}</li>
               ))}
           </div>
         </div>
@@ -272,7 +367,7 @@ export default function App() {
                   <span> 1 small platter</span>
                 ) : (
 
-                  <span> {item.pax / 20}large platters</span>
+                  <span> {Math.round(item.pax / 20)}large platters</span> //Math.round is for getting answer in round figure
 
                 )}</li>
               ))}
@@ -285,7 +380,44 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id}>{item.name}{(item.pax < 25) ? (
+                  <span> 1 platter</span>
+                ) : (
+                  <span> {Math.round(item.pax / 25)} platters</span> //Math.round is for getting answer in round figure
+
+                )}</li>
+              ))}
+          </div>
+        </div>
+
+        <div>
+          <span className='title'>Samosa Savoury</span>
+          <div>
+            {items
+              .filter(item => item.category === "Category D")
+              .map(item => (
+                <li key={item.id}>{item.name}{(item.pax <= 15 ) ? (
+                  <span> 1 platter</span>
+                ) : (
+                  <span> {Math.round(item.pax / 15)} platters</span> //Math.round is for getting answer in round figure
+
+                )}</li>
+              ))}
+          </div>
+        </div>
+
+        <div>
+          <span className='title'>Cultural Menu</span>
+          <div>
+            {items
+              .filter(item => item.category === "Category E")
+              .map(item => (
+                <li key={item.id}>{item.name}{(item.pax <= 15 ) ? (
+                  <span> 1 platter</span>
+                ) : (
+                  <span> {Math.round(item.pax / 15)} platters</span> //Math.round is for getting answer in round figure
+
+                )}</li>
               ))}
           </div>
         </div>
