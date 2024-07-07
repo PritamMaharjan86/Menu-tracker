@@ -1,11 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect } from "react";
 import Button from '@mui/joy/Button';
-import Box from '@mui/joy/Box';
+import ButtonGroup from '@mui/joy/ButtonGroup';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 
 
 
@@ -21,6 +19,7 @@ export default function App() {
   const [editDisabled, setEditdisabled] = useState(true);
 
 
+
   useEffect(() => {
     checkFormValidity();
   }, [client, name, number]);
@@ -29,7 +28,7 @@ export default function App() {
 
   const handleName = (e) => {
     const name = e.target.value.toUpperCase();
-    if (/^[a-zA-Z]*$/.test(name)) { // Only allow digits
+    if (/^[a-zA-Z\s]*$/.test(name)) { // Only allow digits
       setName(name);
       checkFormValidity();
 
@@ -68,19 +67,23 @@ export default function App() {
     setSavedisabled(true);
     setEditdisabled(false);
 
+
     let newItem;
 
     switch (name) {
 
       case "A":
+        toast.success("Added to menu");
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
           pax: (number),
           category: "Category A"
+
         };
         break;
       case "B":
+        toast.success("Added to menu");
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
@@ -89,6 +92,7 @@ export default function App() {
         };
         break;
       case "C":
+        toast.success("Added to menu");
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
@@ -96,8 +100,9 @@ export default function App() {
           category: "Category C"
         };
         break;
-      
+
       case "D":
+        toast.success("Added to menu");
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
@@ -106,7 +111,8 @@ export default function App() {
         };
         break;
 
-        case "ITALIAN":
+      case "ITALIAN":
+        toast.success("Added to menu");
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
@@ -115,7 +121,8 @@ export default function App() {
         };
         break;
 
-        case "GREEK LIGHT":
+      case "GREEK DELUXE":
+        toast.success("Added to menu");
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
@@ -124,7 +131,8 @@ export default function App() {
         };
         break;
 
-        case "GREEK DELUXE":
+      case "GREEK LIGHT":
+        toast.success("Added to menu");
         newItem = {
           id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
@@ -133,9 +141,9 @@ export default function App() {
         };
         break;
 
-        default:
-          toast.error("Error! Menu name invalid");
-          return null;
+      default:
+        toast.error("Menu name not found");
+        return null;
     }
     setItems([...items, newItem]);
   };
@@ -157,6 +165,7 @@ export default function App() {
 
 
   const handleAdd = () => {
+    setIsDisabled(true);
     setSavedisabled(false);
     setField(true);
     setEditdisabled(true);
@@ -167,9 +176,11 @@ export default function App() {
   }
 
 
+
+
   return (
     <div className="App">
-      <span>Celeste Menu</span>
+      <h2 style={{}}>Celeste Menu</h2>
 
 
       <div className="display">
@@ -199,29 +210,68 @@ export default function App() {
           required
         />)}
 
+      </div>
 
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <ButtonGroup spacing="0.6rem" aria-label="spacing button group">
+          <Button sx={{
+            backgroundColor: '#4CAF50',
+            color: '#FFFFFF',
+            borderRadius: '5px',
+            transition: 'background-color 0.3s ease',
+            boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)', // Subtle shadow for depth
+            textTransform: 'uppercase', // Uppercase text for style consistency 
+            ':hover': {
+              backgroundColor: '#388E3C', // Darker blue on hover
+            },
 
-        <Box sx={{ display: 'flex', gap: 19, flexWrap: 'wrap' }}>
-          <Button disabled={saveDisabled} onClick={handleAddItem}>Save</Button>
-        </Box>
+          }}
+            disabled={saveDisabled} onClick={handleAddItem}>Save</Button>
 
-        <Box sx={{ display: 'flex', gap: 19, flexWrap: 'wrap' }}>
-          <Button disabled={editDisabled} onClick={handleEdit}>Edit</Button>
-        </Box>
+          <Button sx={{
+            backgroundColor: '#2196F3',
+            color: '#FFFFFF',
+            borderRadius: '5px',
+            transition: 'background-color 0.3s ease',
+            boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)', // Subtle shadow for depth
+            textTransform: 'uppercase', // Uppercase text for style consistency 
+            ':hover': {
+              backgroundColor: '#1976D2', // Darker blue on hover
+            },
+          }}
+            disabled={editDisabled} onClick={handleEdit}>Edit</Button>
 
-        <Box sx={{ display: 'flex', gap: 9, flexWrap: 'wrap' }}>
-          <Button disabled={isDisabled} onClick={handleAdd}>Add</Button>
-        </Box>
+          <Button sx={{
+            backgroundColor: '#2196F3',
+            color: '#FFFFFF',
+            borderRadius: '5px',
+            transition: 'background-color 0.3s ease',
+            boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)', // Subtle shadow for depth
+            textTransform: 'uppercase', // Uppercase text for style consistency 
+            ':hover': {
+              backgroundColor: '#1976D2', // Darker blue on hover
+            },
+          }}
+            disabled={isDisabled} onClick={handleAdd}>Add</Button>
 
-        <Box sx={{ display: 'flex', gap: 9, flexWrap: 'wrap' }}>
-          <Button onClick={handleDelete}>Delete</Button>
-        </Box>
-
+          <Button sx={{
+            backgroundColor: '#FF5722',
+            color: '#FFFFFF',
+            borderRadius: '5px',
+            transition: 'background-color 0.3s ease',
+            boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)', // Subtle shadow for depth
+            textTransform: 'uppercase', // Uppercase text for style consistency 
+            ':hover': {
+              backgroundColor: '#E64A19', // Darker blue on hover
+            },
+          }}
+            onClick={handleDelete}>Delete</Button>
+        </ButtonGroup>
       </div>
 
       <div className='menu'>
 
-      <ToastContainer />
+        <ToastContainer />
 
         <div>
           <span className='title'>Club Sandwiches</span>
@@ -313,7 +363,7 @@ export default function App() {
               .filter(item => item.category === 'Category A')
               .map(item => (
                 <li key={item.id}>
-                  {item.name} {item.pax * 1.5 + "each"}
+                  {item.name} {Math.round(item.pax * 1.5) + "each"}
                   {item.pax < 30 ? (
                     <span> {Math.round((item.pax * 1.5) / 15)}small platters </span>
                   ) : (
@@ -332,7 +382,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category A")
               .map(item => (
-                <li key={item.id}>{item.name} {item.pax * 1.5 + "bacon puff"} {item.pax * 1.5 + "spinach puff"}</li>
+                <li key={item.id}>{item.name} {Math.round(item.pax * 1.5) + " bacon puff"}, {Math.round(item.pax * 1.5) + " spinach puff"}</li>
               ))}
           </div>
         </div>
@@ -346,13 +396,13 @@ export default function App() {
               .filter(item => item.category === "Category D")
               .map(item => (
                 <li key={item.id}>{item.name}
-                {(item.pax <= 30) ? (
-                  <span> 1 large platter</span>
-                ) : (
+                  {(item.pax <= 30) ? (
+                    <span> 1 large platter</span>
+                  ) : (
 
-                  <span> {Math.round(item.pax / 30)}large platters</span> //Math.round is for getting answer in round figure
+                    <span> {Math.round(item.pax / 30)}large platters</span> //Math.round is for getting answer in round figure
 
-                )}</li>
+                  )}</li>
               ))}
           </div>
         </div>
@@ -396,7 +446,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}{(item.pax <= 15 ) ? (
+                <li key={item.id}>{item.name}{(item.pax <= 15) ? (
                   <span> 1 platter</span>
                 ) : (
                   <span> {Math.round(item.pax / 15)} platters</span> //Math.round is for getting answer in round figure
@@ -412,10 +462,23 @@ export default function App() {
             {items
               .filter(item => item.category === "Category E")
               .map(item => (
-                <li key={item.id}>{item.name}{(item.pax <= 15 ) ? (
-                  <span> 1 platter</span>
+                <li key={item.id}>{item.name}{(item.pax <= 50) ? (
+                  <span> 1 antipasto platter (mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), 1 foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs</span>
                 ) : (
-                  <span> {Math.round(item.pax / 15)} platters</span> //Math.round is for getting answer in round figure
+                  <span> {Math.round(item.pax / 50)} antipasto platter (mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), {Math.round(item.pax / 50)} foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs </span> //Math.round is for getting answer in round figure
+
+                )}</li>
+              ))}
+          </div>
+
+          <div>
+            {items
+              .filter(item => item.category === "Category F")
+              .map(item => (
+                <li key={item.id}>{item.name}{(item.pax <= 50) ? (
+                  <span> 1 mezze platter (Greek dolmades, kalamata olives, kesseri, kefalograviera and feta cheese),{Math.round(item.pax / 10)} olives bread, 2 pita breads, oilve oil, balsamic vinegar, {item.pax * 3} calamari, {item.pax * 3} fish, {item.pax} octopus, {item.pax} spanokopita, {item.pax} tiropita, {item.pax / 2} paximathia, {item.pax /2 } koulouria, {Math.round(item.pax / 50)} greek salad</span>
+                ) : (
+                  <span> {Math.round(item.pax / 50)} mezze platter (Greek dolmades, kalamata olives, kesseri, kefalograviera and feta cheese), {Math.round(item.pax / 10)} olives bread, {Math.round(item.pax / 20)} pita breads, oilve oil, balsamic vinegar, {item.pax * 3} calamari, {item.pax * 3} fish, {item.pax} octopus, {item.pax} spanokopita, {item.pax} tiropita, {item.pax / 2} paximathia, {item.pax /2 } koulouria, {Math.round(item.pax / 50)} greek salad</span> //Math.round is for getting answer in round figure
 
                 )}</li>
               ))}
