@@ -17,10 +17,18 @@ export default function App() {
   const [isDisabled, setIsDisabled] = useState(true);
   const [saveDisabled, setSavedisabled] = useState(true);
   const [editDisabled, setEditdisabled] = useState(true);
+  const currentDate = new Date();
+  const tomorrowDate = new Date(currentDate);
+  tomorrowDate.setDate(currentDate.getDate() + 1);
+  const formattedDate = tomorrowDate.toLocaleDateString();
+  const daysOfWeek = [
+    'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+  ];
+  const tomorrowDay = daysOfWeek[tomorrowDate.getDay()];
+
 
   const handlePrint = () => {
     window.print();
- 
   };
 
   useEffect(() => {
@@ -185,7 +193,9 @@ export default function App() {
     <div className="App">
       <h2 style={{}}>Celeste Menu</h2>
 
-      <button onClick={handlePrint}>Print</button>
+
+
+
 
       <div className="display">
 
@@ -270,10 +280,14 @@ export default function App() {
             },
           }}
             onClick={handleDelete}>Delete</Button>
+
+          <button style={{ backgroundColor: '#4CAF50', color: '#FFFFFF', padding: '10px 20px', border: 'none', borderRadius: '5px', transition: 'backgroundColor 0.3s ease', boxShadow: '0px 2px 5px rgba(0,0,0,0.2', textTransform: 'uppercase' }} onClick={handlePrint}>Print</button>
         </ButtonGroup>
       </div>
 
       <div className='menu'>
+        <p>{`${formattedDate}`}</p>
+        <p>{`${tomorrowDay}`}</p>
 
         <ToastContainer />
 
@@ -283,7 +297,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category C")
               .map(item => (
-                <li key={item.id}>{item.name}
+                <li key={item.id}>{item.name}:
                   {(item.pax <= 10) ? (
                     <span> 1 platters sandwich </span>
                   ) : (
@@ -299,16 +313,16 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}
+                <li key={item.id}>{item.name}:
                   {(item.pax <= 25) ? (
                     <span> 1 platters sandwich </span>
                   ) : (
-
                     <span> {Math.round(item.pax / 25)}large platters</span>
-
                   )}
                 </li>
               ))}
+         
+
           </div>
         </div>
 
@@ -318,7 +332,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}
+                <li key={item.id}>{item.name}:
                   {(item.pax <= 25) ? (
                     <span> 1 platters sandwich </span>
                   ) : (
@@ -327,6 +341,8 @@ export default function App() {
 
                   )}</li>
               ))}
+
+          
           </div>
         </div>
 
@@ -336,7 +352,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category C" || item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name} {item.pax * 1 + "pcs"}</li>
+                <li key={item.id}>{item.name}: {item.pax * 1 + "pcs"}</li>
               ))}
           </div>
         </div>
@@ -347,7 +363,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category B" || item.category === "Category C")
               .map(item => (
-                <li key={item.id}>{item.name}
+                <li key={item.id}>{item.name}:
                   {(item.pax <= 10) ? (
                     <span> 1 platters </span>
                   ) : (
@@ -367,7 +383,7 @@ export default function App() {
               .filter(item => item.category === 'Category A')
               .map(item => (
                 <li key={item.id}>
-                  {item.name} {Math.round(item.pax * 1.5) + "each"}
+                  {item.name}: {Math.round(item.pax * 1.5) + "each"}
                   {item.pax < 30 ? (
                     <span> {Math.round((item.pax * 1.5) / 15)}small platters </span>
                   ) : (
@@ -386,7 +402,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category A")
               .map(item => (
-                <li key={item.id}>{item.name} {Math.round(item.pax * 1.5) + " bacon puff"}, {Math.round(item.pax * 1.5) + " spinach puff"}</li>
+                <li key={item.id}>{item.name}: {Math.round(item.pax * 1.5) + " bacon puff"}, {Math.round(item.pax * 1.5) + " spinach puff"}</li>
               ))}
           </div>
         </div>
@@ -399,7 +415,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}
+                <li key={item.id}>{item.name}:
                   {(item.pax <= 30) ? (
                     <span> 1 large platter</span>
                   ) : (
@@ -417,7 +433,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category B")
               .map(item => (
-                <li key={item.id}>{item.name}{(item.pax < 20) ? (
+                <li key={item.id}>{item.name}:{(item.pax < 20) ? (
                   <span> 1 small platter</span>
                 ) : (
 
@@ -434,7 +450,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}{(item.pax < 25) ? (
+                <li key={item.id}>{item.name}:{(item.pax < 25) ? (
                   <span> 1 platter</span>
                 ) : (
                   <span> {Math.round(item.pax / 25)} platters</span> //Math.round is for getting answer in round figure
@@ -450,7 +466,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}{(item.pax <= 15) ? (
+                <li key={item.id}>{item.name}:{(item.pax <= 15) ? (
                   <span> 1 platter</span>
                 ) : (
                   <span> {Math.round(item.pax / 15)} platters</span> //Math.round is for getting answer in round figure
@@ -466,7 +482,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category E")
               .map(item => (
-                <li key={item.id}>{item.name}{(item.pax <= 50) ? (
+                <li key={item.id}>{item.name}:{(item.pax <= 50) ? (
                   <span> 1 antipasto platter (mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), 1 foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs</span>
                 ) : (
                   <span> {Math.round(item.pax / 50)} antipasto platter (mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), {Math.round(item.pax / 50)} foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs </span> //Math.round is for getting answer in round figure
@@ -474,15 +490,15 @@ export default function App() {
                 )}</li>
               ))}
           </div>
-
+<br></br>
           <div>
             {items
               .filter(item => item.category === "Category F")
               .map(item => (
-                <li key={item.id}>{item.name}{(item.pax <= 50) ? (
-                  <span> 1 mezze platter (Greek dolmades, kalamata olives, kesseri, kefalograviera and feta cheese),{Math.round(item.pax / 10)} olives bread, 2 pita breads, oilve oil, balsamic vinegar, {item.pax * 3} calamari, {item.pax * 3} fish, {item.pax} octopus, {item.pax} spanokopita, {item.pax} tiropita, {item.pax / 2} paximathia, {item.pax /2 } koulouria, {Math.round(item.pax / 50)} greek salad</span>
+                <li key={item.id}>{item.name}:{(item.pax <= 50) ? (
+                  <span> 1 mezze platter (Greek dolmades, kalamata olives, kesseri, kefalograviera and feta cheese),{Math.round(item.pax / 10)} olives bread, 2 pita breads, oilve oil, balsamic vinegar, {item.pax * 3} calamari, {item.pax * 3} fish, {item.pax} octopus, {item.pax} spanokopita, {item.pax} tiropita, {item.pax / 2} paximathia, {item.pax / 2} koulouria, {Math.round(item.pax / 50)} greek salad</span>
                 ) : (
-                  <span> {Math.round(item.pax / 50)} mezze platter (Greek dolmades, kalamata olives, kesseri, kefalograviera and feta cheese), {Math.round(item.pax / 10)} olives bread, {Math.round(item.pax / 20)} pita breads, oilve oil, balsamic vinegar, {item.pax * 3} calamari, {item.pax * 3} fish, {item.pax} octopus, {item.pax} spanokopita, {item.pax} tiropita, {item.pax / 2} paximathia, {item.pax /2 } koulouria, {Math.round(item.pax / 50)} greek salad</span> //Math.round is for getting answer in round figure
+                  <span> {Math.round(item.pax / 50)} mezze platter (Greek dolmades, kalamata olives, kesseri, kefalograviera and feta cheese), {Math.round(item.pax / 10)} olives bread, {Math.round(item.pax / 20)} pita breads, oilve oil, balsamic vinegar, {item.pax * 3} calamari, {item.pax * 3} fish, {item.pax} octopus, {item.pax} spanokopita, {item.pax} tiropita, {item.pax / 2} paximathia, {item.pax / 2} koulouria, {Math.round(item.pax / 50)} greek salad</span> //Math.round is for getting answer in round figure
 
                 )}</li>
               ))}

@@ -10,6 +10,8 @@
   height: 800px;
   margin: auto;
   margin-top: 50px;
+  width: 210mm;
+  height: 297mm;
 }
 
 .App-logo {
@@ -79,6 +81,10 @@ li {
   margin: 5px;
   padding: 5px;
   gap: 2;
+}
+
+p{
+  margin: 5px;
 }
 
 
