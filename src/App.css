@@ -80,3 +80,19 @@ li {
   padding: 5px;
   gap: 2;
 }
+
+
+@media print {
+  
+  .App {
+    visibility: hidden;
+  }
+  .menu {
+    visibility: visible;
+  }
+  .menu {
+    position: center;
+    left: 0;
+    top: 0;
+  }
+}

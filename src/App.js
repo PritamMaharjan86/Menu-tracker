@@ -18,7 +18,10 @@ export default function App() {
   const [saveDisabled, setSavedisabled] = useState(true);
   const [editDisabled, setEditdisabled] = useState(true);
 
-
+  const handlePrint = () => {
+    window.print();
+ 
+  };
 
   useEffect(() => {
     checkFormValidity();
@@ -182,6 +185,7 @@ export default function App() {
     <div className="App">
       <h2 style={{}}>Celeste Menu</h2>
 
+      <button onClick={handlePrint}>Print</button>
 
       <div className="display">
 
