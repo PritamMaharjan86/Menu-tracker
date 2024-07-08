@@ -187,8 +187,6 @@ export default function App() {
   }
 
 
-
-
   return (
     <div className="App">
       <h2 style={{}}>Celeste Menu</h2>
@@ -294,16 +292,17 @@ export default function App() {
         <div>
           <span className='title'>Club Sandwiches</span>
           <div>
-            {items
+          <div style={{display:'flex', flexDirection:'row', justifyContent:'center', gap:'30px'}}><p>ham</p> <p>egg</p><p>beef</p> <p>salmon</p><p>chicken</p> <p>tuna</p><p>Platters</p></div>
+            {items 
               .filter(item => item.category === "Category C")
-              .map(item => (
-                <li key={item.id}>{item.name}:
+              .map(item => ( 
+                <li style={{display:'flex', flexDirection:'row', justifyContent:'left'}} key={item.id}>{item.name}
                   {(item.pax <= 10) ? (
-                    <span> 1 platters sandwich </span>
+                   <span style={{display:'flex', flexDirection:'row', justifyContent:'center', gap:'30px'}}> <p>{(item.pax/10) * 2}</p> <p>{(item.pax/10) * 2}</p> <p>{(item.pax/10)}</p> <p>{(item.pax/10) * 3}</p> <p>{(item.pax/10)}</p> <p>{(item.pax/10)}</p><p>{Math.round(item.pax / 10)}</p></span>
                   ) : (
 
-                    <span> {Math.round(item.pax / 10)}large platters</span>
-
+                    <span style={{display:'flex', flexDirection:'row', justifyContent:'center', gap:'30px'}}> <p>{(item.pax/10) * 2}</p> <p>{(item.pax/10) * 2}</p> <p>{(item.pax/10) }</p> <p>{(item.pax/10) }</p> <p>{(item.pax/10) * 3}</p> <p>{(item.pax/10)}</p><p>{Math.round(item.pax / 10)}</p></span>
+                  
                   )}
                 </li>
               ))}
@@ -313,7 +312,7 @@ export default function App() {
             {items
               .filter(item => item.category === "Category D")
               .map(item => (
-                <li key={item.id}>{item.name}:
+                <li style={{display:'flex', flexDirection:'row', justifyContent:'left'}} key={item.id}>{item.name}:
                   {(item.pax <= 25) ? (
                     <span> 1 platters sandwich </span>
                   ) : (
