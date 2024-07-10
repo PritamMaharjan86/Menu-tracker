@@ -75,6 +75,18 @@ export default function Menu({ items }) {
                                         </tr>
                                     );
                                 })}
+
+                            <tr style={{ fontWeight: 'bold', border: '1px solid black' }}>
+                                <td >Total</td>
+                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0)}</td>
+                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0)}</td>
+                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
+                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
+                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3), 0)}</td>
+                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
+                                <td>{items.reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td>
+                                <td>{items.reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -125,6 +137,16 @@ export default function Menu({ items }) {
                                         </tr>
                                     );
                                 })}
+                            <tr style={{ fontWeight: 'bold', border: '1px solid black' }}>
+                                <td>Total</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round((item.pax / 25) * 2)), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + Math.round(item.pax / 25), 0)}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
