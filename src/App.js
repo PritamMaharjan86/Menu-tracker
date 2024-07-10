@@ -216,8 +216,8 @@ export default function App() {
 
 
       <div className='menu'>
-        <p>{`${formattedDate}`}</p>
-        <p>{`${tomorrowDay}`}</p>
+        <p style={{fontWeight:'bold', fontSize:'18px'}}>{`${formattedDate}`}</p>
+        <p style={{fontWeight:'bold', fontSize:'18px', marginBottom:'20px'}}>{`${tomorrowDay}`}</p>
 
         <ToastContainer />
 
