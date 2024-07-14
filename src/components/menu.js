@@ -153,6 +153,7 @@ export default function Menu({ items }) {
             </div>
 
 
+
             <div>
                 <span className='title'>FRUITS</span>
                 <div>
@@ -163,7 +164,7 @@ export default function Menu({ items }) {
                                 .filter(item => item.category === "Category D")
                                 .map(item => {
 
-                                    const fruit = item.pax <= 30 ? (<span>1 LARGE</span>) : (<span> {Math.round(item.pax / 30)}LARGE </span>);
+                                    const fruit = item.pax <= 30 ? (<span>1 LARGE</span>) : (<span> {Math.round(item.pax / 30)} LARGE </span>);
 
                                     return (
 
@@ -230,6 +231,41 @@ export default function Menu({ items }) {
             </div>
 
 
+
+            <div>
+                <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '50px' }}>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th style={{ textDecoration: 'underline' }}>SCONES</th>
+                            <th style={{ textDecoration: 'underline' }}>BISCUITS</th>
+                            <th style={{ textDecoration: 'underline' }}>MUFFINS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {items
+                            .filter(item => item.category === 'Category A')
+                            .map(item => {
+                                const scones = Math.round((item.pax * 1.5) / 2) + " EACH"
+                                const biscuits = Math.round(item.pax * 1.5) + " PCS";
+                                const muffins = Math.round(item.pax * 1.5) + " EACH";
+
+
+                                return (
+                                    <tr key={item.id}>
+                                        <td>{item.name}</td>
+                                        <td>{scones}</td>
+                                        <td>{biscuits}</td>
+                                        <td>{muffins}</td>
+                                    </tr>
+                                );
+                            })}
+                    </tbody>
+                </table>
+            </div>
+
+
+
             <div>
                 <span className='title'>MEATBALLS</span>
                 <div>
@@ -256,54 +292,69 @@ export default function Menu({ items }) {
 
 
             <div>
-                <span className='title'>SCONES</span>
+                <span className='title'>PLATTERS</span>
                 <div>
-                    {items
-                        .filter(item => item.category === 'Category A')
-                        .map(item => (
-                            <li key={item.id}>
-                                {item.name}: {Math.round(item.pax * 1.5) + "each"}
-                                {item.pax < 30 ? (
-                                    <span> {Math.round((item.pax * 1.5) / 15)}small platters </span>
-                                ) : (
+                    <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
+                        <tbody>
+                            {items
+                                .filter(item => item.category === "Category D")
+                                .map(item => {
 
-                                    <span> {Math.round((item.pax * 1.5) / 24)} large platters</span>
+                                    const meatballs = item.pax <= 25 ? (<span>1 BAGS</span>) : (<span> {Math.round(item.pax / 25)} BAGS</span>);
 
-                                )}
-                            </li>
-                        ))}
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td>{item.name} </td>
+                                            <td>{meatballs}</td>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <div>
-                <span className='title'>Savoury Muffin</span>
-                <div>
-                    {items
-                        .filter(item => item.category === "Category A")
-                        .map(item => (
-                            <li key={item.id}>{item.name}: {Math.round(item.pax * 1.5) + " bacon puff"}, {Math.round(item.pax * 1.5) + " spinach puff"}</li>
-                        ))}
-                </div>
-            </div>
-
-
-
-
 
 
             <div>
                 <span className='title'>CULTURAL</span>
                 <div>
-                    {items
-                        .filter(item => item.category === "Category E")
-                        .map(item => (
-                            <li key={item.id}>{item.name}:{(item.pax <= 50) ? (
-                                <span> 1 antipasto platter (mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), 1 foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs</span>
-                            ) : (
-                                <span> {Math.round(item.pax / 50)} antipasto platter (mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), {Math.round(item.pax / 50)} foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs </span> //Math.round is for getting answer in round figure
 
-                            )}</li>
-                        ))}
+                    <table style={{ width: '100%', letterSpacing:'0.1px ', borderCollapse: 'seperate', marginTop: '10px', borderSpacing: '10px', textAlign: 'justify' }}>
+                        <tbody>
+                            {items
+                                .filter(item => item.category === "Category E")
+                                .map(item => {
+
+                                    const italian = (item.pax <= 50) ?
+
+                                        (<span>  1 antipasto platter(mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), 1 foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs</span>)
+
+
+                                        :
+
+                                        (<span> {Math.round(item.pax / 50)} antipasto platter (mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), {Math.round(item.pax / 50)} foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs </span>);
+
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td>{item.name} </td>
+                                            <td>{italian}</td>
+                                        </tr>
+
+
+                                    );
+
+
+                                })
+                            }
+
+
+
+                        </tbody>
+                    </table>
+
                 </div>
                 <br></br>
                 <div>
