@@ -61,6 +61,28 @@
   font-weight: bold;
 }
 
+
+.columns-container {
+  display: flex;
+  justify-content: space-between; /* Adjust space between columns */
+  margin-top: 10px; 
+  font-size: 16px;
+  line-height: 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  text-decoration: underline;
+  margin-left: 20px;
+  font-weight: bold;/* Adjust spacing from the title */
+}
+
+.column {
+  flex: 1; /* Each column takes equal space */
+  margin: 0 10px; /* Adjust spacing between columns */
+  /* Add more styles as required */
+}
+
+
 .menu {
   width: 210mm;
   height: 297mm;
