@@ -2,11 +2,11 @@ import React from 'react'
 import Button from '@mui/joy/Button'
 import ButtonGroup from '@mui/joy/ButtonGroup'
 
-export default function Buttons({handleAdd, handleAddItem, handleDelete, handleEdit, handlePrint, saveDisabled, editDisabled,isDisabled}) {
-  return (
-    
-       <div style={{ display: 'flex', justifyContent: 'center' }}>
-           <ButtonGroup spacing="0.6rem" aria-label="spacing button group">
+export default function Buttons({ handleAdd, handleAddItem, handleDelete, handleEdit, handlePrint, handlePlatter, saveDisabled, editDisabled, isDisabled }) {
+    return (
+
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <ButtonGroup spacing="0.6rem" aria-label="spacing button group">
                 <Button sx={{
                     backgroundColor: '#4CAF50',
                     color: '#FFFFFF',
@@ -72,7 +72,8 @@ export default function Buttons({handleAdd, handleAddItem, handleDelete, handleE
                         backgroundColor: '#388E3C',
                     },
                 }} onClick={handlePrint}>Print</Button>
-           </ButtonGroup>
-    </div>
-  )
+
+            </ButtonGroup>
+        </div>
+    )
 }
