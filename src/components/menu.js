@@ -22,7 +22,7 @@ export default function Menu({ items }) {
                         </thead>
                         <tbody>
                             {items
-                                .filter(item => item.category === 'Category C')
+                                .filter(item => item.category === "Category C")
                                 .map(item => {
                                     const ham = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
                                     const egg = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
@@ -49,7 +49,7 @@ export default function Menu({ items }) {
                                     );
                                 })}
                             {items
-                                .filter(item => item.category === 'Category D')
+                                .filter(item => item.category === "Category D")
                                 .map(item => {
                                     const ham = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
                                     const egg = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
@@ -75,18 +75,18 @@ export default function Menu({ items }) {
                                         </tr>
                                     );
                                 })}
-
                             <tr style={{ fontWeight: 'bold', border: '1px solid black' }}>
-                                <td >Total</td>
-                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0)}</td>
-                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0)}</td>
-                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
-                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
-                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3), 0)}</td>
-                                <td>{items.reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
-                                <td>{items.reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td>
-                                <td>{items.reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td>
+                                <td>Total</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)} NML</td>
                             </tr>
+
                         </tbody>
                     </table>
                 </div>
@@ -246,13 +246,13 @@ export default function Menu({ items }) {
                         {items
                             .filter(item => item.category === 'Category A')
                             .map(item => {
-                                const scones = Math.round((item.pax * 1.5) / 2) + " EACH"
+                                const scones = Math.round((item.pax * 1.5)) + " EACH"
                                 const biscuits = Math.round(item.pax * 1.5) + " PCS";
                                 const muffins = Math.round(item.pax * 1.5) + " EACH";
 
 
                                 return (
-                                    <tr key={item.id}>
+                                    <tr >
                                         <td>{item.name}</td>
                                         <td>{scones}</td>
                                         <td>{biscuits}</td>
@@ -291,36 +291,12 @@ export default function Menu({ items }) {
             </div>
 
 
-            <div>
-                <span className='title'>PLATTERS</span>
-                <div>
-                    <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
-                        <tbody>
-                            {items
-                                .filter(item => item.category === "Category D")
-                                .map(item => {
-
-                                    const meatballs = item.pax <= 25 ? (<span>1 BAGS</span>) : (<span> {Math.round(item.pax / 25)} BAGS</span>);
-
-                                    return (
-
-                                        <tr key={item.id}>
-                                            <td>{item.name} </td>
-                                            <td>{meatballs}</td>
-                                        </tr>
-                                    );
-                                })}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
 
             <div>
                 <span className='title'>CULTURAL</span>
                 <div>
 
-                    <table style={{ width: '100%', letterSpacing:'0.1px ', borderCollapse: 'seperate', marginTop: '10px', borderSpacing: '10px', textAlign: 'justify' }}>
+                    <table style={{ width: '100%', letterSpacing: '0.1px ', borderCollapse: 'seperate', marginTop: '10px', borderSpacing: '10px', textAlign: 'justify' }}>
                         <tbody>
                             {items
                                 .filter(item => item.category === "Category E")
