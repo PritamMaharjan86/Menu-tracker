@@ -75,6 +75,34 @@ export default function Menu({ items }) {
                                         </tr>
                                     );
                                 })}
+
+                            {items
+                                .filter(item => item.category === "Category B")
+                                .map(item => {
+                                    const ham = 0;
+                                    const egg = 0;
+                                    const beef = 0;
+                                    const salmon = 0;
+                                    const chicken = 0;
+                                    const tuna = 0;
+                                    const platters = 0;
+                                    const savoury = Math.round(item.pax / 10);
+
+
+                                    return (
+                                        <tr key={item.id}>
+                                            <td>{item.name}</td>
+                                            <td>{ham}</td>
+                                            <td>{egg}</td>
+                                            <td>{beef}</td>
+                                            <td>{salmon}</td>
+                                            <td>{chicken}</td>
+                                            <td>{tuna}</td>
+                                            <td>{platters}</td>
+                                            <td>{savoury} NML</td>
+                                        </tr>
+                                    );
+                                })}
                             <tr style={{ fontWeight: 'bold', border: '1px solid black' }}>
                                 <td>Total</td>
                                 <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0)}</td>
@@ -84,7 +112,7 @@ export default function Menu({ items }) {
                                 <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3), 0)}</td>
                                 <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
                                 <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)} NML</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === 'Category B').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)} NML</td>
                             </tr>
 
                         </tbody>
