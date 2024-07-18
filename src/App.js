@@ -123,17 +123,17 @@ export default function App() {
         };
         break;
 
-      case "ITALIAN":
-        toast.success("Added to menu");
-        newItem = {
-          id: items.length + 1,
-          name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          category: "Category E"
-        };
-        break;
+        case "E":
+          toast.success("Added to menu");
+          newItem = {
+            id: items.length + 1,
+            name: (client) + " " + (name) + '/' + (number),
+            pax: (number),
+            category: "Category E"
+          };
+          break;
 
-      case "GREEK DELUXE":
+      case "ITALIAN":
         toast.success("Added to menu");
         newItem = {
           id: items.length + 1,
@@ -143,7 +143,7 @@ export default function App() {
         };
         break;
 
-      case "GREEK LIGHT":
+      case "GREEK DELUXE":
         toast.success("Added to menu");
         newItem = {
           id: items.length + 1,
@@ -152,6 +152,26 @@ export default function App() {
           category: "Category G"
         };
         break;
+
+      case "GREEK LIGHT":
+        toast.success("Added to menu");
+        newItem = {
+          id: items.length + 1,
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          category: "Category H"
+        };
+        break;
+
+        case "ASIAN":
+          toast.success("Added to menu");
+          newItem = {
+            id: items.length + 1,
+            name: (client) + " " + (name) + '/' + (number),
+            pax: (number),
+            category: "Category I"
+          };
+          break;
 
       default:
         toast.error("Menu name not found");
@@ -191,7 +211,9 @@ export default function App() {
 
   return (
     <div className="App">
-      <h2 style={{}}>Celeste Menu</h2>
+      
+      <h2 style={{}}>MENU FORECAST</h2>
+     
 
       <Input
         handleClient={handleClient}
