@@ -112,7 +112,7 @@ export default function Menu({ items }) {
                                 <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3), 0)}</td>
                                 <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0)}</td>
                                 <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === 'Category B').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)} NML</td>
+                                {/* <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === 'Category B').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td> */}
                             </tr>
 
                         </tbody>
@@ -327,23 +327,22 @@ export default function Menu({ items }) {
                     <table style={{ width: '100%', letterSpacing: '0.1px ', borderCollapse: 'seperate', marginTop: '10px', borderSpacing: '10px', textAlign: 'justify' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category E")
+                                .filter(item => item.category === "Category F")
                                 .map(item => {
 
                                     const italian = (item.pax <= 50) ?
 
-                                        (<span>  1 antipasto platter(mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), 1 foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs</span>)
-
-
+                                        (<span>  1 TRADITIONAL CURED MEATS (MORTADELLA, PROSCUITTO DI PARMA & CALABRESE SALAMI) ITALIAN CHEESE (PROVOLONE & PECORINO) OLIVES & GIARDINERA. <br></br>
+                                            FOCCACIA, GRISSINI, PORK CHIPOLATA {item.pax} W/ SALSA ROSSA, CALAMARI RINGS {item.pax * 2}, PASTIZZI {item.pax}, MUSHROOM ARANCHINI {item.pax}, PUMPKIN ARANCHINI {item.pax}, MEATBALL {Math.round(item.pax / 30)} BAGS W/NAPOLI SAUCE, FISH {item.pax * 2}, CANNOLI {item.pax}, {Math.round(item.pax / 50)} TARTARE SAUCE + OLIVE OIL + BALSAMIC VINEGAR</span>)
                                         :
 
-                                        (<span> {Math.round(item.pax / 50)} antipasto platter (mortadella, prosciutto di Parma and calabrese salami, provolone, pecorino, olives and gardinera), {Math.round(item.pax / 50)} foccacia, grissini, oilve oil, vinegar, {item.pax * 2} calamari, {item.pax * 2} fish, {item.pax} chipolata, {item.pax} pastizzi, {item.pax} mushroom aranchini, {item.pax} pumpkin aranchini, {item.pax} cannoli, {Math.round(item.pax / 30)} bags meatballs </span>);
+                                        (<span> {Math.round(item.pax / 50)} TRADITIONAL CURED MEATS (MORTADELLA, PROSCUITTO DI PARMA & CALABRESE SALAMI) ITALIAN CHEESE (PROVOLONE & PECORINO) OLIVES & GIARDINERA. <br></br> {Math.round(item.pax / 50)}  FOCCACIA, GRISSINI, PORK CHIPOLATA {item.pax} W/ SALSA ROSSA, CALAMARI RINGS {item.pax * 2}, PASTIZZI {item.pax}, MUSHROOM ARANCHINI {item.pax}, PUMPKIN ARANCHINI {item.pax}, MEATBALL {Math.round(item.pax / 30)} BAGS W/NAPOLI SAUCE, FISH {item.pax * 2}, CANNOLI {item.pax}, {Math.round(item.pax / 50)} TARTARE SAUCE + OLIVE OIL + BALSAMIC VINEGAR</span>);
 
 
                                     return (
 
                                         <tr key={item.id}>
-                                            <td>{item.name} </td>
+                                            <td style={{ fontWeight: 'bold' }}>{item.name} </td>
                                             <td>{italian}</td>
                                         </tr>
 
@@ -360,18 +359,113 @@ export default function Menu({ items }) {
                     </table>
 
                 </div>
-                <br></br>
-                <div>
-                    {items
-                        .filter(item => item.category === "Category F")
-                        .map(item => (
-                            <li key={item.id}>{item.name}:{(item.pax <= 50) ? (
-                                <span> 1 mezze platter (Greek dolmades, kalamata olives, kesseri, kefalograviera and feta cheese),{Math.round(item.pax / 10)} olives bread, 2 pita breads, oilve oil, balsamic vinegar, {item.pax * 3} calamari, {item.pax * 3} fish, {item.pax} octopus, {item.pax} spanokopita, {item.pax} tiropita, {item.pax / 2} paximathia, {item.pax / 2} koulouria, {Math.round(item.pax / 50)} greek salad</span>
-                            ) : (
-                                <span> {Math.round(item.pax / 50)} mezze platter (Greek dolmades, kalamata olives, kesseri, kefalograviera and feta cheese), {Math.round(item.pax / 10)} olives bread, {Math.round(item.pax / 20)} pita breads, oilve oil, balsamic vinegar, {item.pax * 3} calamari, {item.pax * 3} fish, {item.pax} octopus, {item.pax} spanokopita, {item.pax} tiropita, {item.pax / 2} paximathia, {item.pax / 2} koulouria, {Math.round(item.pax / 50)} greek salad</span> //Math.round is for getting answer in round figure
 
-                            )}</li>
-                        ))}
+                <br></br>
+
+                <div>
+
+                    <table style={{ width: '100%', letterSpacing: '0.1px ', borderCollapse: 'seperate', marginTop: '10px', borderSpacing: '10px', textAlign: 'justify' }}>
+                        <tbody>
+                            {items
+                                .filter(item => item.category === "Category G")
+                                .map(item => {
+
+                                    const greekdeluxe = (item.pax <= 50) ?
+
+                                        (<span>  1 MEZZE PLATTER (KESSERI, KEFALOGRAVIERA, FETTA CHEESE, DOLMADES, KALAMATA OLIVES), {Math.round(item.pax / 15)} OLIVE BREAD, {Math.round(item.pax / 50)} PACKET PITA BREAD, {item.pax * 3} FISH, {item.pax} SPANOKOPITA, {item.pax} TIROPITA, {item.pax * 3} CALAMARI RINGS, {Math.round(item.pax / 50)} LARGE RAMEKIN TARAMASALATA, {Math.round(item.pax / 50)} LARGE RAMEKIN TARTARE SAUCE, {Math.round(item.pax / 50)} LARGE RAMEKIN TZATZIKI, OLIVE OIL, VINEGAR, {Math.round(item.pax / 2)} PAXIMATHIA,  {Math.round(item.pax / 2)} KOULOURIA, {item.pax} OCTOPUS & {Math.round(item.pax / 25)} LONG GREEK SALAD W DRESSING ON SIDE + {item.pax} PCS DEEP FRIED POTATOES    </span>)
+                                        :
+
+                                        (<span> {Math.round(item.pax / 50)} MEZZE PLATTER (KESSERI, KEFALOGRAVIERA, FETTA CHEESE, DOLMADES, KALAMATA OLIVES), {Math.round(item.pax / 15)} OLIVE BREAD, {Math.round(item.pax / 50)} PACKET PITA BREAD, {item.pax * 3} FISH, {item.pax} SPANOKOPITA, {item.pax} TIROPITA, {item.pax * 3} CALAMARI RINGS, {Math.round(item.pax / 50)} LARGE RAMEKIN TARAMASALATA, {Math.round(item.pax / 50)} LARGE RAMEKIN TARTARE SAUCE, {Math.round(item.pax / 50)} LARGE RAMEKIN TZATZIKI, OLIVE OIL, VINEGAR, {Math.round(item.pax / 2)} PAXIMATHIA,  {Math.round(item.pax / 2)} KOULOURIA, {item.pax} OCTOPUS & {Math.round(item.pax / 25)} LONG GREEK SALAD W DRESSING ON SIDE + {item.pax} PCS DEEP FRIED POTATOES    </span>);
+
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td style={{ fontWeight: 'bold' }}>{item.name} </td>
+                                            <td>{greekdeluxe}</td>
+                                        </tr>
+
+
+                                    );
+
+
+                                })
+                            }
+
+
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <br></br>
+
+                <div>
+
+                    <table style={{ width: '100%', letterSpacing: '0.1px ', borderCollapse: 'seperate', marginTop: '10px', borderSpacing: '10px', textAlign: 'justify' }}>
+                        <tbody>
+                            {items
+                                .filter(item => item.category === "Category H")
+                                .map(item => {
+
+                                    const greeklight = (item.pax <= 50) ?
+
+                                        (<span>  1 MEZZE PLATTER (FETTA CHEESE, DOLMADES, KALAMATA OLIVES), {Math.round(item.pax / 15)} OLIVE BREAD, {Math.round(item.pax / 50)} PACKET PITA BREAD, {item.pax * 3} FISH, {item.pax} SPANOKOPITA, {item.pax} TIROPITA, {Math.round(item.pax / 50)} LARGE RAMEKIN TARAMASALATA, {Math.round(item.pax / 50)} LARGE RAMEKIN TARTARE SAUCE, {Math.round(item.pax / 50)} LARGE RAMEKIN TZATZIKI, OLIVE OIL, VINEGAR, {Math.round(item.pax / 2)} PAXIMATHIA,  {Math.round(item.pax / 2)} KOULOURIA & {Math.round(item.pax / 25)} LONG GREEK SALAD W DRESSING ON SIDE + {item.pax} PCS DEEP FRIED POTATOES    </span>)
+                                        :
+
+                                        (<span> {Math.round(item.pax / 50)} MEZZE PLATTER (FETTA CHEESE, DOLMADES, KALAMATA OLIVES), {Math.round(item.pax / 15)} OLIVE BREAD, {Math.round(item.pax / 50)} PACKET PITA BREAD, {item.pax * 3} FISH, {item.pax} SPANOKOPITA, {item.pax} TIROPITA, {Math.round(item.pax / 50)} LARGE RAMEKIN TARAMASALATA, {Math.round(item.pax / 50)} LARGE RAMEKIN TARTARE SAUCE, {Math.round(item.pax / 50)} LARGE RAMEKIN TZATZIKI, OLIVE OIL, VINEGAR, {Math.round(item.pax / 2)} PAXIMATHIA,  {Math.round(item.pax / 2)} KOULOURIA & {Math.round(item.pax / 25)} LONG GREEK SALAD W DRESSING ON SIDE + {item.pax} PCS DEEP FRIED POTATOES    </span>);
+
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td style={{ fontWeight: 'bold' }}>{item.name} </td>
+                                            <td>{greeklight}</td>
+                                        </tr>
+
+
+                                    );
+
+
+                                })
+                            }
+                        </tbody>
+                    </table>
+
+                </div>
+
+                <br></br>
+
+                <div>
+                    <table style={{ width: '100%', letterSpacing: '0.1px ', borderCollapse: 'seperate', marginTop: '10px', borderSpacing: '10px', textAlign: 'justify' }}>
+                        <tbody>
+                            {items
+                                .filter(item => item.category === "Category I")
+                                .map(item => {
+
+                                    const asian = (item.pax <= 50) ? (
+                                        <span> {item.pax}FISH + {item.pax}PRAWN + {item.pax}DIMSIM + {item.pax * 2}SPRING ROLLS + {item.pax}SATAY CHICKEN</span>
+                                    ) : (
+                                        <span> {item.pax}FISH + {item.pax}PRAWN + {item.pax}DIMSIM + {item.pax * 2}SPRING ROLLS + {item.pax}SATAY CHICKEN</span> //Math.round is for getting answer in round figure
+
+                                    )
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td style={{ fontWeight: 'bold' }}>{item.name} </td>
+                                            <td>{asian}</td>
+                                        </tr>
+
+
+                                    );
+                                })
+                            }
+
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
 
