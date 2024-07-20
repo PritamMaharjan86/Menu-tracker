@@ -13,11 +13,13 @@ export default function App() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
   const [client, setClient] = useState('');
+  const [platter, setPlatter] = useState('');
   const [items, setItems] = useState([]);
   const [field, setField] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
   const [saveDisabled, setSavedisabled] = useState(true);
   const [editDisabled, setEditdisabled] = useState(true);
+  const [extraDisabled, setExtradisabled] = useState(true);
   const currentDate = new Date();
   const tomorrowDate = new Date(currentDate);
   tomorrowDate.setDate(currentDate.getDate() + 1);
@@ -34,13 +36,13 @@ export default function App() {
 
   useEffect(() => {
     checkFormValidity();
-  }, [client, name, number]);
+  }, [client, name, number, platter]);
 
 
 
   const handleName = (e) => {
     const name = e.target.value.toUpperCase();
-    if (/^[a-zA-Z\s]*$/.test(name)) { // Only allow digits
+    if (/^[a-zA-Z\s]*$/.test(name)) { // Only allow  digits
       setName(name);
       checkFormValidity();
 
@@ -65,11 +67,27 @@ export default function App() {
     }
   };
 
+  const handlePlatter = (e) => {
+    const platter = e.target.value.toUpperCase();
+    if (/^[a-zA-Z\s]*$/.test(platter)) { // Only allow  digits
+      setPlatter(platter);
+      checkFormValidity();
+
+    }
+  };
+
   const checkFormValidity = () => {
-    if (client.trim() !== '' && name.trim() !== '' && number.trim() !== '') {
-      setSavedisabled(false);
-    } else {
+    if (client.trim() !== '' && name.trim() !== '' && number.trim() !== '' && platter.trim() !== '') {
       setSavedisabled(true);
+      setExtradisabled(false);
+
+    } else if (client.trim() !== '' && name.trim() !== '' && number.trim() !== '') {
+      setExtradisabled(true);
+      setSavedisabled(false);
+    }
+    else {
+      setSavedisabled(true);
+      setExtradisabled(true);
     }
   };
 
@@ -123,15 +141,15 @@ export default function App() {
         };
         break;
 
-        case "E":
-          toast.success("Added to menu");
-          newItem = {
-            id: items.length + 1,
-            name: (client) + " " + (name) + '/' + (number),
-            pax: (number),
-            category: "Category E"
-          };
-          break;
+      case "E":
+        toast.success("Added to menu");
+        newItem = {
+          id: items.length + 1,
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          category: "Category E"
+        };
+        break;
 
       case "ITALIAN":
         toast.success("Added to menu");
@@ -163,15 +181,15 @@ export default function App() {
         };
         break;
 
-        case "ASIAN":
-          toast.success("Added to menu");
-          newItem = {
-            id: items.length + 1,
-            name: (client) + " " + (name) + '/' + (number),
-            pax: (number),
-            category: "Category I"
-          };
-          break;
+      case "ASIAN":
+        toast.success("Added to menu");
+        newItem = {
+          id: items.length + 1,
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          category: "Category I"
+        };
+        break;
 
       default:
         toast.error("Menu name not found");
@@ -185,11 +203,38 @@ export default function App() {
 
   }
 
+  const handleExtra = () => {
+    setField(false);
+    setIsDisabled(false);
+    setSavedisabled(true);
+    setEditdisabled(false);
+    setExtradisabled(true);
+
+
+    let newItem;
+
+   
+        toast.success("Added to menu");
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number) ,
+          pax: (number),
+          add: (platter),
+          category: "Category P"
+
+       
+      }
+      setItems([...items, newItem]);
+    
+
+  }
+
 
   const handleEdit = () => {
     setField(true);
+    setExtradisabled(true);
     setIsDisabled(true);
-    setSavedisabled(false);
+    setSavedisabled(true);
     setEditdisabled(true);
 
     setItems(prevItems => prevItems.slice(0, -1));
@@ -199,11 +244,13 @@ export default function App() {
   const handleAdd = () => {
     setIsDisabled(true);
     setSavedisabled(false);
+    setExtradisabled(false);
     setField(true);
-    setEditdisabled(true);
+    setEditdisabled(false);
     setClient('');
     setName('');
     setNumber('');
+    setPlatter('');
 
   }
 
@@ -211,18 +258,20 @@ export default function App() {
 
   return (
     <div className="App">
-      
+
       <h2 style={{}}>MENU FORECAST</h2>
-     
+
 
       <Input
         handleClient={handleClient}
         handleName={handleName}
         handleNumber={handleNumber}
+        handlePlatter={handlePlatter}
         field={field}
         name={name}
         client={client}
         number={number}
+        platter={platter}
       />
 
       <Buttons
@@ -231,16 +280,18 @@ export default function App() {
         handleDelete={handleDelete}
         handleEdit={handleEdit}
         handlePrint={handlePrint}
+        handleExtra={handleExtra}
         saveDisabled={saveDisabled}
         isDisabled={isDisabled}
         editDisabled={editDisabled}
+        extraDisabled={extraDisabled}
       />
 
 
 
       <div className='menu'>
-        <p style={{fontWeight:'bold', fontSize:'18px'}}>{`${formattedDate}`}</p>
-        <p style={{fontWeight:'bold', fontSize:'18px', marginBottom:'20px'}}>{`${tomorrowDay}`}</p>
+        <p style={{ fontWeight: 'bold', fontSize: '18px' }}>{`${formattedDate}`}</p>
+        <p style={{ fontWeight: 'bold', fontSize: '18px', marginBottom: '20px' }}>{`${tomorrowDay}`}</p>
 
         <ToastContainer />
 

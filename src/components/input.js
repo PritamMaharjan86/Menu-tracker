@@ -1,9 +1,9 @@
 import React from "react"
 
-export default function Input({handleClient, handleName, handleNumber, field, name, client, number}) {
+export default function Input({ handleClient, handleName, handleNumber, handlePlatter, field, name, client, number, platter }) {
 
 
-    
+
     return (
         <div className="display">
 
@@ -29,6 +29,15 @@ export default function Input({handleClient, handleName, handleNumber, field, na
                 placeholder="Enter menu number"
                 value={number}
                 onChange={(e) => handleNumber(e)}
+                required
+            />)}
+
+            {field && (<input
+                type="text"
+                className="data"
+                placeholder="Enter platter name"
+                value={platter}
+                onChange={(e) => handlePlatter(e)}
                 required
             />)}
 

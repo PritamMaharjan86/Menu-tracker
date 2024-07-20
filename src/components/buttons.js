@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '@mui/joy/Button'
 import ButtonGroup from '@mui/joy/ButtonGroup'
 
-export default function Buttons({ handleAdd, handleAddItem, handleDelete, handleEdit, handlePrint, handlePlatter, saveDisabled, editDisabled, isDisabled }) {
+export default function Buttons({ handleAdd, handleAddItem, handleDelete, handleEdit, handlePrint, handleExtra, extraDisabled, saveDisabled, editDisabled, isDisabled }) {
     return (
 
         <div style={{ display: 'flex', justifyContent: 'center' }}>
@@ -72,6 +72,19 @@ export default function Buttons({ handleAdd, handleAddItem, handleDelete, handle
                         backgroundColor: '#388E3C',
                     },
                 }} onClick={handlePrint}>Print</Button>
+
+                <Button sx={{
+                    backgroundColor: '#000000',
+                    color: '#FFFFFF',
+                    borderRadius: '5px',
+                    transition: 'background-color 0.3s ease',
+                    boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)',
+                    textTransform: 'uppercase',
+                    ':hover': {
+                        backgroundColor: '#E64A19',
+                    },
+                }}
+                disabled={extraDisabled}  onClick={handleExtra}>Platter</Button>
 
             </ButtonGroup>
         </div>
