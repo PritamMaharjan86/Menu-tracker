@@ -318,6 +318,31 @@ export default function Menu({ items }) {
                 </div>
             </div>
 
+            <div>
+                <span className='title'>PLATTERS</span>
+                <div>
+                    <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
+                        <tbody>
+                            {items
+                                .filter(item => item.category === "Category P")
+                                .map(item => {
+
+                                    const platters = item.pax <= 50 ? (<span> {Math.round(item.pax /30)} {item.add}</span>) : (<span> {Math.round(item.pax / 50)} {item.add}</span>);
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td>{item.name} </td>
+                                            <td>{platters}</td>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+
 
 
             <div>
