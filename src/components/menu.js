@@ -21,6 +21,35 @@ export default function Menu({ items }) {
                             </tr>
                         </thead>
                         <tbody>
+
+                            {items
+                                .filter(item => item.category === "Category B")
+                                .map(item => {
+                                    const ham = 0;
+                                    const egg = 0;
+                                    const beef = 0;
+                                    const salmon = 0;
+                                    const chicken = 0;
+                                    const tuna = 0;
+                                    const platters = 0;
+                                    const savoury = Math.round(item.pax / 10);
+
+
+                                    return (
+                                        <tr key={item.id}>
+                                            <td>{item.name}</td>
+                                            <td>{ham}</td>
+                                            <td>{egg}</td>
+                                            <td>{beef}</td>
+                                            <td>{salmon}</td>
+                                            <td>{chicken}</td>
+                                            <td>{tuna}</td>
+                                            <td>{platters}</td>
+                                            <td>{savoury} NML</td>
+                                        </tr>
+                                    );
+                                })}
+
                             {items
                                 .filter(item => item.category === "Category C")
                                 .map(item => {
@@ -77,16 +106,15 @@ export default function Menu({ items }) {
                                 })}
 
                             {items
-                                .filter(item => item.category === "Category B")
+                                .filter(item => item.category === "Category E")
                                 .map(item => {
-                                    const ham = 0;
-                                    const egg = 0;
-                                    const beef = 0;
-                                    const salmon = 0;
-                                    const chicken = 0;
-                                    const tuna = 0;
-                                    const platters = 0;
-                                    const savoury = Math.round(item.pax / 10);
+                                    const ham = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
+                                    const egg = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
+                                    const beef = item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10);
+                                    const salmon = item.pax <= 10 ? (item.pax / 10) : Math.round((item.pax / 10));
+                                    const chicken = item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3;
+                                    const tuna = item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10);
+                                    const platters = Math.round(item.pax / 10);
 
 
                                     return (
@@ -99,10 +127,11 @@ export default function Menu({ items }) {
                                             <td>{chicken}</td>
                                             <td>{tuna}</td>
                                             <td>{platters}</td>
-                                            <td>{savoury} NML</td>
                                         </tr>
                                     );
                                 })}
+
+
                             <tr style={{ fontWeight: 'bold', border: '1px solid black' }}>
                                 <td>Total</td>
                                 <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0)}</td>
@@ -240,7 +269,7 @@ export default function Menu({ items }) {
                     <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category B")
+                                .filter(item => item.category === "Category B" || item.category === "Category E")
                                 .map(item => {
 
                                     const slices = item.pax <= 20 ? (<span>1 SMALL</span>) : (<span> {Math.round(item.pax / 20)} LARGE </span>);
@@ -327,7 +356,7 @@ export default function Menu({ items }) {
                                 .filter(item => item.category === "Category P")
                                 .map(item => {
 
-                                    const platters = item.pax <= 50 ? (<span> {Math.round(item.pax /30)} {item.add}</span>) : (<span> {Math.round(item.pax / 50)} {item.add}</span>);
+                                    const platters = item.pax <= 50 ? (<span> {Math.round(item.pax / 30)} {item.add}</span>) : (<span> {Math.round(item.pax / 50)} {item.add}</span>);
 
                                     return (
 
