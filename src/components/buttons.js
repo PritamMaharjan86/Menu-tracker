@@ -1,6 +1,8 @@
 import React from 'react'
 import Button from '@mui/joy/Button'
 import ButtonGroup from '@mui/joy/ButtonGroup'
+import { AiFillPrinter } from "react-icons/ai";
+
 
 export default function Buttons({ handleAdd, handleAddItem, handleDelete, handleEdit, handlePrint, handleExtra, extraDisabled, saveDisabled, editDisabled, isDisabled }) {
     return (
@@ -44,7 +46,7 @@ export default function Buttons({ handleAdd, handleAddItem, handleDelete, handle
                         backgroundColor: '#1976D2',
                     },
                 }}
-                    disabled={isDisabled} onClick={handleAdd}>Add</Button>
+                    disabled={isDisabled} onClick={handleAdd}>add</Button>
 
                 <Button sx={{
                     backgroundColor: '#FF5722',
@@ -71,7 +73,7 @@ export default function Buttons({ handleAdd, handleAddItem, handleDelete, handle
                     ':hover': {
                         backgroundColor: '#388E3C',
                     },
-                }} onClick={handlePrint}>Print</Button>
+                }} onClick={handlePrint}><AiFillPrinter /></Button>
 
                 <Button sx={{
                     backgroundColor: '#000000',
