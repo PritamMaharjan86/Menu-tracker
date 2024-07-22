@@ -172,12 +172,12 @@ export default function Menu({ items }) {
                             {items
                                 .filter(item => item.category === 'Category D')
                                 .map(item => {
-                                    const ham = item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2;
-                                    const egg = item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2;
-                                    const beef = item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2;
-                                    const salmon = item.pax <= 25 ? (item.pax / 25) * 2 : Math.round((item.pax / 25) * 2);
-                                    const chicken = item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2;
-                                    const tuna = item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2;
+                                    const ham = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
+                                    const egg = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
+                                    const beef = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
+                                    const salmon = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round((item.pax / 25) * 2);
+                                    const chicken = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
+                                    const tuna = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
                                     const platters = Math.round(item.pax / 25);
 
                                     return (
@@ -196,12 +196,12 @@ export default function Menu({ items }) {
                                 })}
                             <tr style={{ fontWeight: 'bold', border: '1px solid black' }}>
                                 <td>Total</td>
-                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round((item.pax / 25) * 2)), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round((item.pax / 25) * 2)), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0)}</td>
                                 <td>{items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + Math.round(item.pax / 25), 0)}</td>
                             </tr>
                         </tbody>
@@ -303,7 +303,24 @@ export default function Menu({ items }) {
                         {items
                             .filter(item => item.category === 'Category A')
                             .map(item => {
-                                const scones = Math.round((item.pax * 1.5)) + " EACH"
+                                let scones;
+                                let additionalInfo = Math.round((item.pax * 1.5) / 4) + " EACH";
+
+                                if (item.pax < 30) {
+                                    scones = (
+                                        <span>
+                                            {Math.round((item.pax * 1.5) / 15)} SMALL
+                                            ({additionalInfo})
+                                        </span>
+                                    );
+                                } else {
+                                    scones = (
+                                        <span>
+                                            {Math.round((item.pax * 1.5) / 24)} LARGE
+                                            ({additionalInfo})
+                                        </span>
+                                    );
+                                }
                                 const biscuits = Math.round(item.pax * 1.5) + " PCS";
                                 const muffins = Math.round(item.pax * 1.5) + " EACH";
 
