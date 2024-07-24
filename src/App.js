@@ -210,22 +210,103 @@ export default function App() {
     setEditdisabled(false);
     setExtradisabled(true);
 
-
     let newItem;
-
    
-        toast.success("Added to menu");
+
+
+    switch (platter) {
+
+      case "CLUB":    
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          add: (platter),
+          category: "Category CL"
+
+        };
+        break;
+
+      case "RIBBON":
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          add: (platter),
+          category: "Category RB"
+
+        };
+        break;
+
+      case "FRUIT":
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          add: (platter),
+          category: "Category FR"
+
+        };
+        break;
+
+      case "SCONES":
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          add: (platter),
+          category: "Category SC"
+
+        };
+        break;
+
+      case "MEATBALL":    
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          add: (platter),
+          category: "Category MT"
+
+        };
+        break;
+
+      case "SLICE":
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          add: (platter),
+          category: "Category SL"
+
+        };
+        break;
+
+      case "MACARONS":
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          add: (platter),
+          category: "Category MC"
+
+        };
+        break;
+
+
+      default:
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number) ,
           pax: (number),
           add: (platter),
-          category: "Category P"
+          category: "Category P"}
 
-       
-      }
-      setItems([...items, newItem]);
-    
+
+    }
+    setItems([...items, newItem]);
+ 
+    toast.success("Added to menu");
 
   }
 
