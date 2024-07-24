@@ -51,7 +51,7 @@ export default function Menu({ items }) {
                                 })}
 
                             {items
-                                .filter(item => item.category === "Category C")
+                                .filter(item => item.category === "Category C" )
                                 .map(item => {
                                     const ham = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
                                     const egg = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
@@ -131,6 +131,32 @@ export default function Menu({ items }) {
                                     );
                                 })}
 
+{items
+                                .filter(item => item.category === "Category CL")
+                                .map(item => {
+                                    const ham = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
+                                    const egg = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
+                                    const beef = item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10);
+                                    const salmon = item.pax <= 10 ? (item.pax / 10) : Math.round((item.pax / 10));
+                                    const chicken = item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3;
+                                    const tuna = item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10);
+                                    const platters = Math.round(item.pax / 10);
+
+
+                                    return (
+                                        <tr key={item.id}>
+                                            <td>{item.name}</td>
+                                            <td>{ham}</td>
+                                            <td>{egg}</td>
+                                            <td>{beef}</td>
+                                            <td>{salmon}</td>
+                                            <td>{chicken}</td>
+                                            <td>{tuna}</td>
+                                            <td>{platters}</td>
+                                        </tr>
+                                    );
+                                })}
+
 
                             <tr style={{ fontWeight: 'bold', border: '1px solid black' }}>
                                 <td>Total</td>
@@ -170,7 +196,7 @@ export default function Menu({ items }) {
                         </thead>
                         <tbody>
                             {items
-                                .filter(item => item.category === 'Category D')
+                                .filter(item => item.category === 'Category D' || item.category === "Category RB")
                                 .map(item => {
                                     const ham = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
                                     const egg = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
@@ -218,7 +244,7 @@ export default function Menu({ items }) {
                     <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category D")
+                                .filter(item => item.category === "Category D" || item.category === "Category FR")
                                 .map(item => {
 
                                     const fruit = item.pax <= 30 ? (<span>1 LARGE</span>) : (<span> {Math.round(item.pax / 30)} LARGE </span>);
@@ -244,7 +270,7 @@ export default function Menu({ items }) {
                     <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category D" || item.category === "Category C")
+                                .filter(item => item.category === "Category D" || item.category === "Category C" || item.category === "Category MC")
                                 .map(item => {
 
                                     const macarons = (item.pax * 1) + " " + "PCS"
@@ -269,7 +295,7 @@ export default function Menu({ items }) {
                     <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category B" || item.category === "Category E")
+                                .filter(item => item.category === "Category B" || item.category === "Category E" || item.category === "Category SL")
                                 .map(item => {
 
                                     const slices = item.pax <= 20 ? (<span>1 SMALL</span>) : (<span> {Math.round(item.pax / 20)} LARGE </span>);
@@ -301,7 +327,7 @@ export default function Menu({ items }) {
                     </thead>
                     <tbody>
                         {items
-                            .filter(item => item.category === 'Category A')
+                            .filter(item => item.category === 'Category A' || item.category === "Category SC")
                             .map(item => {
                                 let scones;
                                 let additionalInfo = Math.round((item.pax * 1.5) / 4) + " EACH";
@@ -346,7 +372,7 @@ export default function Menu({ items }) {
                     <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category D")
+                                .filter(item => item.category === "Category D" || item.category === "Category MT")
                                 .map(item => {
 
                                     const meatballs = item.pax <= 25 ? (<span>1 BAGS</span>) : (<span> {Math.round(item.pax / 25)} BAGS</span>);
