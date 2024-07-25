@@ -24,7 +24,7 @@ export default function Menu({ items }) {
                             <span className='title'>CLUBS</span>
 
                             {items
-                                .filter(item => item.category === "Category B")
+                                .filter(item => item.category === "Category B" || item.category === "Category SV")
                                 .map(item => {
                                     const ham = 0;
                                     const egg = 0;
@@ -298,7 +298,7 @@ export default function Menu({ items }) {
                     </thead>
                     <tbody>
                         {items
-                            .filter(item => item.category === 'Category A' || item.category === "Category SC")
+                            .filter(item => item.category === 'Category A')
                             .map(item => {
                                 let scones;
                                 let additionalInfo = Math.round((item.pax * 1.5) / 4) + " EACH";
@@ -328,6 +328,37 @@ export default function Menu({ items }) {
                                         <td>{scones}</td>
                                         <td>{biscuits}</td>
                                         <td>{muffins}</td>
+                                    </tr>
+                                );
+                            })}
+
+                        {items
+                            .filter(item => item.category === "Category SC")
+                            .map(item => {
+                                let scones;
+                                let additionalInfo = Math.round((item.pax * 1.5) / 4) + " EACH";
+
+                                if (item.pax < 30) {
+                                    scones = (
+                                        <span>
+                                            {Math.round((item.pax * 1.5) / 15)} SMALL
+                                            ({additionalInfo})
+                                        </span>
+                                    );
+                                } else {
+                                    scones = (
+                                        <span>
+                                            {Math.round((item.pax * 1.5) / 24)} LARGE
+                                            ({additionalInfo})
+                                        </span>
+                                    );
+                                }
+
+
+                                return (
+                                    <tr >
+                                        <td>{item.name}</td>
+                                        <td>{scones}</td>
                                     </tr>
                                 );
                             })}
