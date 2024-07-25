@@ -293,6 +293,17 @@ export default function App() {
         };
         break;
 
+        case "SAVOURY":
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          add: (platter),
+          category: "Category SV"
+
+        };
+        break;
+
 
       default:
         newItem = {
