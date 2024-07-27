@@ -48,9 +48,7 @@
   }
 }
 
-
 .title {
-
   font-size: 16px;
   line-height: 5;
   display: flex;
@@ -61,11 +59,10 @@
   font-weight: bold;
 }
 
-
 .columns-container {
   display: flex;
   justify-content: space-between; /* Adjust space between columns */
-  margin-top: 10px; 
+  margin-top: 10px;
   font-size: 16px;
   line-height: 5;
   display: flex;
@@ -73,7 +70,7 @@
   justify-content: left;
   text-decoration: underline;
   margin-left: 20px;
-  font-weight: bold;/* Adjust spacing from the title */
+  font-weight: bold; /* Adjust spacing from the title */
 }
 
 .column {
@@ -82,10 +79,10 @@
   /* Add more styles as required */
 }
 
-
 .menu {
-  width: 210mm;
+  width: 230mm;
   height: 297mm;
+  margin-top: 100px;
 }
 
 td {
@@ -103,13 +100,15 @@ td {
   gap: 2;
 }
 
-p{
+p {
   margin: 5px;
 }
 
-
 @media print {
-  
+
+  .first-page {
+    display: none; /* Hide first page content */
+  }
   .App {
     visibility: hidden;
   }
@@ -117,8 +116,31 @@ p{
     visibility: visible;
   }
   .menu {
-    position: center;
-    left: 0;
-    top: 0;
+    display: block; /* Ensure menu is visible */
+    width: 210mm;
+    height: 297mm;
+    page-break-before: always;
+  }
+}
+
+@page {
+  margin: 0;
+  @top-left {
+    content: none; /* Hide top-left content (usually URL) */
+  }
+  @top-center {
+    content: none; /* Hide top-center content (usually title) */
+  }
+  @top-right {
+    content: none; /* Hide top-right content (if needed) */
+  }
+  @bottom-left {
+    content: none; /* Hide bottom-left content (page numbers) */
+  }
+  @bottom-center {
+    content: none; /* Hide bottom-center content (page numbers) */
+  }
+  @bottom-right {
+    content: none; /* Hide bottom-right content (page numbers) */
   }
 }
