@@ -187,14 +187,38 @@ export default function Menu({ items }) {
                                 })}
 
 
+                            <tr style={{ backgroundColor: 'yellow' }}>
+                                <td>
+                                    LUNCH BOX
+                                </td>
+                                <td>
+                                    {Math.round((items.length * 2 / 6))}
+                                </td>
+                                <td>
+                                    {Math.round((items.length * 2 / 6))}
+                                </td>
+                                <td>
+                                    {Math.round((items.length * 2 / 6))}
+                                </td>
+                                <td>
+                                    {Math.round((items.length * 2 / 6))}
+                                </td>
+                                <td>
+                                    {Math.round((items.length * 2 / 6))}
+                                </td>
+                                <td>
+                                    {Math.round((items.length * 2 / 6))}
+                                </td>
+                            </tr>
+
                             <tr style={{ fontWeight: 'bold', border: '1px solid black' }}>
                                 <td>Total</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === "Category D" || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === "Category D" || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? (item.pax / 25) * 2 : Math.round(item.pax / 25) * 2), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === "Category D" || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10) * 2) : Math.round(item.pax / 10) * 2), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))} </td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === "Category D" || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10) * 2) : Math.round(item.pax / 10) * 2), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10)) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10)) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10) * 3) : Math.round(item.pax / 10) * 3), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10)) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
                                 <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + Math.round(item.pax / 10), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + Math.round(item.pax / 25), 0)}</td>
 
                                 {/* <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === 'Category B').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td> */}
@@ -203,6 +227,7 @@ export default function Menu({ items }) {
                         </tbody>
                     </table>
                 </div>
+
 
 
             </div>
