@@ -566,6 +566,40 @@ export default function Menu({ items }) {
                     </table>
 
                 </div>
+
+                <br></br>
+
+                <div>
+                    <table style={{ width: '100%', letterSpacing: '0.1px ', borderCollapse: 'seperate', marginTop: '10px', borderSpacing: '10px', textAlign: 'justify' }}>
+                        <tbody>
+                            {items
+                                .filter(item => item.category === "Category J")
+                                .map(item => {
+
+                                    const macedoinian = (item.pax <= 50) ? (
+                                        <span> {item.pax} BREAD ROLLS + BUTTER PORTION, {Math.round(item.pax / 25)} BOWLS MIXED OLIVES, {item.pax} FRIED FISH, {Math.round(item.pax / 25)} MEDIUM TRAY BAKED BEANS, {Math.round(item.pax / 25)} MEDIUM TRAY FRIED RICE, {Math.round(item.pax / 25)} KOMPIR SALAD, {Math.round(item.pax / 25)} CABBAGE SALAD, {Math.round(item.pax / 25)} SHOPSKA SALAD, {item.pax} HALVA, {item.pax} LOKUM, {Math.round(item.pax / 25)} FRUIT PLATTER
+                                        </span>
+                                    ) : (
+                                        <span> {item.pax} BREAD ROLLS + BUTTER PORTION, {Math.round(item.pax / 25)} BOWLS MIXED OLIVES, {item.pax} FRIED FISH, {Math.round(item.pax / 25)} MEDIUM TRAY BAKED BEANS, {Math.round(item.pax / 25)} MEDIUM TRAY FRIED RICE, {Math.round(item.pax / 25)} KOMPIR SALAD, {Math.round(item.pax / 25)} CABBAGE SALAD, {Math.round(item.pax / 25)} SHOPSKA SALAD, {item.pax} HALVA, {item.pax} LOKUM, {Math.round(item.pax / 25)} FRUIT PLATTER
+                                        </span>
+                                    )
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td style={{ fontWeight: 'bold' }}>{item.name} </td>
+                                            <td>{macedoinian}</td>
+                                        </tr>
+
+
+                                    );
+                                })
+                            }
+
+                        </tbody>
+                    </table>
+
+                </div>
             </div>
 
 

@@ -89,6 +89,8 @@ export default function App() {
       setSavedisabled(true);
       setExtradisabled(true);
     }
+
+
   };
 
   const handleAddItem = () => {
@@ -191,11 +193,22 @@ export default function App() {
         };
         break;
 
+      case "MACEDOINIAN":
+        toast.success("Added to menu");
+        newItem = {
+          id: items.length + 1,
+          name: (client) + " " + (name) + '/' + (number),
+          pax: (number),
+          category: "Category J"
+        };
+        break;
+
       default:
         toast.error("Menu name not found");
         return null;
     }
     setItems([...items, newItem]);
+
   };
 
 
@@ -211,12 +224,12 @@ export default function App() {
     setExtradisabled(true);
 
     let newItem;
-   
+
 
 
     switch (platter) {
 
-      case "CLUB":    
+      case "CLUB":
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
@@ -260,7 +273,7 @@ export default function App() {
         };
         break;
 
-      case "MEATBALL":    
+      case "MEATBALL":
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
@@ -293,7 +306,7 @@ export default function App() {
         };
         break;
 
-        case "SAVOURY":
+      case "SAVOURY":
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
@@ -308,15 +321,16 @@ export default function App() {
       default:
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
-          name: (client) + " " + (name) + '/' + (number) ,
+          name: (client) + " " + (name) + '/' + (number),
           pax: (number),
           add: (platter),
-          category: "Category P"}
+          category: "Category P"
+        }
 
 
     }
     setItems([...items, newItem]);
- 
+
     toast.success("Added to menu");
 
   }
@@ -350,44 +364,45 @@ export default function App() {
 
   return (
     <div className="App">
+      <div className='first-page'>
 
-      <h2 style={{}}>MENU FORECAST</h2>
-
-
-      <Input
-        handleClient={handleClient}
-        handleName={handleName}
-        handleNumber={handleNumber}
-        handlePlatter={handlePlatter}
-        field={field}
-        name={name}
-        client={client}
-        number={number}
-        platter={platter}
-      />
-
-      <Buttons
-        handleAdd={handleAdd}
-        handleAddItem={handleAddItem}
-        handleDelete={handleDelete}
-        handleEdit={handleEdit}
-        handlePrint={handlePrint}
-        handleExtra={handleExtra}
-        saveDisabled={saveDisabled}
-        isDisabled={isDisabled}
-        editDisabled={editDisabled}
-        extraDisabled={extraDisabled}
-      />
+        <h2 style={{}}>MENU FORECAST</h2>
 
 
+        <Input
+          handleClient={handleClient}
+          handleName={handleName}
+          handleNumber={handleNumber}
+          handlePlatter={handlePlatter}
+          field={field}
+          name={name}
+          client={client}
+          number={number}
+          platter={platter}
+        />
 
+        <Buttons
+          handleAdd={handleAdd}
+          handleAddItem={handleAddItem}
+          handleDelete={handleDelete}
+          handleEdit={handleEdit}
+          handlePrint={handlePrint}
+          handleExtra={handleExtra}
+          saveDisabled={saveDisabled}
+          isDisabled={isDisabled}
+          editDisabled={editDisabled}
+          extraDisabled={extraDisabled}
+        />
+
+
+      </div>
       <div className='menu'>
         <p style={{ fontWeight: 'bold', fontSize: '18px' }}>{`${formattedDate}`}</p>
         <p style={{ fontWeight: 'bold', fontSize: '18px', marginBottom: '20px' }}>{`${tomorrowDay}`}</p>
 
         <ToastContainer />
 
-        <Menu
+        <Menu className="output"
           items={items}
         />
 
