@@ -34,6 +34,8 @@ export default function Input({ handleClient, handleName, handleNumber, handlePl
                         <option value="GREEK LIGHT">GREEK LIGHT</option>
                         <option value="ASIAN">ASIAN</option>
                         <option value="MACEDOINIAN">MACEDOINIAN</option>
+                        <option value="DISPOSABLE">DISPOSABLE</option>
+
                     </select>
                 </div>
             )}
