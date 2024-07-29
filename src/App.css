@@ -61,7 +61,7 @@
 
 .columns-container {
   display: flex;
-  justify-content: space-between; /* Adjust space between columns */
+  justify-content: space-between;
   margin-top: 10px;
   font-size: 16px;
   line-height: 5;
@@ -70,13 +70,12 @@
   justify-content: left;
   text-decoration: underline;
   margin-left: 20px;
-  font-weight: bold; /* Adjust spacing from the title */
+  font-weight: bold;
 }
 
 .column {
-  flex: 1; /* Each column takes equal space */
-  margin: 0 10px; /* Adjust spacing between columns */
-  /* Add more styles as required */
+  flex: 1;
+  margin: 0 10px;
 }
 
 .menu {
@@ -93,11 +92,12 @@ td {
 .data {
   height: 25px;
   max-width: 200px;
-  border-radius: 5px;
-  border: 1px solid black;
+  border-radius: 4px;
+  border: 1px solid #ccc;
   margin: 5px;
   padding: 5px;
-  gap: 2;
+  font-size: 14px;
+  color: #333;
 }
 
 p {
@@ -105,45 +105,52 @@ p {
 }
 
 @media print {
-
   .first-page {
-    display: none; /* Hide first page content */
+    display: none;
   }
   .App {
     visibility: hidden;
   }
   .menu {
     visibility: visible;
-    
   }
   .menu {
-    display: block; /* Ensure menu is visible */
+    display: block;
     width: 210mm;
     height: 297mm;
     page-break-before: always;
-    color: inherit; /* Inherit color from the elements */
-    background-color: inherit; 
+    color: inherit;
+    background-color: inherit;
   }
 }
 
 @page {
   margin: 0;
   @top-left {
-    content: none; /* Hide top-left content (usually URL) */
+    content: none;
   }
   @top-center {
-    content: none; /* Hide top-center content (usually title) */
+    content: none;
   }
   @top-right {
-    content: none; /* Hide top-right content (if needed) */
+    content: none;
   }
   @bottom-left {
-    content: none; /* Hide bottom-left content (page numbers) */
+    content: none;
   }
   @bottom-center {
-    content: none; /* Hide bottom-center content (page numbers) */
+    content: none;
   }
   @bottom-right {
-    content: none; /* Hide bottom-right content (page numbers) */
+    content: none;
   }
+}
+
+select.data {
+  width: 100%;
+  height: 35px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
 }

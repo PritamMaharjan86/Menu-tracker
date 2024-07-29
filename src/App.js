@@ -14,6 +14,7 @@ export default function App() {
   const [number, setNumber] = useState('');
   const [client, setClient] = useState('');
   const [platter, setPlatter] = useState('');
+  const [platterNumber, setPlatternumber] = useState('');
   const [items, setItems] = useState([]);
   const [field, setField] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -36,7 +37,7 @@ export default function App() {
 
   useEffect(() => {
     checkFormValidity();
-  }, [client, name, number, platter]);
+  }, [client, name, number, platter, platterNumber]);
 
 
 
@@ -71,6 +72,15 @@ export default function App() {
     const platter = e.target.value.toUpperCase();
     if (/^[a-zA-Z\s]*$/.test(platter)) { // Only allow  digits
       setPlatter(platter);
+      checkFormValidity();
+
+    }
+  };
+
+  const handlePlatternumber = (e) => {
+    const platterNumber = e.target.value.toUpperCase();
+    if (/^[a-zA-Z\d\s]*$/.test(platterNumber)) {
+      setPlatternumber(platterNumber);
       checkFormValidity();
 
     }
@@ -233,8 +243,8 @@ export default function App() {
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          add: (platter),
+          platter: (platter),
+          add: (platterNumber),
           category: "Category CL"
 
         };
@@ -244,8 +254,8 @@ export default function App() {
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          add: (platter),
+          platter: (platter),
+          add: (platterNumber),
           category: "Category RB"
 
         };
@@ -255,8 +265,8 @@ export default function App() {
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          add: (platter),
+          platter: (platter),
+          add: (platterNumber),
           category: "Category FR"
 
         };
@@ -266,8 +276,8 @@ export default function App() {
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          add: (platter),
+          platter: (platter),
+          add: (platterNumber),
           category: "Category SC"
 
         };
@@ -275,10 +285,10 @@ export default function App() {
 
       case "MEATBALL":
         newItem = {
-          id: items.length + 1, // You can use a m0ore robust ID generation method
+          id: items.length + 1,
           name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          add: (platter),
+          platter: (platter),
+          add: (platterNumber),
           category: "Category MT"
 
         };
@@ -288,8 +298,8 @@ export default function App() {
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          add: (platter),
+          platter: (platter),
+          add: (platterNumber),
           category: "Category SL"
 
         };
@@ -299,8 +309,8 @@ export default function App() {
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          add: (platter),
+          platter: (platter),
+          add: (platterNumber),
           category: "Category MC"
 
         };
@@ -310,8 +320,8 @@ export default function App() {
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          add: (platter),
+          platter: (platter),
+          add: (platterNumber),
           category: "Category SV"
 
         };
@@ -322,8 +332,8 @@ export default function App() {
         newItem = {
           id: items.length + 1, // You can use a m0ore robust ID generation method
           name: (client) + " " + (name) + '/' + (number),
-          pax: (number),
-          add: (platter),
+          platter: (platter),
+          add: (platterNumber),
           category: "Category P"
         }
 
@@ -357,6 +367,7 @@ export default function App() {
     setName('');
     setNumber('');
     setPlatter('');
+    setPlatternumber('');
 
   }
 
@@ -374,11 +385,13 @@ export default function App() {
           handleName={handleName}
           handleNumber={handleNumber}
           handlePlatter={handlePlatter}
+          handlePlatternumber={handlePlatternumber}
           field={field}
           name={name}
           client={client}
           number={number}
           platter={platter}
+          platterNumber={platterNumber}
         />
 
         <Buttons

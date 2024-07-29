@@ -24,28 +24,21 @@ export default function Menu({ items }) {
                             <span className='title'>CLUBS</span>
 
                             {items
-                                .filter(item => item.category === "Category B" || item.category === "Category SV")
+                                .filter(item => item.category === "Category B")
                                 .map(item => {
-                                    const ham = 0;
-                                    const egg = 0;
-                                    const beef = 0;
-                                    const salmon = 0;
-                                    const chicken = 0;
-                                    const tuna = 0;
-                                    const platters = 0;
                                     const savoury = Math.round(item.pax / 10);
 
 
                                     return (
                                         <tr key={item.id}>
                                             <td>{item.name}</td>
-                                            <td>{ham}</td>
-                                            <td>{egg}</td>
-                                            <td>{beef}</td>
-                                            <td>{salmon}</td>
-                                            <td>{chicken}</td>
-                                            <td>{tuna}</td>
-                                            <td>{platters}</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
                                             <td>{savoury} NML</td>
                                         </tr>
                                     );
@@ -132,28 +125,46 @@ export default function Menu({ items }) {
                                     );
                                 })}
 
+
                             {items
                                 .filter(item => item.category === "Category CL")
                                 .map(item => {
-                                    const ham = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
-                                    const egg = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
-                                    const beef = item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10);
-                                    const salmon = item.pax <= 10 ? (item.pax / 10) : Math.round((item.pax / 10));
-                                    const chicken = item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3;
-                                    const tuna = item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10);
-                                    const platters = Math.round(item.pax / 10);
 
+                                    const club = <span>{item.add}</span>;
 
                                     return (
+
                                         <tr key={item.id}>
-                                            <td>{item.name}</td>
-                                            <td>{ham}</td>
-                                            <td>{egg}</td>
-                                            <td>{beef}</td>
-                                            <td>{salmon}</td>
-                                            <td>{chicken}</td>
-                                            <td>{tuna}</td>
-                                            <td>{platters}</td>
+                                            <td>{item.name} </td>
+                                            <td>{item.add * 2}</td>
+                                            <td>{item.add * 2}</td>
+                                            <td>{item.add}</td>
+                                            <td>{item.add}</td>
+                                            <td>{item.add * 3}</td>
+                                            <td>{item.add}</td>
+                                            <td>{club}</td>
+                                        </tr>
+                                    );
+                                })}
+
+                            {items
+                                .filter(item => item.category === "Category SV")
+                                .map(item => {
+
+                                    const savoury = <span>{item.add}</span>;
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td>{item.name} </td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td>{savoury}</td>
                                         </tr>
                                     );
                                 })}
@@ -161,7 +172,7 @@ export default function Menu({ items }) {
                             <span className='title'>RIBBONS</span>
 
                             {items
-                                .filter(item => item.category === 'Category D' || item.category === "Category RB")
+                                .filter(item => item.category === 'Category D')
                                 .map(item => {
                                     const ham = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
                                     const egg = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
@@ -182,6 +193,27 @@ export default function Menu({ items }) {
                                             <td>{tuna}</td>
                                             <td>{platters}</td>
 
+                                        </tr>
+                                    );
+                                })}
+
+                            {items
+                                .filter(item => item.category === "Category RB")
+                                .map(item => {
+
+                                    const ribbon = <span>{item.add}</span>;
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td>{item.name} </td>
+                                            <td>{item.add * 2}</td>
+                                            <td>{item.add * 2}</td>
+                                            <td>{item.add * 2}</td>
+                                            <td>{item.add * 2}</td>
+                                            <td>{item.add * 2}</td>
+                                            <td>{item.add * 2}</td>
+                                            <td>{ribbon}</td>
                                         </tr>
                                     );
                                 })}
@@ -213,13 +245,13 @@ export default function Menu({ items }) {
 
                             <tr style={{ fontWeight: 'bold', border: '1px solid black' }}>
                                 <td>Total</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === "Category D" || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10) * 2) : Math.round(item.pax / 10) * 2), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))} </td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === "Category D" || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10) * 2) : Math.round(item.pax / 10) * 2), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10)) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10)) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10) * 3) : Math.round(item.pax / 10) * 3), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10)) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6))}</td>
-                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E" || item.category === "Category CL").reduce((acc, item) => acc + Math.round(item.pax / 10), 0) + items.filter(item => item.category === 'Category D' || item.category === "Category RB").reduce((acc, item) => acc + Math.round(item.pax / 25), 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === "Category D" || item.category === "Category E").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10) * 2) : Math.round(item.pax / 10) * 2), 0) + items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6)) + items.filter(item => item.category === 'Category CL').reduce((acc, item) => acc + item.add * 2, 0) + items.filter(item => item.category === 'Category RB').reduce((acc, item) => acc + item.add * 2, 0)} </td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === "Category D" || item.category === "Category E").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10) * 2) : Math.round(item.pax / 10) * 2), 0) + items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6)) + items.filter(item => item.category === 'Category CL').reduce((acc, item) => acc + item.add * 2, 0) + items.filter(item => item.category === 'Category RB').reduce((acc, item) => acc + item.add * 2, 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10)) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6)) + items.filter(item => item.category === 'Category CL').reduce((acc, item) => acc + item.add * 1, 0) + items.filter(item => item.category === 'Category RB').reduce((acc, item) => acc + item.add * 2, 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10)) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6)) + items.filter(item => item.category === 'Category CL').reduce((acc, item) => acc + item.add * 1, 0) + items.filter(item => item.category === 'Category RB').reduce((acc, item) => acc + item.add * 2, 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10) * 3) : Math.round(item.pax / 10) * 3), 0) + items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6)) + items.filter(item => item.category === 'Category CL').reduce((acc, item) => acc + item.add * 3, 0) + items.filter(item => item.category === 'Category RB').reduce((acc, item) => acc + item.add * 2, 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E").reduce((acc, item) => acc + (item.pax <= 10 ? Math.round((item.pax / 10)) : Math.round(item.pax / 10)), 0) + items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + (item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2), 0) + Math.round((items.length * 2 / 6)) + items.filter(item => item.category === 'Category CL').reduce((acc, item) => acc + item.add * 1, 0)+ items.filter(item => item.category === 'Category RB').reduce((acc, item) => acc + item.add * 2, 0)}</td>
+                                <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === "Category E").reduce((acc, item) => acc + Math.round(item.pax / 10), 0) + items.filter(item => item.category === 'Category D').reduce((acc, item) => acc + Math.round(item.pax / 25), 0)+ items.filter(item => item.category === 'Category CL').reduce((acc, item) => acc + item.add * 1, 0) + items.filter(item => item.category === 'Category RB').reduce((acc, item) => acc + item.add * 1, 0)}</td>
 
                                 {/* <td>{items.filter(item => item.category === 'Category C' || item.category === 'Category D' || item.category === 'Category B').reduce((acc, item) => acc + Math.round(item.pax / 10), 0)}</td> */}
                             </tr>
@@ -240,10 +272,25 @@ export default function Menu({ items }) {
                     <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category D" || item.category === "Category FR")
+                                .filter(item => item.category === "Category D")
                                 .map(item => {
 
-                                    const fruit = item.pax <= 30 ? (<span>1 LARGE</span>) : (<span> {Math.round(item.pax / 30)} LARGE </span>);
+                                    const fruit = item.pax <= 30 ? (<span>1 SMALL</span>) : (<span> {Math.round(item.pax / 30)} LARGE </span>);
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td>{item.name} </td>
+                                            <td>{fruit}</td>
+                                        </tr>
+                                    );
+                                })}
+
+                            {items
+                                .filter(item => item.category === "Category FR")
+                                .map(item => {
+
+                                    const fruit = <span>{item.add}</span>;
 
                                     return (
 
@@ -266,7 +313,7 @@ export default function Menu({ items }) {
                     <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category D" || item.category === "Category C" || item.category === "Category MC")
+                                .filter(item => item.category === "Category D" || item.category === "Category C")
                                 .map(item => {
 
                                     const macarons = (item.pax * 1) + " " + "PCS"
@@ -279,8 +326,24 @@ export default function Menu({ items }) {
                                         </tr>
                                     );
                                 })}
+
+                            {items
+                                .filter(item => item.category === "Category MC")
+                                .map(item => {
+
+                                    const macarons = <span>{item.add}</span>;
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td>{item.name} </td>
+                                            <td>{macarons}</td>
+                                        </tr>
+                                    );
+                                })}
                         </tbody>
                     </table>
+
                 </div>
             </div>
 
@@ -291,10 +354,25 @@ export default function Menu({ items }) {
                     <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category B" || item.category === "Category E" || item.category === "Category SL")
+                                .filter(item => item.category === "Category B" || item.category === "Category E")
                                 .map(item => {
 
                                     const slices = item.pax <= 20 ? (<span>1 SMALL</span>) : (<span> {Math.round(item.pax / 20)} LARGE </span>);
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td>{item.name} </td>
+                                            <td>{slices}</td>
+                                        </tr>
+                                    );
+                                })}
+
+                            {items
+                                .filter(item => item.category === "Category SL")
+                                .map(item => {
+
+                                    const slices = <span>{item.add}</span>;
 
                                     return (
 
@@ -399,10 +477,25 @@ export default function Menu({ items }) {
                     <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
-                                .filter(item => item.category === "Category D" || item.category === "Category MT")
+                                .filter(item => item.category === "Category D")
                                 .map(item => {
 
                                     const meatballs = item.pax <= 25 ? (<span>1 BAGS</span>) : (<span> {Math.round(item.pax / 25)} BAGS</span>);
+
+                                    return (
+
+                                        <tr key={item.id}>
+                                            <td>{item.name} </td>
+                                            <td>{meatballs}</td>
+                                        </tr>
+                                    );
+                                })}
+
+                            {items
+                                .filter(item => item.category === "Category MT")
+                                .map(item => {
+
+                                    const meatballs = <span>{item.add}</span>;
 
                                     return (
 
@@ -426,7 +519,7 @@ export default function Menu({ items }) {
                                 .filter(item => item.category === "Category P")
                                 .map(item => {
 
-                                    const platters = item.pax <= 50 ? (<span> {Math.round(item.pax / 30)} {item.add}</span>) : (<span> {Math.round(item.pax / 50)} {item.add}</span>);
+                                    const platters = <span>{item.add} {item.platter}</span>;
 
                                     return (
 
