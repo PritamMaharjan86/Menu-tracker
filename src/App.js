@@ -327,6 +327,17 @@ export default function App() {
         };
         break;
 
+        case "VEGAN":
+          newItem = {
+            id: items.length + 1, // You can use a m0ore robust ID generation method
+            name: (client) + " " + (name) + '/' + (number),
+            platter: (platter),
+            add: (platterNumber),
+            category: "Category VG"
+  
+          };
+          break;
+
 
       default:
         newItem = {
@@ -340,7 +351,7 @@ export default function App() {
 
     }
     setItems([...items, newItem]);
-
+    
     toast.success("Added to menu");
 
   }

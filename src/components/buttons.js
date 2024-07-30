@@ -23,6 +23,19 @@ export default function Buttons({ handleAdd, handleAddItem, handleDelete, handle
                     disabled={saveDisabled} onClick={handleAddItem}>Save</Button>
 
                 <Button sx={{
+                    backgroundColor: '#000000',
+                    color: '#FFFFFF',
+                    borderRadius: '5px',
+                    transition: 'background-color 0.3s ease',
+                    boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)',
+                    textTransform: 'uppercase',
+                    ':hover': {
+                        backgroundColor: '#000000',
+                    },
+                }}
+                    disabled={extraDisabled} onClick={handleExtra}>Platter</Button>
+
+                <Button sx={{
                     backgroundColor: '#2196F3',
                     color: '#FFFFFF',
                     borderRadius: '5px',
@@ -75,18 +88,7 @@ export default function Buttons({ handleAdd, handleAddItem, handleDelete, handle
                     },
                 }} onClick={handlePrint}><AiFillPrinter /></Button>
 
-                <Button sx={{
-                    backgroundColor: '#000000',
-                    color: '#FFFFFF',
-                    borderRadius: '5px',
-                    transition: 'background-color 0.3s ease',
-                    boxShadow: '0px 2px 5px rgba(0, 0, 0, 0.2)',
-                    textTransform: 'uppercase',
-                    ':hover': {
-                        backgroundColor: '#E64A19',
-                    },
-                }}
-                disabled={extraDisabled}  onClick={handleExtra}>Platter</Button>
+
 
             </ButtonGroup>
         </div>

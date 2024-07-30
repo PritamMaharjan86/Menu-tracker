@@ -96,6 +96,9 @@ export default function Input({ handleClient, handleName, handleNumber, handlePl
                     <option value="TIROPITA">TIROPITA</option>
                     <option value="CLUB">CLUB SANDWICH</option>
                     <option value="RIBBON">RIBBON SANDWICH</option>
+                    <option value="VEGAN">VEGAN</option>
+                    <option value="VEGETARIAN">VEGETARIAN</option>
+                
 
                 </select>
 
