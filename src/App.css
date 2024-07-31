@@ -125,7 +125,7 @@ p {
 }
 
 @page {
-  margin: 0;
+
   @top-left {
     content: none;
   }

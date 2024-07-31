@@ -5,7 +5,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Input from './components/input'
 import Buttons from './components/buttons';
 import Menu from './components/menu';
-import EditableTextList from './components/EditableTextList';
 
 
 
@@ -22,6 +21,7 @@ export default function App() {
   const [saveDisabled, setSavedisabled] = useState(true);
   const [editDisabled, setEditdisabled] = useState(true);
   const [extraDisabled, setExtradisabled] = useState(true);
+
   const currentDate = new Date();
   const tomorrowDate = new Date(currentDate);
   tomorrowDate.setDate(currentDate.getDate() + 1);
@@ -30,7 +30,6 @@ export default function App() {
     'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
   ];
   const tomorrowDay = daysOfWeek[tomorrowDate.getDay()];
-
 
   const handlePrint = () => {
     window.print();
@@ -364,6 +363,8 @@ export default function App() {
 
 
     }
+
+
     setItems([...items, newItem]);
 
     toast.success("Added to menu");
@@ -377,6 +378,7 @@ export default function App() {
     setIsDisabled(true);
     setSavedisabled(true);
     setEditdisabled(true);
+
 
     setItems(prevItems => prevItems.slice(0, -1));
   }
@@ -425,9 +427,9 @@ export default function App() {
         <ToastContainer />
 
         <Menu className="output"
-          items={items}
+          items={items} setItems={setItems}
         />
-        <EditableTextList />
+
 
 
 
