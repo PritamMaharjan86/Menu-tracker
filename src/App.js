@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Input from './components/input'
 import Buttons from './components/buttons';
 import Menu from './components/menu';
+import EditableTextList from './components/EditableTextList';
 
 
 
@@ -103,8 +104,11 @@ export default function App() {
 
   };
 
+
   const handleAddItem = () => {
-    setField(false);
+    setName('');
+    setClient('');
+    setNumber('');
     setIsDisabled(false);
     setSavedisabled(true);
     setEditdisabled(false);
@@ -222,16 +226,15 @@ export default function App() {
   };
 
 
-  const handleDelete = () => {
-
-  }
 
   const handleExtra = () => {
-    setField(false);
+
     setIsDisabled(false);
     setSavedisabled(true);
     setEditdisabled(false);
     setExtradisabled(true);
+    setPlatter('');
+    setPlatternumber('');
 
     let newItem;
 
@@ -327,16 +330,27 @@ export default function App() {
         };
         break;
 
-        case "VEGAN":
-          newItem = {
-            id: items.length + 1, // You can use a m0ore robust ID generation method
-            name: (client) + " " + (name) + '/' + (number),
-            platter: (platter),
-            add: (platterNumber),
-            category: "Category VG"
-  
-          };
-          break;
+      case "VEGAN":
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          platter: (platter),
+          add: (platterNumber),
+          category: "Category VG"
+
+        };
+        break;
+
+      case "GLUTEN FREE":
+        newItem = {
+          id: items.length + 1, // You can use a m0ore robust ID generation method
+          name: (client) + " " + (name) + '/' + (number),
+          platter: (platter),
+          add: (platterNumber),
+          category: "Category GF"
+
+        };
+        break;
 
 
       default:
@@ -351,7 +365,7 @@ export default function App() {
 
     }
     setItems([...items, newItem]);
-    
+
     toast.success("Added to menu");
 
   }
@@ -367,20 +381,6 @@ export default function App() {
     setItems(prevItems => prevItems.slice(0, -1));
   }
 
-
-  const handleAdd = () => {
-    setIsDisabled(true);
-    setSavedisabled(false);
-    setExtradisabled(false);
-    setField(true);
-    setEditdisabled(false);
-    setClient('');
-    setName('');
-    setNumber('');
-    setPlatter('');
-    setPlatternumber('');
-
-  }
 
 
 
@@ -406,9 +406,7 @@ export default function App() {
         />
 
         <Buttons
-          handleAdd={handleAdd}
           handleAddItem={handleAddItem}
-          handleDelete={handleDelete}
           handleEdit={handleEdit}
           handlePrint={handlePrint}
           handleExtra={handleExtra}
@@ -429,6 +427,9 @@ export default function App() {
         <Menu className="output"
           items={items}
         />
+        <EditableTextList />
+
+
 
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from "react"
 
-export default function Input({ handleClient, handleName, handleNumber, handlePlatter, handlePlatternumber, platterNumber, field, name, client, number, platter }) {
+export default function Input({ items, isEditing, handleEditEntry, currentText, handleSaveEdit, handleClient, handleName, handleNumber, handlePlatter, handlePlatternumber, platterNumber, field, name, client, number, platter }) {
 
 
 
@@ -97,12 +97,14 @@ export default function Input({ handleClient, handleName, handleNumber, handlePl
                     <option value="CLUB">CLUB SANDWICH</option>
                     <option value="RIBBON">RIBBON SANDWICH</option>
                     <option value="VEGAN">VEGAN</option>
-                    <option value="VEGETARIAN">VEGETARIAN</option>
-                
+                    <option value="GLUTEN FREE">GLUTEN FREE SANDWICH</option>
+
+
 
                 </select>
 
             )}
+
 
         </div >
     )
