@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function Menu({ items }) {
+
     return (
         <div>
             <div>
@@ -561,7 +562,7 @@ export default function Menu({ items }) {
             <div>
                 <span className='title'>PLATTERS</span>
                 <div>
-                    <table style={{ width: '40%', borderCollapse: 'collapse', marginTop: '10px' }}>
+                    <table style={{ width: '60%', borderCollapse: 'collapse', marginTop: '10px' }}>
                         <tbody>
                             {items
                                 .filter(item => item.category === "Category P")
@@ -649,6 +650,7 @@ export default function Menu({ items }) {
                                             <td style={{ fontWeight: 'bold' }}>{item.name} </td>
                                             <td>{greekdeluxe}</td>
                                         </tr>
+
 
 
                                     );

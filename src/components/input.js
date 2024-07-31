@@ -1,7 +1,6 @@
 import React from "react"
 
-export default function Input({ items, isEditing, handleEditEntry, currentText, handleSaveEdit, handleClient, handleName, handleNumber, handlePlatter, handlePlatternumber, platterNumber, field, name, client, number, platter }) {
-
+export default function Input({ handleClient, handleName, handleNumber, handlePlatter, handlePlatternumber, platterNumber, field, name, client, number, platter }) {
 
 
     return (
@@ -63,7 +62,7 @@ export default function Input({ items, isEditing, handleEditEntry, currentText, 
                 />)
             }
 
-            {field && (
+            {field && 
 
                 <select
                     className="data"
@@ -102,8 +101,8 @@ export default function Input({ items, isEditing, handleEditEntry, currentText, 
 
 
                 </select>
-
-            )}
+           
+}
 
 
         </div >
