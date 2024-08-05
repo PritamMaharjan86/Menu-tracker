@@ -420,14 +420,17 @@ export default function App() {
 
 
       </div>
+
       <div className='menu'>
         <p style={{ fontWeight: 'bold', fontSize: '18px' }}>{`${formattedDate}`}</p>
         <p style={{ fontWeight: 'bold', fontSize: '18px', marginBottom: '20px' }}>{`${tomorrowDay}`}</p>
+
 
         <ToastContainer />
 
         <Menu className="output"
           items={items} setItems={setItems}
+
         />
 
 

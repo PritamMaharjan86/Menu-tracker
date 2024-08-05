@@ -75,14 +75,14 @@ export default function Menu({ items }) {
                             {items
                                 .filter(item => item.category === "Category D")
                                 .map(item => {
-                                    const ham = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
-                                    const egg = item.pax <= 10 ? (item.pax / 10) * 2 : Math.round(item.pax / 10) * 2;
-                                    const beef = item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10);
-                                    const salmon = item.pax <= 10 ? (item.pax / 10) : Math.round((item.pax / 10));
-                                    const chicken = item.pax <= 10 ? (item.pax / 10) * 3 : Math.round(item.pax / 10) * 3;
-                                    const tuna = item.pax <= 10 ? (item.pax / 10) : Math.round(item.pax / 10);
-                                    const platters = Math.round(item.pax / 10);
-                                    const savoury = Math.round(item.pax / 10);
+                                    const ham = item.pax <= 10 ? (item.pax / 12) * 2 : Math.round(item.pax / 12) * 2;
+                                    const egg = item.pax <= 10 ? (item.pax / 12) * 2 : Math.round(item.pax / 12) * 2;
+                                    const beef = item.pax <= 10 ? (item.pax / 12) : Math.round(item.pax / 12);
+                                    const salmon = item.pax <= 10 ? (item.pax / 12) : Math.round((item.pax / 12));
+                                    const chicken = item.pax <= 10 ? (item.pax / 12) * 3 : Math.round(item.pax / 12) * 3;
+                                    const tuna = item.pax <= 10 ? (item.pax / 12) : Math.round(item.pax / 12);
+                                    const platters = Math.round(item.pax / 12);
+                                    const savoury = Math.round(item.pax / 12);
 
 
                                     return (
@@ -197,8 +197,8 @@ export default function Menu({ items }) {
                             {items
                                 .filter(item => item.category === 'Category D' || item.category === "Category I")
                                 .map(item => {
-                                    const ham = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
-                                    const egg = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
+                                    const ham = item.pax <= 25 ? Math.round(item.pax / 25) * 2 : Math.round(item.pax / 25) * 2;
+                                    const egg = item.pax <= 25 ? Math.round(item.pax / 25 * 2) : Math.round(item.pax / 25) * 2;
                                     const beef = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
                                     const salmon = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
                                     const chicken = item.pax <= 25 ? Math.round((item.pax / 25) * 2) : Math.round(item.pax / 25) * 2;
@@ -647,9 +647,9 @@ export default function Menu({ items }) {
                                     return (
 
                                         <tr key={item.id}>
-                                            <td style={{ fontWeight: 'bold' }}>{item.name} </td>
-                                            <td>{greekdeluxe}</td>
-                                        </tr>
+                                        <td style={{ fontWeight: 'bold' }}>{item.name} </td>
+                                        <td>{greekdeluxe}</td>
+                                    </tr>
 
 
 
