@@ -170,7 +170,7 @@ export default function Menu({ items }) {
                                     );
                                 })}
 
-                            {items
+                            {/* {items
                                 .filter(item => item.category === "Category VG")
                                 .map(item => {
 
@@ -190,7 +190,7 @@ export default function Menu({ items }) {
                                             <td></td>
                                         </tr>
                                     );
-                                })}
+                                })} */}
 
                             <span className='title'>RIBBONS</span>
 
@@ -243,7 +243,7 @@ export default function Menu({ items }) {
                                     );
                                 })}
 
-                            {items
+                            {/* {items
                                 .filter(item => item.category === "Category GF")
                                 .map(item => {
 
@@ -263,7 +263,7 @@ export default function Menu({ items }) {
                                             <td></td>
                                         </tr>
                                     );
-                                })}
+                                })} */}
 
 
 

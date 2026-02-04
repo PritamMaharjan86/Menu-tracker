@@ -62,7 +62,7 @@ export default function Input({ handleClient, handleName, handleNumber, handlePl
                 />)
             }
 
-            {field && 
+            {field &&
 
                 <select
                     className="data"
@@ -101,8 +101,8 @@ export default function Input({ handleClient, handleName, handleNumber, handlePl
 
 
                 </select>
-           
-}
+
+            }
 
 
         </div >
