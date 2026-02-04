@@ -5,6 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Input from './components/input'
 import Buttons from './components/buttons';
 import Menu from './components/menu';
+import { saveAs } from 'file-saver';
 
 
 
