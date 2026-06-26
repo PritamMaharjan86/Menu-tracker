@@ -3,6 +3,7 @@ import Input from "../Components/Input";
 import Table from "../Components/Template/Table";
 import PlatterSection from "../Components/Template/PlatterSelection";
 import CulturalMenu from "../Components/Template/CulturalMenu";
+import Menu from "../Components/Menu";
 
 const Paperwork = () => {
   const [showInput, setShowInput] = useState(false);
@@ -11,65 +12,56 @@ const Paperwork = () => {
     {
       id: 1,
       name: "JOHN",
-      items: {
-        ham: 10,
-        egg: 10,
-        beef: 5,
-        salmon: 5,
-        chicken: 15,
-        tuna: 5,
-        platter: 5,
-        savoury: 3,
-      },
-      platters: {},
-      category: "CLUBS",
+      pax: 30,
+      menu: "A",
+    },
+    {
+      id: 1,
+      name: "ROSE",
+      pax: 50,
+      menu: "A",
     },
     {
       id: 2,
       name: "MIKE",
-      items: {
-        ham: 5,
-        egg: 2,
-        beef: 3,
-        salmon: 0,
-        chicken: 8,
-        tuna: 1,
-        platter: 5,
-        savoury: 0,
-      },
-      platters: {},
-      category: "RIBBONS",
+      pax: 20,
+      menu: "B",
     },
     {
       id: 3,
-      name: "JOHN",
-      items: {
-        ham: 10,
-        egg: 10,
-        beef: 5,
-        salmon: 5,
-        chicken: 15,
-        tuna: 5,
-        platter: 5,
-        savoury: 3,
-      },
-      platters: {},
-
-      category: "CLUBS",
+      name: "ASHLEY",
+      pax: 50,
+      menu: "C",
+    },
+    {
+      id: 4,
+      name: "ELLEN",
+      pax: 65,
+      menu: "D",
+    },
+    {
+      id: 4,
+      name: "ALIEN",
+      pax: 20,
+      menu: "E",
+    },
+    {
+      id: 5,
+      name: "HELLEN",
+      pax: 80,
+      menu: "ASIAN",
+    },
+    {
+      id: 6,
+      name: "RISE",
+      pax: 40,
+      menu: "ITALIAN",
     },
   ];
 
-  // TOTALS
+  // TOTALS (safe version)
   const totals = orders.reduce(
     (acc, order) => {
-      acc.ham += order.items.ham;
-      acc.egg += order.items.egg;
-      acc.beef += order.items.beef;
-      acc.salmon += order.items.salmon;
-      acc.chicken += order.items.chicken;
-      acc.tuna += order.items.tuna;
-      acc.platters += order.items.platter;
-      acc.savoury += order.items.savoury;
       return acc;
     },
     {
@@ -84,9 +76,42 @@ const Paperwork = () => {
     },
   );
 
+  const sectionMap = {
+    macaron: "MACARONS",
+    fruit: "FRUITS",
+    slice: "SLICES",
+    meatball: "MEATBALLS",
+    scone: "SCONES",
+    cream: "CREAM",
+    biscuit: "BISCUITS",
+    savouryMuffin: "MUFFIN",
+    club: "CLUB",
+    ribbon: "RIBBON",
+  };
+
+  const grouped = {};
+
+  orders.forEach((order) => {
+    const menuData = Menu[order.menu]?.(Number(order.pax));
+
+    if (!menuData) return;
+
+    Object.entries(menuData.items || {}).forEach(([key, value]) => {
+      const section = sectionMap[key] || "OTHER";
+
+      if (!grouped[section]) grouped[section] = [];
+
+      grouped[section].push({
+        client: order.name,
+        menu: order.menu,
+        pax: order.pax,
+        itemName: key,
+      });
+    });
+  });
+
   return (
-    <div className="p-4">
-      {/* BUTTON */}
+    <div className="p-4 ">
       <div className="flex justify-center mt-6">
         <button
           onClick={() => setShowInput(true)}
@@ -95,112 +120,89 @@ const Paperwork = () => {
         </button>
       </div>
 
-      {/* MODAL */}
       {showInput && <Input closeInputBox={() => setShowInput(false)} />}
 
-      {/* TITLE */}
-      <h2 className="text-2xl font-bold mt-10 mb-4 text-center">
-        Production Sheet
-      </h2>
+      <h2 className="text-2xl font-bold mt-10 mb-4 text-center">Paperwork</h2>
 
-      {/* TABLE */}
       <Table orders={orders} totals={totals} />
 
-      {/* BEAUTIFUL BOTTOM SECTION */}
-      <div className="mt-10 grid grid-row gap-6">
-        <PlatterSection
-          client="JOHN"
-          menu="ASIAN"
-          pax={30}
-          numberOfItems={2}
-          type="LARGE"
-          itemName=""
-          title="FRUITS"
-        />
+      {/* FRUITS */}
+      <PlatterSection
+        title="FRUITS"
+        data={grouped.FRUITS}
+        calculation={(item) => item.pax / 25}
+        type="LARGE"
+      />
 
-        <PlatterSection
-          client="JOHN"
-          menu="ASIAN"
-          pax={30}
-          numberOfItems={30}
-          type="PCS"
-          itemName=""
-          title="MACARONS"
-        />
+      {/* MACARONS */}
+      <PlatterSection
+        title="MACARONS"
+        data={grouped.MACARONS}
+        calculation={(item) => item.pax}
+        type="PCS"
+      />
 
-        <PlatterSection
-          client="HARRY"
-          menu="ITALIAN"
-          pax={50}
-          numberOfItems={1.5}
-          type="BAGS"
-          itemName=""
-          title="MEATBALLS"
-        />
-      </div>
+      {/* SLICES */}
+      <PlatterSection
+        title="SLICES"
+        data={grouped.SLICES}
+        calculation={(item) => item.pax / 10}
+        type="LARGE"
+      />
 
-      <div className="mt-10 grid grid-row gap-6">
-        <div className="border rounded-xl p-4 bg-white shadow-sm ">
-          <h3 className="font-bold text-lg mb-3 border-b pb-1">SCONES</h3>
+      {/* MEATBALLS */}
+      <PlatterSection
+        title="MEATBALLS"
+        data={grouped.MEATBALLS}
+        calculation={(item) => item.pax / 25}
+        type="BAGS"
+      />
 
-          <div className="text-sm space-y-2">
-            <div className="flex flex-row justify-around">
-              {/* Row 1 - EMPTY */}
-              <p className="flex flex-col items-center gap-2">
-                <span className="w-32">MENU</span>
-                <span className="w-32 font-medium">Harry A/20</span>
-              </p>
+      {/* SCONES */}
+      {grouped.SCONES && (
+        <div className="mt-10 border rounded-xl p-4 bg-white shadow-sm">
+          {/* ONLY ONE TITLE */}
+          <h3 className="font-bold text-lg mb-4 border-b pb-2">SCONES</h3>
 
-              {/* Row 2 - SCONES */}
-              <p className="flex flex-col items-center gap-2">
-                <span className="w-32 font-medium">SCONES</span>
-                <span className="w-32 font-medium"> 2 X LARGE</span>
-              </p>
+          {/* HEADER ROW  */}
+          <div className="grid grid-cols-5 text-sm font-bold text-gray-800 mb-3 text-center">
+            <span>MENU</span>
+            <span>SCONES</span>
+            <span>CREAM</span>
+            <span>BISCUIT</span>
+            <span>MUFFIN</span>
+          </div>
 
-              {/* Row 3 - CREAM */}
-              <p className="flex flex-col items-center gap-2">
-                <span className="w-32 font-medium">CREAM</span>
-                <span className="w-32 font-medium">1 X LARGE</span>
-              </p>
+          {/* DATA */}
+          <div className="space-y-3">
+            {grouped.SCONES.map((item, i) => (
+              <div
+                key={i}
+                className="grid grid-cols-5 gap-4 text-center items-center text-sm">
+                {/* MENU */}
+                <span className="font-medium">
+                  {item.client} {item.menu} / {item.pax}
+                </span>
 
-              {/* Row 4 - BISCUITS */}
-              <p className="flex flex-col items-center gap-2">
-                <span className="w-32 font-medium">BISCUITS</span>
-                <span className="w-32 font-medium">30 PCS</span>
-              </p>
+                {/* SCONES */}
+                <span>{((item.pax * 1.5) / 24).toFixed(1)} LARGE</span>
 
-              {/* Row 5 - SAVOURY MUFFINS */}
-              <p className="flex flex-col items-center gap-2">
-                <span className="w-40 font-medium">SAVOURY MUFFINS</span>
-                <span className="w-32 font-medium">45 EACH</span>
-              </p>
-            </div>
+                {/* CREAM */}
+                <span>{(item.pax / 24).toFixed(1)} LARGE</span>
+
+                {/* BISCUIT */}
+                <span>{item.pax} PCS</span>
+
+                {/* MUFFIN */}
+                <span>{item.pax * 1.5} PCS EACH</span>
+              </div>
+            ))}
           </div>
         </div>
+      )}
 
-        <PlatterSection
-          client="HARRY"
-          menu="ITALIAN"
-          pax={50}
-          numberOfItems={1.5}
-          type="PCS"
-          itemName="BACON QUICHE"
-          title="PLATTERS"
-        />
-
-        {/*Cultural menu */}
-        <CulturalMenu
-          client="Robin"
-          menu="Greek Deluxe"
-          pax="50"
-          menuDetail="1 TRADITIONAL CURED MEATS (MORTADELLA, PROSCUITTO DI PARMA &
-            CALABRESE SALAMI) ITALIAN CHEESE (PROVOLONE & PECORINO) OLIVES &
-            GIARDINERA. FOCCACIA, GRISSINI, PORK CHIPOLATA 50 W/ SALSA ROSSA,
-            CALAMARI RINGS 100, PASTIZZI 50, MUSHROOM ARANCHINI 50, PUMPKIN
-            ARANCHINI 50, MEATBALL 2 BAGS W/NAPOLI SAUCE, FISH 100, CANNOLI 50,
-            1 TARTARE SAUCE + OLIVE OIL + BALSAMIC VINEGAR"
-        />
-      </div>
+      {/* CULTURAL MENU */}
+      <CulturalMenu orders={orders} />
     </div>
   );
 };

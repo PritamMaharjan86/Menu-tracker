@@ -3,19 +3,19 @@ import React from "react";
 const Table = ({ orders, totals }) => {
   return (
     <div>
-      <table className="w-full border text-sm">
+      <table className="w-full text-sm">
         <thead>
           <tr className="bg-gray-200">
-            <th className="border p-2 text-center">Sandwich</th>
-            <th className="border p-2 text-center">Name</th>
-            <th className="border p-2 text-center">Ham</th>
-            <th className="border p-2 text-center">Egg</th>
-            <th className="border p-2 text-center">Beef</th>
-            <th className="border p-2 text-center">Salmon</th>
-            <th className="border p-2 text-center">Chicken</th>
-            <th className="border p-2 text-center">Tuna</th>
-            <th className="border p-2 text-center">Platters</th>
-            <th className="border p-2 text-center">Savoury</th>
+            <th className="border p-2 text-center">SANDWICH</th>
+            <th className="border p-2 text-center">NAME</th>
+            <th className="border p-2 text-center">HAM</th>
+            <th className="border p-2 text-center">EGG</th>
+            <th className="border p-2 text-center">BEEF</th>
+            <th className="border p-2 text-center">SALMON</th>
+            <th className="border p-2 text-center">CHICKEN</th>
+            <th className="border p-2 text-center">TUNA</th>
+            <th className="border p-2 text-center">PLATTER</th>
+            <th className="border p-2 text-center">SAVOURY</th>
           </tr>
         </thead>
 
@@ -67,6 +67,26 @@ const Table = ({ orders, totals }) => {
                 <td className="border p-2 text-center">{o.items.savoury}</td>
               </tr>
             ))}
+
+          {/* LUNCH BOX */}
+          <tr className="bg-gray-100 font-bold">
+            <td className="border p-2 text-left" colSpan="10">
+              LUNCH BOXES
+            </td>
+          </tr>
+
+          <tr>
+            <td className="border p-2 text-center"></td>
+            <td className="border p-2 text-center"></td>
+            <td className="border p-2 text-center"></td>
+            <td className="border p-2 text-center"></td>
+            <td className="border p-2 text-center"></td>
+            <td className="border p-2 text-center"></td>
+            <td className="border p-2 text-center"></td>
+            <td className="border p-2 text-center"></td>
+            <td className="border p-2 text-center"></td>
+            <td className="border p-2 text-center"></td>
+          </tr>
 
           {/* TOTAL */}
           <tr className="bg-black text-white font-bold">

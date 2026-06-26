@@ -1,32 +1,29 @@
 import React from "react";
 
-const PlatterSection = ({
-  client,
-  menu,
-  pax,
-  numberOfItems,
-  itemName,
-  type,
-  title,
-}) => {
+const PlatterSelection = ({ title, data, calculation, type }) => {
+  if (!data || data.length === 0) return null;
+
   return (
-    <div>
-      <div className="border rounded-xl p-4 bg-white shadow-sm">
-        <h3 className="font-bold text-lg mb-2 border-b pb-1">{title}</h3>
-        <div className="text-sm">
-          <p className="flex flex-row items-center gap-2">
-            <span>
-              {client} {menu} / {pax}
-            </span>{" "}
-            -{" "}
-            <span>
-              {numberOfItems} X {itemName} {type}
-            </span>
-          </p>
-        </div>
+    <div className="mt-10 border rounded-xl p-4 bg-white shadow-sm">
+      <h3 className="font-bold text-lg mb-3 border-b pb-2">{title}</h3>
+
+      <div className="space-y-1">
+        {data.map((item, i) => (
+          <div key={i} className="flex items-center text-sm gap-2">
+            {/* LEFT */}
+            <div className="font-medium w-[220px] text-center">
+              {item.client} {item.menu} / {item.pax}
+            </div>
+
+            {/* RIGHT */}
+            <div className="font-medium text-center">
+              {calculation(item)} {type}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );
 };
 
-export default PlatterSection;
+export default PlatterSelection;

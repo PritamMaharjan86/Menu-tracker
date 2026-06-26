@@ -1,16 +1,39 @@
 import React from "react";
+import Menu from "../Menu";
 
-const CulturalMenu = ({ menuDetail, client, menu, pax }) => {
+const CulturalMenu = ({ orders }) => {
+  const allowedMenus = ["ASIAN", "ITALIAN", "DELUXE", "LIGHT"];
+
   return (
-    <div className="border rounded-xl p-4 bg-white shadow-sm">
-      <h3 className="font-bold text-lg mb-2 border-b pb-1">Cultural</h3>
-      <div className="text-sm space-y-1 flex flex-col justify-evenly gap-10">
-        <p className="flex flex-row items-center gap-10">
-          <span>
-            {client} {menu} / {pax}
-          </span>{" "}
-          - <span className="w-1/2 leading-relaxed">{menuDetail}</span>
-        </p>
+    <div className="mt-10 border rounded-xl p-4 bg-white shadow-sm">
+      <h3 className="font-bold text-lg mb-4 border-b pb-2">CULTURAL MENU</h3>
+
+      <div className="space-y-3">
+        {orders
+          .filter((order) => allowedMenus.includes(order.menu))
+          .map((order, i) => {
+            const menuData = Menu[order.menu]?.(Number(order.pax));
+
+            if (!menuData) return null;
+
+            return (
+              <div key={i} className="grid grid-cols-2 gap-4 mt-10">
+                {/* CLIENT + MENU */}
+                <div className="font-medium">
+                  {order.name} {order.menu} / {order.pax}
+                </div>
+
+                {/* ITEMS */}
+                <div className="text-sm flex flex-wrap gap-2">
+                  {Object.entries(menuData.items).map(([key, value]) => (
+                    <span key={key}>
+                      {value} x <span className="capitalize">{key}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

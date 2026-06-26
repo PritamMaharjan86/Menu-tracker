@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import { FaRegSave, FaPlus, FaTrash } from "react-icons/fa";
+import Menu from "./Menu";
 
-export default function Input({ closeInputBox }) {
+export default function Input({ closeInputBox, setOrders }) {
   const [form, setForm] = useState({
     name: "",
     pax: "",
@@ -12,7 +13,7 @@ export default function Input({ closeInputBox }) {
 
   const [hasPlatter, setHasPlatter] = useState(false);
 
-  // Main form change
+  // Handle input changes
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -20,7 +21,7 @@ export default function Input({ closeInputBox }) {
     });
   };
 
-  // Add new platter
+  // Add platter
   const addPlatter = () => {
     setForm({
       ...form,
@@ -37,7 +38,6 @@ export default function Input({ closeInputBox }) {
   // Remove platter
   const removePlatter = (index) => {
     const updated = [...form.platters];
-
     updated.splice(index, 1);
 
     setForm({
@@ -45,16 +45,14 @@ export default function Input({ closeInputBox }) {
       platters: updated,
     });
 
-    // Hide section if no platters left
     if (updated.length === 0) {
       setHasPlatter(false);
     }
   };
 
-  // Handle platter change
+  // Update platter fields
   const handlePlatterChange = (index, field, value) => {
     const updated = [...form.platters];
-
     updated[index][field] = value;
 
     setForm({
@@ -63,13 +61,31 @@ export default function Input({ closeInputBox }) {
     });
   };
 
+  // SAFE SAVE FUNCTION
+  const handleSave = () => {
+    const paxNumber = Number(form.pax);
+
+    const menuData = Menu?.[form.menu]?.(paxNumber);
+
+    if (!menuData) return;
+
+    const newOrder = {
+      id: Date.now(),
+      name: form.name,
+      pax: paxNumber,
+      menu: form.menu,
+      ...menuData,
+    };
+
+    setOrders((prev) => [...prev, newOrder]);
+    closeInputBox();
+  };
+
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50">
-      {/* Modal */}
       <div className="bg-white w-full max-w-[500px] rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
-        {/* Content */}
         <div className="p-6">
-          {/* Header */}
+          {/* HEADER */}
           <div className="flex justify-between items-center mb-6 sticky top-0 bg-white py-2 z-10">
             <h2 className="text-2xl font-bold">Add Menu</h2>
 
@@ -79,7 +95,7 @@ export default function Input({ closeInputBox }) {
             />
           </div>
 
-          {/* Client Name */}
+          {/* CLIENT NAME */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">Client Name</label>
 
@@ -91,7 +107,7 @@ export default function Input({ closeInputBox }) {
             />
           </div>
 
-          {/* Number of People */}
+          {/* PAX */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">Number of People</label>
 
@@ -104,7 +120,7 @@ export default function Input({ closeInputBox }) {
             />
           </div>
 
-          {/* Menu */}
+          {/* MENU */}
           <div className="mb-6">
             <label className="block mb-2 font-medium">Select Menu</label>
 
@@ -113,19 +129,15 @@ export default function Input({ closeInputBox }) {
               onChange={handleChange}
               className="border w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
               <option value="">Select Menu</option>
-              <option value="A"> A</option>
-              <option value="B"> B</option>
-              <option value="C"> C</option>
-              <option value="D"> D</option>
-              <option value="E"> E</option>
-              <option value="ITALIAN">ITALIAN</option>
-              <option value="DELUXE">GREEK DELUXE</option>
-              <option value="LIGHT">GREEK LIGHT</option>
-              <option value="ASIAN">ASIAN</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
             </select>
           </div>
 
-          {/* Platter Section */}
+          {/* PLATTERS */}
           <div className="mt-6">
             <div className="flex justify-between items-center mb-4">
               <h3 className="text-lg font-semibold">Platters</h3>
@@ -142,80 +154,60 @@ export default function Input({ closeInputBox }) {
               )}
             </div>
 
-            {/* Platters */}
             {hasPlatter && (
               <div className="space-y-4">
                 {form.platters.map((platter, index) => (
                   <div
                     key={index}
                     className="border rounded-2xl p-4 bg-gray-50">
-                    {/* Platter Header */}
                     <div className="flex justify-between items-center mb-4">
                       <h4 className="font-semibold">Platter {index + 1}</h4>
 
                       <button
                         onClick={() => removePlatter(index)}
-                        className="text-red-500 hover:text-red-700 transition">
+                        className="text-red-500">
                         <FaTrash />
                       </button>
                     </div>
 
-                    {/* Platter Pax */}
-                    <div className="mb-3">
-                      <label className="block mb-2 text-sm font-medium">
-                        Platter Pax
-                      </label>
+                    <input
+                      type="number"
+                      placeholder="Platter Pax"
+                      value={platter.pax}
+                      onChange={(e) =>
+                        handlePlatterChange(index, "pax", e.target.value)
+                      }
+                      className="border w-full p-3 rounded-xl mb-3"
+                    />
 
-                      <input
-                        type="number"
-                        placeholder="Enter platter pax"
-                        value={platter.pax}
-                        onChange={(e) =>
-                          handlePlatterChange(index, "pax", e.target.value)
-                        }
-                        className="border w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
-                      />
-                    </div>
-
-                    {/* Platter Type */}
-                    <div>
-                      <label className="block mb-2 text-sm font-medium">
-                        Select Platter
-                      </label>
-
-                      <select
-                        value={platter.type}
-                        onChange={(e) =>
-                          handlePlatterChange(index, "type", e.target.value)
-                        }
-                        className="border w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
-                        <option value="">Select Platter</option>
-
-                        <option value="Fruit Platter">Fruit Platter</option>
-
-                        <option value="Seafood Platter">Seafood Platter</option>
-
-                        <option value="Dessert Platter">Dessert Platter</option>
-
-                        <option value="Cheese Platter">Cheese Platter</option>
-                      </select>
-                    </div>
+                    <select
+                      value={platter.type}
+                      onChange={(e) =>
+                        handlePlatterChange(index, "type", e.target.value)
+                      }
+                      className="border w-full p-3 rounded-xl">
+                      <option value="">Select Platter</option>
+                      <option value="Fruit Platter">Fruit Platter</option>
+                      <option value="Seafood Platter">Seafood Platter</option>
+                      <option value="Dessert Platter">Dessert Platter</option>
+                      <option value="Cheese Platter">Cheese Platter</option>
+                    </select>
                   </div>
                 ))}
 
-                {/* Add Another */}
                 <button
                   onClick={addPlatter}
-                  className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-xl transition font-medium">
-                  <FaPlus />
-                  Add Another Platter
+                  className="w-full bg-blue-600 text-white p-3 rounded-xl">
+                  <FaPlus /> Add Another Platter
                 </button>
               </div>
             )}
           </div>
 
-          {/* Save Button */}
-          <button className="flex items-center justify-center gap-3 mt-8 w-full bg-green-600 hover:bg-green-700 text-white p-3 rounded-xl transition font-medium">
+          {/* SAVE BUTTON */}
+          <button
+            onClick={handleSave}
+            className="flex items-center justify-center gap-3 mt-8 w-full bg-green-600 hover:bg-green-700 text-white p-3 rounded-xl transition font-medium">
             <FaRegSave />
             Save Menu
           </button>
