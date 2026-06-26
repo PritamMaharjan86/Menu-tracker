@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
 import Table from "../components/Table";
-import PlatterSection from "../components/PlatterSection";
+import PlatterSection from "../components/PlatterSelection";
+import CulturalMenu from "../components/CulturalMenu";
 
 const Paperwork = () => {
   const [showInput, setShowInput] = useState(false);
@@ -106,13 +107,14 @@ const Paperwork = () => {
       <Table orders={orders} totals={totals} />
 
       {/* BEAUTIFUL BOTTOM SECTION */}
-      <div className="mt-10 grid grid-cols-2 gap-6">
+      <div className="mt-10 grid grid-row gap-6">
         <PlatterSection
           client="JOHN"
           menu="ASIAN"
           pax={30}
           numberOfItems={2}
           type="LARGE"
+          itemName=""
           title="FRUITS"
         />
 
@@ -122,6 +124,7 @@ const Paperwork = () => {
           pax={30}
           numberOfItems={30}
           type="PCS"
+          itemName=""
           title="MACARONS"
         />
 
@@ -131,83 +134,72 @@ const Paperwork = () => {
           pax={50}
           numberOfItems={1.5}
           type="BAGS"
+          itemName=""
           title="MEATBALLS"
         />
       </div>
 
       <div className="mt-10 grid grid-row gap-6">
-        <div className="border rounded-xl p-4 bg-white shadow-sm">
-          <h3 className="font-bold text-lg mb-3 border-b pb-1">Scones</h3>
+        <div className="border rounded-xl p-4 bg-white shadow-sm ">
+          <h3 className="font-bold text-lg mb-3 border-b pb-1">SCONES</h3>
 
           <div className="text-sm space-y-2">
-            <div className="flex flex-row">
+            <div className="flex flex-row justify-around">
               {/* Row 1 - EMPTY */}
               <p className="flex flex-col items-center gap-2">
-                <span className="w-32">Menu</span>
+                <span className="w-32">MENU</span>
                 <span className="w-32 font-medium">Harry A/20</span>
               </p>
 
               {/* Row 2 - SCONES */}
               <p className="flex flex-col items-center gap-2">
-                <span className="w-32 font-medium">Scones</span>
+                <span className="w-32 font-medium">SCONES</span>
                 <span className="w-32 font-medium"> 2 X LARGE</span>
               </p>
 
               {/* Row 3 - CREAM */}
               <p className="flex flex-col items-center gap-2">
-                <span className="w-32 font-medium">Cream</span>
+                <span className="w-32 font-medium">CREAM</span>
                 <span className="w-32 font-medium">1 X LARGE</span>
               </p>
 
               {/* Row 4 - BISCUITS */}
               <p className="flex flex-col items-center gap-2">
-                <span className="w-32 font-medium">Biscuits</span>
+                <span className="w-32 font-medium">BISCUITS</span>
                 <span className="w-32 font-medium">30 PCS</span>
               </p>
 
               {/* Row 5 - SAVOURY MUFFINS */}
               <p className="flex flex-col items-center gap-2">
-                <span className="w-32 font-medium">Savoury Muffins</span>
+                <span className="w-40 font-medium">SAVOURY MUFFINS</span>
                 <span className="w-32 font-medium">45 EACH</span>
               </p>
             </div>
           </div>
         </div>
-        <div className="border rounded-xl p-4 bg-white shadow-sm">
-          <h3 className="font-bold text-lg mb-2 border-b pb-1">Platters</h3>
-          <div className="text-sm space-y-1">
-            <p className="flex flex-row items-center gap-2">
-              <span>JOHN ASIAN / 25</span> - <span>2 X LARGE</span>
-            </p>
-            <p className="flex flex-row items-center gap-2">
-              <span>ASHLEY D / 100</span> - <span>5 X LARGE</span>
-            </p>
-          </div>
-        </div>
 
-        <div className="border rounded-xl p-4 bg-white shadow-sm">
-          <h3 className="font-bold text-lg mb-2 border-b pb-1">Cultural</h3>
-          <div className="text-sm space-y-1 flex flex-col justify-evenly gap-10">
-            <p className="flex flex-row items-center gap-10">
-              <span>JOHN ASIAN / 25</span> -{" "}
-              <span className="w-1/2 leading-relaxed">
-                25 X FISH, 25 X DIMSIM, 25 X PRAWN CUTLET, 50 X SPRING ROLL, 25
-                X SATAY CHICKEN, 25 X GYOZA{" "}
-              </span>
-            </p>
-            <p className="flex flex-row items-center gap-10">
-              <span>JOHN ITALIAN / 50</span> -{" "}
-              <span className="w-1/2 leading-relaxed">
-                1 TRADITIONAL CURED MEATS (MORTADELLA, PROSCUITTO DI PARMA &
-                CALABRESE SALAMI) ITALIAN CHEESE (PROVOLONE & PECORINO) OLIVES &
-                GIARDINERA. FOCCACIA, GRISSINI, PORK CHIPOLATA 50 W/ SALSA
-                ROSSA, CALAMARI RINGS 100, PASTIZZI 50, MUSHROOM ARANCHINI 50,
-                PUMPKIN ARANCHINI 50, MEATBALL 2 BAGS W/NAPOLI SAUCE, FISH 100,
-                CANNOLI 50, 1 TARTARE SAUCE + OLIVE OIL + BALSAMIC VINEGAR{" "}
-              </span>
-            </p>
-          </div>
-        </div>
+        <PlatterSection
+          client="HARRY"
+          menu="ITALIAN"
+          pax={50}
+          numberOfItems={1.5}
+          type="PCS"
+          itemName="BACON QUICHE"
+          title="PLATTERS"
+        />
+
+        {/*Cultural menu */}
+        <CulturalMenu
+          client="Robin"
+          menu="Greek Deluxe"
+          pax="50"
+          menuDetail="1 TRADITIONAL CURED MEATS (MORTADELLA, PROSCUITTO DI PARMA &
+            CALABRESE SALAMI) ITALIAN CHEESE (PROVOLONE & PECORINO) OLIVES &
+            GIARDINERA. FOCCACIA, GRISSINI, PORK CHIPOLATA 50 W/ SALSA ROSSA,
+            CALAMARI RINGS 100, PASTIZZI 50, MUSHROOM ARANCHINI 50, PUMPKIN
+            ARANCHINI 50, MEATBALL 2 BAGS W/NAPOLI SAUCE, FISH 100, CANNOLI 50,
+            1 TARTARE SAUCE + OLIVE OIL + BALSAMIC VINEGAR"
+        />
       </div>
     </div>
   );

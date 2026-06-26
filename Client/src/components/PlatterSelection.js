@@ -1,6 +1,14 @@
 import React from "react";
 
-const PlatterSection = ({ client, menu, pax, numberOfItems, type, title }) => {
+const PlatterSection = ({
+  client,
+  menu,
+  pax,
+  numberOfItems,
+  itemName,
+  type,
+  title,
+}) => {
   return (
     <div>
       <div className="border rounded-xl p-4 bg-white shadow-sm">
@@ -12,7 +20,7 @@ const PlatterSection = ({ client, menu, pax, numberOfItems, type, title }) => {
             </span>{" "}
             -{" "}
             <span>
-              {numberOfItems} X {type}
+              {numberOfItems} X {itemName} {type}
             </span>
           </p>
         </div>
