@@ -7,7 +7,7 @@ const PlatterSelection = ({ title, data, calculation, type }) => {
     <div className="mt-10 border rounded-xl p-4 bg-white shadow-sm">
       <h3 className="font-bold text-lg mb-3 border-b pb-2">{title}</h3>
 
-      <div className="space-y-1">
+      <div className="space-y-3">
         {data.map((item, i) => (
           <div key={i} className="flex items-center text-sm gap-2">
             {/* LEFT */}
