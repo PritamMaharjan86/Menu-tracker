@@ -113,9 +113,15 @@ export default function Input({ closeInputBox }) {
               onChange={handleChange}
               className="border w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
               <option value="">Select Menu</option>
-              <option value="Menu A">Menu A</option>
-              <option value="Menu B">Menu B</option>
-              <option value="Menu C">Menu C</option>
+              <option value="A"> A</option>
+              <option value="B"> B</option>
+              <option value="C"> C</option>
+              <option value="D"> D</option>
+              <option value="E"> E</option>
+              <option value="ITALIAN">ITALIAN</option>
+              <option value="DELUXE">GREEK DELUXE</option>
+              <option value="LIGHT">GREEK LIGHT</option>
+              <option value="ASIAN">ASIAN</option>
             </select>
           </div>
 
