@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
-import Table from "../components/Table";
-import PlatterSection from "../components/PlatterSelection";
-import CulturalMenu from "../components/CulturalMenu";
+import Table from "../components/Template/Table";
+import PlatterSection from "../components/Template/PlatterSelection";
+import CulturalMenu from "../components/Template/CulturalMenu";
 
 const Paperwork = () => {
   const [showInput, setShowInput] = useState(false);
