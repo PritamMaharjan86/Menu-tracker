@@ -1,4 +1,4 @@
-import Paperwork from "./pages/Paperwork";
+import Paperwork from "./Pages/Paperwork";
 
 export default function App() {
   return (
