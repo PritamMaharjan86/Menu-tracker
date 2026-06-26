@@ -8,73 +8,19 @@ import Menu from "../Components/Menu";
 const Paperwork = () => {
   const [showInput, setShowInput] = useState(false);
 
-  const orders = [
-    {
-      id: 1,
-      name: "JOHN",
-      pax: 30,
-      menu: "A",
-    },
-    {
-      id: 1,
-      name: "ROSE",
-      pax: 50,
-      menu: "A",
-    },
-    {
-      id: 2,
-      name: "MIKE",
-      pax: 20,
-      menu: "B",
-    },
-    {
-      id: 3,
-      name: "ASHLEY",
-      pax: 50,
-      menu: "C",
-    },
-    {
-      id: 4,
-      name: "ELLEN",
-      pax: 65,
-      menu: "D",
-    },
-    {
-      id: 4,
-      name: "ALIEN",
-      pax: 20,
-      menu: "E",
-    },
-    {
-      id: 5,
-      name: "HELLEN",
-      pax: 80,
-      menu: "ASIAN",
-    },
-    {
-      id: 6,
-      name: "RISE",
-      pax: 40,
-      menu: "ITALIAN",
-    },
-  ];
+  // MOVE ORDERS INTO STATE (IMPORTANT FIX)
+  const [orders, setOrders] = useState([]);
 
-  // TOTALS (safe version)
-  const totals = orders.reduce(
-    (acc, order) => {
-      return acc;
-    },
-    {
-      ham: 0,
-      egg: 0,
-      beef: 0,
-      salmon: 0,
-      chicken: 0,
-      tuna: 0,
-      platters: 0,
-      savoury: 0,
-    },
-  );
+  const totals = orders.reduce((acc, order) => acc, {
+    ham: 0,
+    egg: 0,
+    beef: 0,
+    salmon: 0,
+    chicken: 0,
+    tuna: 0,
+    platters: 0,
+    savoury: 0,
+  });
 
   const sectionMap = {
     macaron: "MACARONS",
@@ -93,7 +39,6 @@ const Paperwork = () => {
 
   orders.forEach((order) => {
     const menuData = Menu[order.menu]?.(Number(order.pax));
-
     if (!menuData) return;
 
     Object.entries(menuData.items || {}).forEach(([key, value]) => {
@@ -111,7 +56,7 @@ const Paperwork = () => {
   });
 
   return (
-    <div className="p-4 ">
+    <div className="p-4">
       <div className="flex justify-center mt-6">
         <button
           onClick={() => setShowInput(true)}
@@ -119,89 +64,76 @@ const Paperwork = () => {
           Add Menu
         </button>
       </div>
-
-      {showInput && <Input closeInputBox={() => setShowInput(false)} />}
-
+      {showInput && (
+        <Input
+          closeInputBox={() => setShowInput(false)}
+          setOrders={setOrders}
+        />
+      )}
       <h2 className="text-2xl font-bold mt-10 mb-4 text-center">Paperwork</h2>
-
       <Table orders={orders} totals={totals} />
-
-      {/* FRUITS */}
       <PlatterSection
         title="FRUITS"
         data={grouped.FRUITS}
         calculation={(item) => item.pax / 25}
         type="LARGE"
       />
-
-      {/* MACARONS */}
       <PlatterSection
         title="MACARONS"
         data={grouped.MACARONS}
         calculation={(item) => item.pax}
         type="PCS"
       />
-
-      {/* SLICES */}
       <PlatterSection
         title="SLICES"
         data={grouped.SLICES}
         calculation={(item) => item.pax / 10}
         type="LARGE"
       />
-
-      {/* MEATBALLS */}
       <PlatterSection
         title="MEATBALLS"
         data={grouped.MEATBALLS}
         calculation={(item) => item.pax / 25}
         type="BAGS"
       />
-
-      {/* SCONES */}
+      {/* SCONES */}{" "}
       {grouped.SCONES && (
         <div className="mt-10 border rounded-xl p-4 bg-white shadow-sm">
-          {/* ONLY ONE TITLE */}
-          <h3 className="font-bold text-lg mb-4 border-b pb-2">SCONES</h3>
-
-          {/* HEADER ROW  */}
+          {" "}
+          {/* ONLY ONE TITLE */}{" "}
+          <h3 className="font-bold text-lg mb-4 border-b pb-2">SCONES</h3>{" "}
+          {/* HEADER ROW */}{" "}
           <div className="grid grid-cols-5 text-sm font-bold text-gray-800 mb-3 text-center">
-            <span>MENU</span>
-            <span>SCONES</span>
-            <span>CREAM</span>
-            <span>BISCUIT</span>
-            <span>MUFFIN</span>
-          </div>
-
-          {/* DATA */}
+            {" "}
+            <span>MENU</span> <span>SCONES</span> <span>CREAM</span>{" "}
+            <span>BISCUIT</span> <span>MUFFIN</span>{" "}
+          </div>{" "}
+          {/* DATA */}{" "}
           <div className="space-y-3">
+            {" "}
             {grouped.SCONES.map((item, i) => (
               <div
                 key={i}
                 className="grid grid-cols-5 gap-4 text-center items-center text-sm">
-                {/* MENU */}
-                <span className="font-medium">
-                  {item.client} {item.menu} / {item.pax}
-                </span>
-
-                {/* SCONES */}
-                <span>{((item.pax * 1.5) / 24).toFixed(1)} LARGE</span>
-
-                {/* CREAM */}
-                <span>{(item.pax / 24).toFixed(1)} LARGE</span>
-
-                {/* BISCUIT */}
-                <span>{item.pax} PCS</span>
-
-                {/* MUFFIN */}
-                <span>{item.pax * 1.5} PCS EACH</span>
+                {" "}
+                {/* MENU */}{" "}
+                <span className="font-medium text-gray-500">
+                  {" "}
+                  <span className="text-gray-800 mr-3 uppercase">
+                    {item.client}
+                  </span>{" "}
+                  {item.menu} / {item.pax}{" "}
+                </span>{" "}
+                {/* SCONES */}{" "}
+                <span>{((item.pax * 1.5) / 24).toFixed(1)} LARGE</span>{" "}
+                {/* CREAM */} <span>{(item.pax / 24).toFixed(1)} LARGE</span>{" "}
+                {/* BISCUIT */} <span>{item.pax} PCS</span> {/* MUFFIN */}{" "}
+                <span>{item.pax * 1.5} PCS EACH</span>{" "}
               </div>
-            ))}
-          </div>
+            ))}{" "}
+          </div>{" "}
         </div>
       )}
-
-      {/* CULTURAL MENU */}
       <CulturalMenu orders={orders} />
     </div>
   );

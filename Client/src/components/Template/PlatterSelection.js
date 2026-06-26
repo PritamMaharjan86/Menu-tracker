@@ -12,7 +12,13 @@ const PlatterSelection = ({ title, data, calculation, type }) => {
           <div key={i} className="flex items-center text-sm gap-2">
             {/* LEFT */}
             <div className="font-medium w-[220px] text-center">
-              {item.client} {item.menu} / {item.pax}
+              <span className="font-medium text-gray-800 leading-snug uppercase">
+                {item.client}{" "}
+              </span>
+              <span className="text-sm text-gray-500 ml-2 ">
+                {" "}
+                {item.menu} / {item.pax}
+              </span>
             </div>
 
             {/* RIGHT */}

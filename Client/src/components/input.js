@@ -13,7 +13,7 @@ export default function Input({ closeInputBox, setOrders }) {
 
   const [hasPlatter, setHasPlatter] = useState(false);
 
-  // Handle input changes
+  // HANDLE INPUT
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -21,21 +21,15 @@ export default function Input({ closeInputBox, setOrders }) {
     });
   };
 
-  // Add platter
+  // ADD PLATTER
   const addPlatter = () => {
     setForm({
       ...form,
-      platters: [
-        ...form.platters,
-        {
-          pax: "",
-          type: "",
-        },
-      ],
+      platters: [...form.platters, { pax: "", type: "" }],
     });
   };
 
-  // Remove platter
+  // REMOVE PLATTER
   const removePlatter = (index) => {
     const updated = [...form.platters];
     updated.splice(index, 1);
@@ -50,7 +44,7 @@ export default function Input({ closeInputBox, setOrders }) {
     }
   };
 
-  // Update platter fields
+  // UPDATE PLATTER
   const handlePlatterChange = (index, field, value) => {
     const updated = [...form.platters];
     updated[index][field] = value;
@@ -61,12 +55,13 @@ export default function Input({ closeInputBox, setOrders }) {
     });
   };
 
-  // SAFE SAVE FUNCTION
+  // SAVE TO PAPERWORK
   const handleSave = () => {
     const paxNumber = Number(form.pax);
 
-    const menuData = Menu?.[form.menu]?.(paxNumber);
+    if (!form.name || !form.menu || !paxNumber) return;
 
+    const menuData = Menu?.[form.menu]?.(paxNumber);
     if (!menuData) return;
 
     const newOrder = {
@@ -74,10 +69,13 @@ export default function Input({ closeInputBox, setOrders }) {
       name: form.name,
       pax: paxNumber,
       menu: form.menu,
-      ...menuData,
+      items: menuData.items,
     };
 
+    // SEND TO PAPERWORK STATE
     setOrders((prev) => [...prev, newOrder]);
+
+    // CLOSE MODAL
     closeInputBox();
   };
 
@@ -86,37 +84,33 @@ export default function Input({ closeInputBox, setOrders }) {
       <div className="bg-white w-full max-w-[500px] rounded-2xl shadow-2xl max-h-[90vh] overflow-y-auto">
         <div className="p-6">
           {/* HEADER */}
-          <div className="flex justify-between items-center mb-6 sticky top-0 bg-white py-2 z-10">
+          <div className="flex justify-between items-center mb-6 sticky top-0 bg-white py-2">
             <h2 className="text-2xl font-bold">Add Menu</h2>
 
             <IoMdClose
               onClick={closeInputBox}
-              className="text-2xl cursor-pointer hover:text-red-500 transition"
+              className="text-2xl cursor-pointer hover:text-red-500"
             />
           </div>
 
-          {/* CLIENT NAME */}
+          {/* NAME */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">Client Name</label>
-
             <input
               name="name"
-              placeholder="Enter client name"
               onChange={handleChange}
-              className="border w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500 uppercase"
+              className="border w-full p-3 rounded-xl uppercase"
             />
           </div>
 
           {/* PAX */}
           <div className="mb-4">
             <label className="block mb-2 font-medium">Number of People</label>
-
             <input
               name="pax"
               type="number"
-              placeholder="Enter pax"
               onChange={handleChange}
-              className="border w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500"
+              className="border w-full p-3 rounded-xl"
             />
           </div>
 
@@ -127,19 +121,23 @@ export default function Input({ closeInputBox, setOrders }) {
             <select
               name="menu"
               onChange={handleChange}
-              className="border w-full p-3 rounded-xl outline-none focus:ring-2 focus:ring-blue-500">
+              className="border w-full p-3 rounded-xl">
               <option value="">Select Menu</option>
               <option value="A">A</option>
               <option value="B">B</option>
               <option value="C">C</option>
               <option value="D">D</option>
               <option value="E">E</option>
+              <option value="ITALIAN">ITALIAN</option>
+              <option value="DELUXE">DELUXE</option>
+              <option value="LIGHT">LIGHT</option>
+              <option value="ASIAN">ASIAN</option>
             </select>
           </div>
 
           {/* PLATTERS */}
           <div className="mt-6">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between mb-4">
               <h3 className="text-lg font-semibold">Platters</h3>
 
               {!hasPlatter && (
@@ -148,8 +146,8 @@ export default function Input({ closeInputBox, setOrders }) {
                     setHasPlatter(true);
                     addPlatter();
                   }}
-                  className="bg-black text-white px-4 py-2 rounded-xl hover:bg-gray-800 transition">
-                  Add Platter
+                  className="bg-black text-white px-4 py-2 rounded-xl">
+                  <FaPlus /> Add Platter
                 </button>
               )}
             </div>
@@ -157,27 +155,23 @@ export default function Input({ closeInputBox, setOrders }) {
             {hasPlatter && (
               <div className="space-y-4">
                 {form.platters.map((platter, index) => (
-                  <div
-                    key={index}
-                    className="border rounded-2xl p-4 bg-gray-50">
-                    <div className="flex justify-between items-center mb-4">
-                      <h4 className="font-semibold">Platter {index + 1}</h4>
+                  <div key={index} className="border p-4 rounded-xl bg-gray-50">
+                    <div className="flex justify-between mb-3">
+                      <span>Platter {index + 1}</span>
 
-                      <button
-                        onClick={() => removePlatter(index)}
-                        className="text-red-500">
-                        <FaTrash />
+                      <button onClick={() => removePlatter(index)}>
+                        <FaTrash className="text-red-500" />
                       </button>
                     </div>
 
                     <input
                       type="number"
-                      placeholder="Platter Pax"
+                      placeholder="Pax"
                       value={platter.pax}
                       onChange={(e) =>
                         handlePlatterChange(index, "pax", e.target.value)
                       }
-                      className="border w-full p-3 rounded-xl mb-3"
+                      className="border w-full p-2 mb-2 rounded"
                     />
 
                     <select
@@ -185,12 +179,11 @@ export default function Input({ closeInputBox, setOrders }) {
                       onChange={(e) =>
                         handlePlatterChange(index, "type", e.target.value)
                       }
-                      className="border w-full p-3 rounded-xl">
-                      <option value="">Select Platter</option>
-                      <option value="Fruit Platter">Fruit Platter</option>
-                      <option value="Seafood Platter">Seafood Platter</option>
-                      <option value="Dessert Platter">Dessert Platter</option>
-                      <option value="Cheese Platter">Cheese Platter</option>
+                      className="border w-full p-2 rounded">
+                      <option value="">Select Type</option>
+                      <option value="Fruit">Fruit</option>
+                      <option value="Seafood">Seafood</option>
+                      <option value="Dessert">Dessert</option>
                     </select>
                   </div>
                 ))}
@@ -198,16 +191,16 @@ export default function Input({ closeInputBox, setOrders }) {
                 <button
                   onClick={addPlatter}
                   className="w-full bg-blue-600 text-white p-3 rounded-xl">
-                  <FaPlus /> Add Another Platter
+                  <FaPlus /> Add Another
                 </button>
               </div>
             )}
           </div>
 
-          {/* SAVE BUTTON */}
+          {/* SAVE */}
           <button
             onClick={handleSave}
-            className="flex items-center justify-center gap-3 mt-8 w-full bg-green-600 hover:bg-green-700 text-white p-3 rounded-xl transition font-medium">
+            className="w-full mt-8 bg-green-600 text-white p-3 rounded-xl flex items-center justify-center gap-2">
             <FaRegSave />
             Save Menu
           </button>
