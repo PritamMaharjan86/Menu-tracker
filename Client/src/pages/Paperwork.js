@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
-import Table from "../components/Template/Table";
-import PlatterSection from "../components/Template/PlatterSelection";
+import Table from "../components/Template/Sandwich";
+import OtherItems from "../components/Template/OtherItems";
 import CulturalMenu from "../components/Template/CulturalMenu";
+import Platters from "../components/Template/Platters";
 import Menu from "../components/Menu";
 import { FaPlus } from "react-icons/fa";
 
@@ -40,7 +41,21 @@ const Paperwork = () => {
   const grouped = {};
 
   orders.forEach((order) => {
-    const menuData = Menu[order.menu]?.(Number(order.pax));
+    const menuData = Menu[order.menuName]?.(Number(order.pax));
+
+    // PLATTERS
+    if (order.platters && order.platters.length > 0) {
+      if (!grouped.PLATTERS) grouped.PLATTERS = [];
+
+      grouped.PLATTERS.push({
+        id: order.id,
+        clientName: order.clientName,
+        menuName: order.menuName,
+        pax: Number(order.pax),
+        items: order.platters,
+      });
+    }
+
     if (!menuData) return;
 
     Object.entries(menuData.items || {}).forEach(([key, value]) => {
@@ -49,8 +64,8 @@ const Paperwork = () => {
       if (!grouped[section]) grouped[section] = [];
 
       grouped[section].push({
-        client: order.name,
-        menu: order.menu,
+        clientName: order.clientName,
+        menuName: order.menuName,
         pax: order.pax,
         itemName: key,
       });
@@ -103,25 +118,25 @@ const Paperwork = () => {
       )}
       <h2 className="text-2xl font-bold mt-10 mb-4 text-center">Paperwork</h2>
       <Table orders={orders} totals={totals} />
-      <PlatterSection
+      <OtherItems
         title="FRUITS"
         data={grouped.FRUITS || []}
         calculation={(item) => item.pax / 25}
         type="LARGE"
       />
-      <PlatterSection
+      <OtherItems
         title="MACARONS"
         data={grouped.MACARONS || []}
         calculation={(item) => item.pax}
         type="PCS"
       />
-      <PlatterSection
+      <OtherItems
         title="SLICES"
         data={grouped.SLICES || []}
         calculation={(item) => item.pax / 10}
         type="LARGE"
       />
-      <PlatterSection
+      <OtherItems
         title="MEATBALLS"
         data={grouped.MEATBALLS || []}
         calculation={(item) => item.pax / 25}
@@ -153,9 +168,9 @@ const Paperwork = () => {
                 {/* MENU */}
                 <span className="font-medium text-gray-500">
                   <span className="text-gray-800 mr-3 uppercase">
-                    {item.client}
+                    {item.clientName}
                   </span>
-                  {item.menu} / {item.pax}
+                  {item.menuName} / {item.pax}
                 </span>
 
                 {/* SCONES */}
@@ -175,6 +190,12 @@ const Paperwork = () => {
         </div>
       </div>
 
+      <Platters
+        title="PLATTERS"
+        data={grouped.PLATTERS || []}
+        platterCount={(item) => item.items?.[0]?.platterCount}
+        platterName={(item) => item.items?.[0]?.platterName}
+      />
       <CulturalMenu orders={orders} />
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 
-const PlatterSelection = ({ title, data, calculation, type }) => {
+const OtherItems = ({ title, data, calculation, type }) => {
   const isEmpty = !data || data.length === 0;
 
   return (
@@ -16,11 +16,11 @@ const PlatterSelection = ({ title, data, calculation, type }) => {
               {/* LEFT */}
               <div className="font-medium w-[220px] text-center">
                 <span className="font-medium text-gray-800 leading-snug uppercase">
-                  {item.client}{" "}
+                  {item.clientName}{" "}
                 </span>
                 <span className="text-sm text-gray-500 ml-2 ">
                   {" "}
-                  {item.menu} / {item.pax}
+                  {item.menuName} / {item.pax}
                 </span>
               </div>
 
@@ -40,4 +40,4 @@ const PlatterSelection = ({ title, data, calculation, type }) => {
   );
 };
 
-export default PlatterSelection;
+export default OtherItems;

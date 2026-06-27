@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "../Menu";
 
-const Table = ({ orders }) => {
+const Sandwich = ({ orders }) => {
   const clubRows = [];
   const ribbonRows = [];
   const savouryRows = [];
@@ -18,20 +18,20 @@ const Table = ({ orders }) => {
   let totalSavoury = 0;
 
   orders.forEach((order) => {
-    const menuData = Menu[order.menu]?.(Number(order.pax));
+    const menuData = Menu[order.menuName]?.(Number(order.pax));
 
     if (!menuData?.items) return;
 
     const items = menuData.items;
 
-    // SAVOURY (MENU B ONLY)
-    if (items.savouryPlatter && order.menu === "B") {
+    // for savoury only (menu B)
+    if (items.savouryPlatter && order.menuName === "B") {
       functionSet.add("savoury");
 
       savouryRows.push({
         id: order.id,
-        name: order.name,
-        menu: order.menu,
+        clientName: order.clientName,
+        menuName: order.menuName,
         pax: order.pax,
         items,
         platters: Math.ceil(order.pax / 10),
@@ -44,8 +44,8 @@ const Table = ({ orders }) => {
 
       clubRows.push({
         id: order.id,
-        name: order.name,
-        menu: order.menu,
+        clientName: order.clientName,
+        menuName: order.menuName,
         pax: order.pax,
         items,
         platters: Math.ceil(order.pax / 10),
@@ -58,8 +58,8 @@ const Table = ({ orders }) => {
 
       ribbonRows.push({
         id: order.id,
-        name: order.name,
-        menu: order.menu,
+        clientName: order.clientName,
+        menuName: order.menuName,
         pax: order.pax,
         items,
         platters: Math.ceil(order.pax / 30),
@@ -112,7 +112,7 @@ const Table = ({ orders }) => {
                   <td></td>
 
                   <td className="border p-2 text-center uppercase">
-                    {o.name} {o.menu} / {o.pax}
+                    {o.clientName} {o.menuName} / {o.pax}
                   </td>
 
                   <td className="border p-2 text-center">{o.platters * 2}</td>
@@ -149,7 +149,7 @@ const Table = ({ orders }) => {
                   <td></td>
 
                   <td className="border p-2 text-center uppercase">
-                    {o.name} {o.menu} / {o.pax}
+                    {o.clientName} {o.menuName} / {o.pax}
                   </td>
 
                   <td className="border p-2 text-center">{o.platters * 2}</td>
@@ -186,7 +186,7 @@ const Table = ({ orders }) => {
                   <td></td>
 
                   <td className="border p-2 text-center uppercase">
-                    {o.name} {o.menu} / {o.pax}
+                    {o.clientName} {o.menuName} / {o.pax}
                   </td>
 
                   <td className="border p-2 text-center">-</td>
@@ -248,4 +248,4 @@ const Table = ({ orders }) => {
   );
 };
 
-export default Table;
+export default Sandwich;
