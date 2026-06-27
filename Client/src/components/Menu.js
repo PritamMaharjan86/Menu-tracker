@@ -56,7 +56,7 @@ const Menu = {
     name: "ITALIAN",
 
     items: {
-      "traditional cured meat (mortadella, prosciutto di parma & calabrese salami)":
+      "traditional cured meat (mortadella, prosciutto di parma & calabrese salami),":
         Math.ceil(pax * 1),
       "foccacia,": Math.ceil(pax * 1),
       "grissini,": Math.ceil(pax / 10),

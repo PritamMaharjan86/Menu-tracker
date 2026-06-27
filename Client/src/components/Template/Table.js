@@ -83,8 +83,8 @@ const Table = ({ orders }) => {
     <div>
       <table className="w-full text-sm border-collapse">
         <thead>
-          <tr className="bg-yellow-400">
-            <th className="border p-2 text-center">SANDWICH</th>
+          <tr className="bg-yellow-400 ">
+            <th className="border p-2 text-left font-bold text-lg">SANDWICH</th>
             <th className="border p-2 text-center">NAME</th>
             <th className="border p-2 text-center">HAM</th>
             <th className="border p-2 text-center">EGG</th>

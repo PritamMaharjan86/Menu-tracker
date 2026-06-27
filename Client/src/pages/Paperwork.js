@@ -59,17 +59,31 @@ const Paperwork = () => {
 
   const isEmpty = !orders || orders.length === 0;
 
+  const dayName =
+    date ?
+      new Date(date).toLocaleDateString("en-AU", {
+        weekday: "long",
+      })
+    : "";
+
   return (
     <div className="p-4">
       <div className="flex flex-row justify-between items-center">
         {/* DATE INPUT */}
-        <div className="flex flex-row items-center gap-2 bg-yellow-300 px-2 rounded-md">
-          <span className="font-bold text-lg">DATE : </span>
+
+        <div className="flex flex-row items-center">
+          <span className="font-bold text-lg mr-3">Date : </span>
+          {date && (
+            <span className="text-lg text-gray-800 font-bold mr-2">
+              {dayName}
+            </span>
+          )}
+
           <input
             type="date"
             value={date}
             onChange={(e) => setDate(e.target.value)}
-            className="px-3 py-2 bg-transparent font-bold text-lg cursor-pointer "
+            className="bg-transparent font-bold text-lg cursor-pointer"
           />
         </div>
 
@@ -135,7 +149,7 @@ const Paperwork = () => {
           : (grouped.SCONES || []).map((item, i) => (
               <div
                 key={i}
-                className="grid grid-cols-5 gap-4 text-center items-center text-sm">
+                className="grid grid-cols-5 gap-4 text-center items-center text-sm ">
                 {/* MENU */}
                 <span className="font-medium text-gray-500">
                   <span className="text-gray-800 mr-3 uppercase">
