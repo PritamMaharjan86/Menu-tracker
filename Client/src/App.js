@@ -2,8 +2,7 @@ import Paperwork from "./pages/Paperwork";
 
 export default function App() {
   return (
-    <div className="min-h-screen p-10 bg-gray-50">
-      <h1 className="text-2xl font-bold text-center">MENU FORECAST</h1>
+    <div className="min-h-screen p-2 bg-gray-50">
       <Paperwork />
     </div>
   );

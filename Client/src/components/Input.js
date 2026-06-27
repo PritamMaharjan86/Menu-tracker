@@ -146,7 +146,7 @@ export default function Input({ closeInputBox, setOrders }) {
                     setHasPlatter(true);
                     addPlatter();
                   }}
-                  className="bg-black text-white px-4 py-2 rounded-xl">
+                  className="bg-black text-white px-4 py-2 rounded-md flex flex-row items-center gap-3">
                   <FaPlus /> Add Platter
                 </button>
               )}
@@ -190,7 +190,7 @@ export default function Input({ closeInputBox, setOrders }) {
 
                 <button
                   onClick={addPlatter}
-                  className="w-full bg-blue-600 text-white p-3 rounded-xl">
+                  className="w-full bg-gray-600 text-white p-3 rounded-xl flex items-center justify-center gap-3">
                   <FaPlus /> Add Another
                 </button>
               </div>
@@ -200,7 +200,7 @@ export default function Input({ closeInputBox, setOrders }) {
           {/* SAVE */}
           <button
             onClick={handleSave}
-            className="w-full mt-8 bg-green-600 text-white p-3 rounded-xl flex items-center justify-center gap-2">
+            className="w-full mt-8 bg-black text-white p-3 rounded-xl flex items-center justify-center gap-2">
             <FaRegSave />
             Save Menu
           </button>

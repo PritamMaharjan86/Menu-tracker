@@ -4,6 +4,7 @@ import Menu from "../Menu";
 const Table = ({ orders }) => {
   const clubRows = [];
   const ribbonRows = [];
+  const savouryRows = [];
 
   const functionSet = new Set();
 
@@ -18,9 +19,24 @@ const Table = ({ orders }) => {
 
   orders.forEach((order) => {
     const menuData = Menu[order.menu]?.(Number(order.pax));
+
     if (!menuData?.items) return;
 
     const items = menuData.items;
+
+    // SAVOURY (MENU B ONLY)
+    if (items.savouryPlatter && order.menu === "B") {
+      functionSet.add("savoury");
+
+      savouryRows.push({
+        id: order.id,
+        name: order.name,
+        menu: order.menu,
+        pax: order.pax,
+        items,
+        platters: Math.ceil(order.pax / 10),
+      });
+    }
 
     // CLUB
     if (items.club) {
@@ -50,7 +66,7 @@ const Table = ({ orders }) => {
       });
     }
 
-    //  TOTALS (ALL ITEMS)
+    // TOTALS
     totalHam += items.ham || 0;
     totalEgg += items.egg || 0;
     totalBeef += items.beef || 0;
@@ -58,7 +74,7 @@ const Table = ({ orders }) => {
     totalChicken += items.chicken || 0;
     totalTuna += items.tuna || 0;
     totalPlatter += items.platter || 0;
-    totalSavoury += items.savoury || 0;
+    totalSavoury += items.savouryPlatter || 0;
   });
 
   const lunchBoxTotal = functionSet.size * 2;
@@ -67,7 +83,7 @@ const Table = ({ orders }) => {
     <div>
       <table className="w-full text-sm border-collapse">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-yellow-400">
             <th className="border p-2 text-center">SANDWICH</th>
             <th className="border p-2 text-center">NAME</th>
             <th className="border p-2 text-center">HAM</th>
@@ -94,34 +110,25 @@ const Table = ({ orders }) => {
               {clubRows.map((o) => (
                 <tr key={o.id}>
                   <td></td>
+
                   <td className="border p-2 text-center uppercase">
                     {o.name} {o.menu} / {o.pax}
                   </td>
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 2 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 2 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 1 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 1 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 3 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 1 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">{o.platters}</td>{" "}
+
+                  <td className="border p-2 text-center">{o.platters * 2}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 2}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 1}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 1}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 3}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 1}</td>
+
+                  <td className="border p-2 text-center">{o.platters}</td>
+
                   <td className="border p-2 text-center">{o.pax / 10 || 0}</td>
                 </tr>
               ))}
@@ -140,60 +147,92 @@ const Table = ({ orders }) => {
               {ribbonRows.map((o) => (
                 <tr key={o.id}>
                   <td></td>
+
                   <td className="border p-2 text-center uppercase">
                     {o.name} {o.menu} / {o.pax}
                   </td>
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 2 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 2 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 2 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 2 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 2 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">
-                    {" "}
-                    {o.platters * 2 || 0}{" "}
-                  </td>{" "}
-                  <td className="border p-2 text-center">{o.platters}</td>{" "}
-                  <td className="border p-2 text-center">{""}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 2}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 2}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 2}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 2}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 2}</td>
+
+                  <td className="border p-2 text-center">{o.platters * 2}</td>
+
+                  <td className="border p-2 text-center">{o.platters}</td>
+
+                  <td className="border p-2 text-center">-</td>
                 </tr>
               ))}
             </>
           )}
 
-          {/*  LUNCH BOX ROW */}
-          {(clubRows.length > 0 || ribbonRows.length > 0) && (
-            <tr className="bg-black text-white font-bold">
-              <td className="border p-2 text-left">LUNCH BOX</td>
+          {/* SAVOURY */}
+          {savouryRows.length > 0 && (
+            <>
+              <tr className="bg-gray-100 font-bold">
+                <td colSpan="10" className="border p-2 text-left">
+                  SAVOURY
+                </td>
+              </tr>
+
+              {savouryRows.map((o) => (
+                <tr key={o.id}>
+                  <td></td>
+
+                  <td className="border p-2 text-center uppercase">
+                    {o.name} {o.menu} / {o.pax}
+                  </td>
+
+                  <td className="border p-2 text-center">-</td>
+                  <td className="border p-2 text-center">-</td>
+                  <td className="border p-2 text-center">-</td>
+                  <td className="border p-2 text-center">-</td>
+                  <td className="border p-2 text-center">-</td>
+                  <td className="border p-2 text-center">-</td>
+                  <td className="border p-2 text-center">-</td>
+
+                  <td className="border p-2 text-center">
+                    {Math.ceil(o.pax / 10)}
+                  </td>
+                </tr>
+              ))}
+            </>
+          )}
+
+          {/* LUNCH BOX */}
+          {(clubRows.length > 0 ||
+            ribbonRows.length > 0 ||
+            savouryRows.length > 0) && (
+            <tr className="bg-gray-200 text-black font-medium">
+              <td className="border p-2 text-left font-bold">LUNCH BOX</td>
+
+              <td className="border p-2 text-center">-</td>
+
               <td className="border p-2 text-center">-</td>
               <td className="border p-2 text-center">-</td>
               <td className="border p-2 text-center">-</td>
               <td className="border p-2 text-center">-</td>
               <td className="border p-2 text-center">-</td>
               <td className="border p-2 text-center">-</td>
-              <td className="border p-2 text-center">-</td>
+
               <td className="border p-2 text-center">{lunchBoxTotal}</td>
+
               <td className="border p-2 text-center">-</td>
             </tr>
           )}
 
-          {/*  TOTAL ROW  */}
-          <tr className="bg-gray-300 font-bold">
+          {/* TOTAL */}
+          <tr className="bg-green-500 font-bold">
             <td className="border p-2 text-left">TOTAL</td>
+
             <td className="border p-2 text-center">-</td>
+
             <td className="border p-2 text-center">{totalHam}</td>
             <td className="border p-2 text-center">{totalEgg}</td>
             <td className="border p-2 text-center">{totalBeef}</td>
