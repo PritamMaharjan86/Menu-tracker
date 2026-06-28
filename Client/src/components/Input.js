@@ -1,7 +1,11 @@
+//import library
 import { useState } from "react";
-import { IoMdClose } from "react-icons/io";
-import { FaRegSave, FaPlus, FaTrash } from "react-icons/fa";
 import Menu from "./Menu";
+
+//import icons
+import { IoMdClose } from "react-icons/io";
+import { FaPlus, FaTrash } from "react-icons/fa";
+import { FiSave } from "react-icons/fi";
 
 export default function Input({ closeInputBox, setOrders }) {
   const [form, setForm] = useState({
@@ -11,7 +15,7 @@ export default function Input({ closeInputBox, setOrders }) {
     platters: [],
   });
 
-  // HANDLE INPUT
+  // handle input
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -19,7 +23,7 @@ export default function Input({ closeInputBox, setOrders }) {
     });
   };
 
-  // ADD PLATTER
+  // adding platter
   const addPlatter = () => {
     setForm((prev) => ({
       ...prev,
@@ -27,7 +31,7 @@ export default function Input({ closeInputBox, setOrders }) {
     }));
   };
 
-  // REMOVE PLATTER
+  // remove platter
   const removePlatter = (index) => {
     const updated = [...form.platters];
     updated.splice(index, 1);
@@ -38,7 +42,7 @@ export default function Input({ closeInputBox, setOrders }) {
     });
   };
 
-  // UPDATE PLATTER
+  // update platter
   const handlePlatterChange = (index, field, value) => {
     const updated = [...form.platters];
     updated[index][field] = value;
@@ -49,7 +53,7 @@ export default function Input({ closeInputBox, setOrders }) {
     });
   };
 
-  // SAVE TO PAPERWORK
+  // save menu
   const handleSave = () => {
     const paxNumber = Number(form.pax);
 
@@ -74,6 +78,44 @@ export default function Input({ closeInputBox, setOrders }) {
 
     closeInputBox();
   };
+
+  const PLATTER_TYPES = [
+    "PARTY PIES",
+    "MEATBALLS",
+    "SLICES",
+    "FRUITS",
+    "SAUSAGE ROLLS",
+    "BACON QUICHE",
+    "BACON PUFF",
+    "SPINACH PUFF",
+    "SPRING ROLLS",
+    "MUSHROOM ARANCINI",
+    "NUGGETS & CHIPS",
+    "CALAMARI",
+    "SUSHI",
+    "ANTIPASTO BOARD",
+    "GRISSINI & FOCACCIA",
+    "GOURMET BISCUITS",
+    "GF BROWNIES",
+    "SATAY CHICKEN",
+    "SPANOKOPITA",
+    "TIROPITA",
+    "PREMIUM TARTLET",
+    "VEG SAVOURY",
+    "VEGAN SAVOURY",
+    "GARLIC BREAD",
+    "FISH",
+    "RICE PAPER ROLLS",
+    "PIES & SAUSAGE ROLLS",
+    "GF SAVOURY",
+    "DIM SIM",
+    "PUMPKIN ARANCINI",
+    "WEDGES",
+    "HOT CHIPS",
+    "ASSORTED BISCUITS",
+    "PRAWN CUTLET",
+    "MINI PIES",
+  ];
 
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center p-4 z-50">
@@ -133,13 +175,15 @@ export default function Input({ closeInputBox, setOrders }) {
 
           {/* PLATTERS */}
           <div className="mt-6">
-            <div className="flex justify-between mb-4">
-              <h3 className="text-lg font-semibold">Platters ? </h3>
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold">
+                Is there platters for this menu?
+              </h3>
 
               <button
                 onClick={addPlatter}
                 className="bg-black text-white px-4 py-2 rounded-md flex flex-row items-center gap-3">
-                <FaPlus /> Add Platter
+                <FaPlus />
               </button>
             </div>
 
@@ -175,9 +219,59 @@ export default function Input({ closeInputBox, setOrders }) {
                       }
                       className="border w-full p-2 rounded">
                       <option value="">Select Type</option>
-                      <option value="Fruit">Fruit</option>
-                      <option value="Seafood">Seafood</option>
-                      <option value="Dessert">Dessert</option>
+                      <option value="PARTY PIES">PARTY PIES</option>
+                      <option value="MEATBALLS">MEATBALLS</option>
+                      <option value="SLICES">SLICES</option>
+                      <option value="FRUITS">FRUITS</option>
+                      <option value="SAUSAGE ROLLS">SAUSAGE ROLLS</option>
+                      <option value="BACON QUICHE">BACON QUICHE</option>
+                      <option value="BACON PUFF">BACON PUFF</option>
+                      <option value="SPINACH PUFF">SPINACH PUFF</option>
+                      <option value="SPRING ROLLS">SPRING ROLLS</option>
+                      <option value="MUSHROOM ARANCINI">
+                        MUSHROOM ARANCINI
+                      </option>
+                      <option value="NUGGETS & CHIPS">NUGGETS & CHIPS</option>
+                      <option value="CALAMARI">CALAMARI</option>
+                      <option value="SUSHI">SUSHI</option>
+                      <option value="ANTIPASTO BOARD, GRISSINI & FOCACCIA">
+                        ANTIPASTO BOARD, GRISSINI & FOCACCIA
+                      </option>
+                      <option value="DELUXE MEZZE, OLIVE BREAD">
+                        DELUXE MEZZE, OLIVE BREAD
+                      </option>
+                      <option value="LIGHT MEZZE, OLIVE BREAD">
+                        LIGHT MEZZE, OLIVE BREAD
+                      </option>
+                      <option value="MACARONS">MACARONS</option>
+                      <option value="FRUITS">FRUITS</option>
+                      <option value="MEATBALLS">MEATBALLS</option>
+                      <option value="SLICES">SLICES</option>
+                      <option value="SCONES">SCONES</option>
+                      <option value="GOURMET BISCUITS">GOURMET BISCUITS</option>
+                      <option value="GF BROWNIES">GF BROWNIES</option>
+                      <option value="SATAY CHICKEN">SATAY CHICKEN</option>
+                      <option value="SPANOKOPITA">SPANOKOPITA</option>
+                      <option value="TIROPITA">TIROPITA</option>
+                      <option value="PREMIUM TARTLET">PREMIUM TARTLET</option>
+                      <option value="VEG SAVOURY">VEG SAVOURY</option>
+                      <option value="VEGAN SAVOURY">VEGAN SAVOURY</option>
+                      <option value="GARLIC BREAD">GARLIC BREAD</option>
+                      <option value="FISH">FISH</option>
+                      <option value="RICE PAPER ROLLS">RICE PAPER ROLLS</option>
+                      <option value="PIES & SAUSAGE ROLLS">
+                        PIES & SAUSAGE ROLLS
+                      </option>
+                      <option value="GF SAVOURY">GF SAVOURY</option>
+                      <option value="DIM SIM">DIM SIM</option>
+                      <option value="PUMPKIN ARANCINI">PUMPKIN ARANCINI</option>
+                      <option value="WEDGES">WEDGES</option>
+                      <option value="HOT CHIPS">HOT CHIPS</option>
+                      <option value="ASSORTED BISCUITS">
+                        ASSORTED BISCUITS
+                      </option>
+                      <option value="PRAWN CUTLET">PRAWN CUTLET</option>
+                      <option value="MINI PIES">MINI PIES</option>
                     </select>
                   </div>
                 ))}
@@ -189,7 +283,7 @@ export default function Input({ closeInputBox, setOrders }) {
           <button
             onClick={handleSave}
             className="w-full mt-8 bg-black text-white p-3 rounded-xl flex items-center justify-center gap-2">
-            <FaRegSave />
+            <FiSave />
             Save Menu
           </button>
         </div>

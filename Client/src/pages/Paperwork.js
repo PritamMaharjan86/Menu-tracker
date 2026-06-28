@@ -106,7 +106,6 @@ const Paperwork = () => {
           onClick={() => setShowInput(true)}
           className="bg-black text-white px-4 py-2 rounded-md flex flex-row items-center gap-2">
           <FaPlus />
-          Add Menu
         </button>
       </div>
 
@@ -116,29 +115,29 @@ const Paperwork = () => {
           setOrders={setOrders}
         />
       )}
-      <h2 className="text-2xl font-bold mt-10 mb-4 text-center">Paperwork</h2>
+      <h2 className="text-2xl font-bold mt-10 mb-4 text-center">PAPERWORK</h2>
       <Table orders={orders} totals={totals} />
       <OtherItems
         title="FRUITS"
-        data={grouped.FRUITS || []}
+        orders={grouped.FRUITS || []}
         calculation={(item) => item.pax / 25}
         type="LARGE"
       />
       <OtherItems
         title="MACARONS"
-        data={grouped.MACARONS || []}
+        orders={grouped.MACARONS || []}
         calculation={(item) => item.pax}
         type="PCS"
       />
       <OtherItems
         title="SLICES"
-        data={grouped.SLICES || []}
+        orders={grouped.SLICES || []}
         calculation={(item) => item.pax / 10}
         type="LARGE"
       />
       <OtherItems
         title="MEATBALLS"
-        data={grouped.MEATBALLS || []}
+        orders={grouped.MEATBALLS || []}
         calculation={(item) => item.pax / 25}
         type="BAGS"
       />
@@ -192,7 +191,7 @@ const Paperwork = () => {
 
       <Platters
         title="PLATTERS"
-        data={grouped.PLATTERS || []}
+        orders={grouped.PLATTERS || []}
         platterCount={(item) => item.items?.[0]?.platterCount}
         platterName={(item) => item.items?.[0]?.platterName}
       />

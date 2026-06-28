@@ -1,7 +1,7 @@
 import React from "react";
 
-const OtherItems = ({ title, data, calculation, type }) => {
-  const isEmpty = !data || data.length === 0;
+const OtherItems = ({ title, orders, calculation, type }) => {
+  const isEmpty = !orders || orders.length === 0;
 
   return (
     <div className="mt-10 border rounded-xl p-4 bg-white shadow-sm">
@@ -11,22 +11,22 @@ const OtherItems = ({ title, data, calculation, type }) => {
           No orders for this section
         </p>
       : <div className="space-y-3">
-          {data.map((item, i) => (
+          {orders.map((order, i) => (
             <div key={i} className="flex items-center text-sm gap-2">
               {/* LEFT */}
               <div className="font-medium w-[220px] text-center">
                 <span className="font-medium text-gray-800 leading-snug uppercase">
-                  {item.clientName}{" "}
+                  {order.clientName}{" "}
                 </span>
                 <span className="text-sm text-gray-500 ml-2 ">
                   {" "}
-                  {item.menuName} / {item.pax}
+                  {order.menuName} / {order.pax}
                 </span>
               </div>
 
               {/* RIGHT */}
               <div className="font-medium text-center">
-                {calculation(item)} {type}
+                {calculation(order)} {type}
               </div>
               {/* <div className="flex flex-row items-center gap-5 border p-2 rounded-md">
                 <button>Delete</button>

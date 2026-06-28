@@ -107,29 +107,43 @@ const Sandwich = ({ orders }) => {
                 </td>
               </tr>
 
-              {clubRows.map((o) => (
-                <tr key={o.id}>
+              {clubRows.map((order) => (
+                <tr key={order.id}>
                   <td></td>
 
                   <td className="border p-2 text-center uppercase">
-                    {o.clientName} {o.menuName} / {o.pax}
+                    {order.clientName} {order.menuName} / {order.pax}
                   </td>
 
-                  <td className="border p-2 text-center">{o.platters * 2}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 2}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 2}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 2}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 1}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 1}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 1}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 1}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 3}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 3}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 1}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 1}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters}</td>
+                  <td className="border p-2 text-center">{order.platters}</td>
 
-                  <td className="border p-2 text-center">{o.pax / 10 || 0}</td>
+                  <td className="border p-2 text-center">
+                    {order.pax / 10 || 0}
+                  </td>
                 </tr>
               ))}
             </>
@@ -144,27 +158,39 @@ const Sandwich = ({ orders }) => {
                 </td>
               </tr>
 
-              {ribbonRows.map((o) => (
-                <tr key={o.id}>
+              {ribbonRows.map((order) => (
+                <tr key={order.id}>
                   <td></td>
 
                   <td className="border p-2 text-center uppercase">
-                    {o.clientName} {o.menuName} / {o.pax}
+                    {order.clientName} {order.menuName} / {order.pax}
                   </td>
 
-                  <td className="border p-2 text-center">{o.platters * 2}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 2}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 2}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 2}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 2}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 2}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 2}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 2}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 2}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 2}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters * 2}</td>
+                  <td className="border p-2 text-center">
+                    {order.platters * 2}
+                  </td>
 
-                  <td className="border p-2 text-center">{o.platters}</td>
+                  <td className="border p-2 text-center">{order.platters}</td>
 
                   <td className="border p-2 text-center">-</td>
                 </tr>
@@ -175,18 +201,18 @@ const Sandwich = ({ orders }) => {
           {/* SAVOURY */}
           {savouryRows.length > 0 && (
             <>
-              <tr className="bg-gray-100 font-bold">
+              <tr className="font-bold">
                 <td colSpan="10" className="border p-2 text-left">
                   SAVOURY
                 </td>
               </tr>
 
-              {savouryRows.map((o) => (
-                <tr key={o.id}>
+              {savouryRows.map((order) => (
+                <tr key={order.id}>
                   <td></td>
 
                   <td className="border p-2 text-center uppercase">
-                    {o.clientName} {o.menuName} / {o.pax}
+                    {order.clientName} {order.menuName} / {order.pax}
                   </td>
 
                   <td className="border p-2 text-center">-</td>
@@ -198,7 +224,7 @@ const Sandwich = ({ orders }) => {
                   <td className="border p-2 text-center">-</td>
 
                   <td className="border p-2 text-center">
-                    {Math.ceil(o.pax / 10)}
+                    {Math.ceil(order.pax / 10)}
                   </td>
                 </tr>
               ))}
@@ -209,8 +235,8 @@ const Sandwich = ({ orders }) => {
           {(clubRows.length > 0 ||
             ribbonRows.length > 0 ||
             savouryRows.length > 0) && (
-            <tr className="bg-gray-200 text-black font-medium">
-              <td className="border p-2 text-left font-bold">LUNCH BOX</td>
+            <tr className="bg-gray-100 text-black font-medium">
+              <td className=" p-2 text-left font-bold">LUNCH BOX</td>
 
               <td className="border p-2 text-center">-</td>
 
