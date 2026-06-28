@@ -43,19 +43,46 @@ const Paperwork = () => {
   orders.forEach((order) => {
     const menuData = Menu[order.menuName]?.(Number(order.pax));
 
-    // PLATTERS
-    if (order.platters && order.platters.length > 0) {
-      if (!grouped.PLATTERS) grouped.PLATTERS = [];
+    // to send these items to its own space rather than in the platter section
+    const specialSections = {
+      FRUITS: "FRUITS",
+      MACARONS: "MACARONS",
+      SLICES: "SLICES",
+      MEATBALLS: "MEATBALLS",
+      SCONES: "SCONES",
+    };
 
-      grouped.PLATTERS.push({
-        id: order.id,
-        clientName: order.clientName,
-        menuName: order.menuName,
-        pax: Number(order.pax),
-        items: order.platters,
+    if (order.platters && order.platters.length > 0) {
+      order.platters.forEach((platter) => {
+        const platterType = platter.platterName?.toUpperCase();
+
+        // IF SPECIAL ITEM → SEND TO OWN SECTION
+        if (specialSections[platterType]) {
+          const section = specialSections[platterType];
+
+          if (!grouped[section]) grouped[section] = [];
+
+          grouped[section].push({
+            clientName: order.clientName,
+            menuName: order.menuName,
+            pax: platter.platterCount,
+          });
+        }
+
+        // NORMAL PLATTERS
+        else {
+          if (!grouped.PLATTERS) grouped.PLATTERS = [];
+
+          grouped.PLATTERS.push({
+            id: order.id,
+            clientName: order.clientName,
+            menuName: order.menuName,
+            pax: order.pax,
+            items: [platter],
+          });
+        }
       });
     }
-
     if (!menuData) return;
 
     Object.entries(menuData.items || {}).forEach(([key, value]) => {
