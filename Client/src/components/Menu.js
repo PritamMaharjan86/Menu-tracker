@@ -1,143 +1,96 @@
+function buildMenu(name, pax, rules) {
+  const items = Object.fromEntries(
+    Object.entries(rules).map(([key, ratio]) => {
+      const value = pax * ratio;
+
+      const finalValue = value < 1 ? 0 : Math.ceil(value);
+
+      return [key, finalValue];
+    }),
+  );
+
+  return {
+    name,
+    items,
+  };
+}
+
 const Menu = {
-  A: (pax) => ({
-    name: "Menu A",
+  A: (pax) =>
+    buildMenu("Menu A", pax, {
+      scone: 1.8,
+      cream: 1,
+      biscuit: 2,
+      savouryMuffin: 1,
+    }),
 
-    items: {
-      scone: Math.ceil(pax * 1.8),
-      cream: Math.ceil(pax * 1),
-      biscuit: Math.ceil(pax * 2),
-      savouryMuffin: Math.ceil(pax * 1),
-    },
-  }),
+  B: (pax) =>
+    buildMenu("Menu B", pax, {
+      slice: 2,
+      savouryPlatter: 1 / 10,
+    }),
 
-  B: (pax) => ({
-    name: "Menu B",
+  C: (pax) =>
+    buildMenu("Menu C", pax, {
+      club: 3,
+      savouryPlatter: 1 / 10,
+      macaron: 1,
+    }),
 
-    items: {
-      slice: Math.ceil(pax * 2),
-      savouryPlatter: Math.ceil(pax / 10),
-    },
-  }),
+  D: (pax) =>
+    buildMenu("Menu D", pax, {
+      club: 1,
+      ribbon: 3,
+      meatball: 3,
+      savouryPlatter: 1 / 10,
+      fruit: 1 / 10,
+      macaron: 1,
+    }),
 
-  C: (pax) => ({
-    name: "Menu C",
+  E: (pax) =>
+    buildMenu("Menu E", pax, {
+      slice: 3,
+      club: 1 / 10,
+      ribbon: 2,
+    }),
 
-    items: {
-      club: Math.ceil(pax * 3),
-      savouryPlatter: Math.ceil(pax / 10),
-      macaron: Math.ceil(pax * 1),
-    },
-  }),
+  ITALIAN: (pax) =>
+    buildMenu("ITALIAN", pax, {
+      mortadella: 1,
+      focaccia: 1,
+      grissini: 1 / 10,
+      calamari: 1,
+      cannoli: 2,
+    }),
 
-  D: (pax) => ({
-    name: "Menu D",
+  DELUXE: (pax) =>
+    buildMenu("GREEK DELUXE", pax, {
+      mezze: 1,
+      oliveBread: 1,
+      pita: 1 / 10,
+      fish: 1,
+      octopus: 2,
+    }),
 
-    items: {
-      club: Math.ceil(pax * 3),
-      ribbon: Math.ceil(pax * 3),
-      meatball: Math.ceil(pax * 3),
-      savouryPlatter: Math.ceil(pax / 10),
-      fruit: Math.ceil(pax * 3),
-      macaron: Math.ceil(pax * 2),
-    },
-  }),
+  LIGHT: (pax) =>
+    buildMenu("GREEK LIGHT", pax, {
+      mezze: 1,
+      pita: 1 / 10,
+      fish: 1,
+    }),
 
-  E: (pax) => ({
-    name: "Menu E",
-
-    items: {
-      slice: Math.ceil(pax * 3),
-      club: Math.ceil(pax / 10),
-      ribbon: Math.ceil(pax * 2),
-    },
-  }),
-
-  ITALIAN: (pax) => ({
-    name: "ITALIAN",
-
-    items: {
-      "traditional cured meat (mortadella, prosciutto di parma & calabrese salami),":
-        Math.ceil(pax * 1),
-      "foccacia,": Math.ceil(pax * 1),
-      "grissini,": Math.ceil(pax / 10),
-      "pork chipolata with salsa rossa,": Math.ceil(pax * 1),
-      "calamari,": Math.ceil(pax * 1),
-      "pastizzi,": Math.ceil(pax * 1),
-      "mushroom arancini,": Math.ceil(pax * 1),
-      "pumpkin arancini,": Math.ceil(pax * 2),
-      "meatball with nap sauce,": Math.ceil(pax * 1),
-      "fish,": Math.ceil(pax / 10),
-      "cannoli,": Math.ceil(pax * 2),
-      "tartare,": Math.ceil(pax * 1),
-      "olive oil,": Math.ceil(pax / 10),
-      "balsamic vinegar,": Math.ceil(pax * 2),
-    },
-  }),
-
-  DELUXE: (pax) => ({
-    name: "GREEK DELUXE",
-
-    items: {
-      "mezze platter (kasseri, kefalograveria, fetta cheese, dolmades, kalamata olives)":
-        Math.ceil(pax * 1),
-      "olive bread,": Math.ceil(pax * 1),
-      "pita bread,": Math.ceil(pax / 10),
-      "fish,": Math.ceil(pax * 1),
-      "spanokipita,": Math.ceil(pax * 1),
-      "tiropita,": Math.ceil(pax * 1),
-      "calamari,": Math.ceil(pax * 1),
-      "large ramekin taramasalata,": Math.ceil(pax * 2),
-      "large ramekin tartare,": Math.ceil(pax * 1),
-      "large ramekin tzatziki,": Math.ceil(pax / 10),
-      "olive oil,": Math.ceil(pax * 2),
-      "vinegar,": Math.ceil(pax * 1),
-      " paximathia,": Math.ceil(pax / 10),
-      "koulouria,": Math.ceil(pax * 2),
-      "octopus,": Math.ceil(pax * 2),
-      "long greek salad with dressing on side,": Math.ceil(pax * 1),
-      "deep fried potatoes": Math.ceil(pax / 10),
-    },
-  }),
-
-  LIGHT: (pax) => ({
-    name: "GREEK LIGHT",
-
-    items: {
-      "mezze platter (fetta cheese, dolmades, kalamata olives)": Math.ceil(
-        pax * 1,
-      ),
-      "olive bread,": Math.ceil(pax * 1),
-      "pita bread,": Math.ceil(pax / 10),
-      "fish,": Math.ceil(pax * 1),
-      "spanokipita,": Math.ceil(pax * 1),
-      "tiropita,": Math.ceil(pax * 1),
-      "large ramekin taramasalata,": Math.ceil(pax * 2),
-      "large ramekin tartare,": Math.ceil(pax * 1),
-      "large ramekin tzatziki,": Math.ceil(pax / 10),
-      "olive oil,": Math.ceil(pax * 2),
-      "vinegar,": Math.ceil(pax * 1),
-      " paximathia,": Math.ceil(pax / 10),
-      "koulouria,": Math.ceil(pax * 2),
-      "long greek salad with dressing on side,": Math.ceil(pax * 1),
-      "deep fried potatoes": Math.ceil(pax / 10),
-    },
-  }),
-
-  ASIAN: (pax) => ({
-    name: "ASIAN",
-
-    items: {
-      satay: Math.ceil(pax * 1),
-      prawn: Math.ceil(pax * 1),
-      ribbon: Math.ceil(pax / 20),
-      gyoza: Math.ceil(pax * 1),
-      dimsim: Math.ceil(pax * 1),
-      fish: Math.ceil(pax * 1),
-      springroll: Math.ceil(pax * 2),
-      macaron: Math.ceil(pax * 1),
-      fruit: Math.ceil(pax / 10),
-    },
-  }),
+  ASIAN: (pax) =>
+    buildMenu("ASIAN", pax, {
+      satay: 1,
+      prawn: 1,
+      ribbon: 1 / 40,
+      gyoza: 1,
+      dimsim: 1,
+      fish: 1,
+      springroll: 2,
+      macaron: 1,
+      fruit: 1 / 5,
+    }),
 };
 
 export default Menu;

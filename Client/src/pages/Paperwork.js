@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
-import Table from "../components/Template/Sandwich";
-import OtherItems from "../components/Template/OtherItems";
-import CulturalMenu from "../components/Template/CulturalMenu";
-import Platters from "../components/Template/Platters";
+import Table from "../components/template/Sandwich";
+import OtherItems from "../components/template/OtherItems";
+import CulturalMenu from "../components/template/CulturalMenu";
+import Platters from "../components/template/Platters";
 import Menu from "../components/Menu";
 import { FaPlus } from "react-icons/fa";
 
@@ -13,17 +13,6 @@ const Paperwork = () => {
 
   // MOVE ORDERS INTO STATE
   const [orders, setOrders] = useState([]);
-
-  const totals = orders.reduce((acc, order) => acc, {
-    ham: 0,
-    egg: 0,
-    beef: 0,
-    salmon: 0,
-    chicken: 0,
-    tuna: 0,
-    platters: 0,
-    savoury: 0,
-  });
 
   const sectionMap = {
     macaron: "MACARONS",
@@ -73,13 +62,24 @@ const Paperwork = () => {
         else {
           if (!grouped.PLATTERS) grouped.PLATTERS = [];
 
-          grouped.PLATTERS.push({
-            id: order.id,
-            clientName: order.clientName,
-            menuName: order.menuName,
-            pax: order.pax,
-            items: [platter],
-          });
+          // check if same menu already exists
+          const existingMenu = grouped.PLATTERS.find(
+            (item) => item.menuName === order.menuName,
+          );
+
+          if (existingMenu) {
+            // add platter to existing line
+            existingMenu.items.push(platter);
+          } else {
+            // create new line
+            grouped.PLATTERS.push({
+              id: order.id,
+              clientName: order.clientName,
+              menuName: order.menuName,
+              pax: order.pax,
+              items: [platter],
+            });
+          }
         }
       });
     }
@@ -143,29 +143,13 @@ const Paperwork = () => {
         />
       )}
       <h2 className="text-2xl font-bold mt-10 mb-4 text-center">PAPERWORK</h2>
-      <Table orders={orders} totals={totals} />
-      <OtherItems
-        title="FRUITS"
-        orders={grouped.FRUITS || []}
-        calculation={(item) => item.pax / 25}
-        type="LARGE"
-      />
-      <OtherItems
-        title="MACARONS"
-        orders={grouped.MACARONS || []}
-        calculation={(item) => item.pax}
-        type="PCS"
-      />
-      <OtherItems
-        title="SLICES"
-        orders={grouped.SLICES || []}
-        calculation={(item) => item.pax / 10}
-        type="LARGE"
-      />
+      <Table orders={orders} />
+      <OtherItems title="FRUITS" orders={grouped.FRUITS || []} type="LARGE" />
+      <OtherItems title="MACARONS" orders={grouped.MACARONS || []} type="PCS" />
+      <OtherItems title="SLICES" orders={grouped.SLICES || []} type="LARGE" />
       <OtherItems
         title="MEATBALLS"
         orders={grouped.MEATBALLS || []}
-        calculation={(item) => item.pax / 25}
         type="BAGS"
       />
 
