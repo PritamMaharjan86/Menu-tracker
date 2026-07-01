@@ -1,6 +1,6 @@
 import React from "react";
 
-const Sandwich = ({ clientName, menuName, pax, items }) => {
+const Order = ({ clientName, menuName, pax, items }) => {
   return (
     <div className="mt-10 uppercase">
       <hr />
@@ -15,4 +15,4 @@ const Sandwich = ({ clientName, menuName, pax, items }) => {
   );
 };
 
-export default Sandwich;
+export default Order;

@@ -2,11 +2,12 @@ import React from "react";
 
 const Input = ({ form, setForm }) => {
   return (
-    <div>
+    <div className="flex flex-row gap-10 justify-center">
       <input
         type="text"
         placeholder="Client Name"
         value={form.clientName}
+        className="p-2 border rounded-lg text-gray-800 uppercase"
         onChange={(e) => setForm({ ...form, clientName: e.target.value })}
       />
 
@@ -14,11 +15,13 @@ const Input = ({ form, setForm }) => {
         type="number"
         placeholder="Pax"
         value={form.pax}
+        className="p-2 border rounded-lg text-gray-800 uppercase "
         onChange={(e) => setForm({ ...form, pax: Number(e.target.value) })}
       />
 
       <select
         value={form.menuName}
+        className="px-5 py-2  border rounded-lg text-gray-800 uppercase "
         onChange={(e) => setForm({ ...form, menuName: e.target.value })}>
         <option value="">Select Menu</option>
         <option value="A">A</option>
@@ -27,6 +30,10 @@ const Input = ({ form, setForm }) => {
         <option value="D">D</option>
         <option value="E">E</option>
       </select>
+
+      <button className="border rounded-lg shadow shadow-gray-300 px-5 py-2 ">
+        Add
+      </button>
     </div>
   );
 };

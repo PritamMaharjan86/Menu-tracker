@@ -2,7 +2,7 @@ const MenuData = {
   A: {
     scone: {
       ratio: 1 / 2.5,
-      serving: "Platter (Large/Small based on qty)",
+      serving: "Platter",
     },
     cream: {
       ratio: 1 / 30,
@@ -20,12 +20,12 @@ const MenuData = {
 
   B: {
     slice: {
-      ratio: 1.8,
-      serving: "pcs",
+      ratio: 1 / 25,
+      serving: "large",
     },
     savoury: {
-      ratio: 1,
-      serving: "Platter",
+      ratio: 1 / 10,
+      serving: "platter",
     },
   },
 
@@ -63,7 +63,7 @@ const MenuData = {
     },
     fruit: {
       ratio: 1 / 25,
-      serving: "pcs / cups",
+      serving: "platter",
     },
   },
 

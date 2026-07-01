@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
-import Sandwich from "../components/Sandwich";
+import Sandwich from "../components/Order";
 import Menu from "../components/Menu";
 
 const Paperwork = () => {
