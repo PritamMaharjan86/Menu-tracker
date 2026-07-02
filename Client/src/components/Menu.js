@@ -2,14 +2,14 @@ const MenuData = {
   A: {
     scone: {
       ratio: 1 / 2.5,
-      serving: "Platter",
+      serving: "each",
     },
     cream: {
       ratio: 1 / 30,
       serving: "tub",
     },
     biscuit: {
-      ratio: 1,
+      ratio: 1.5,
       serving: "pcs",
     },
     muffin: {
