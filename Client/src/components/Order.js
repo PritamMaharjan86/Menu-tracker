@@ -18,7 +18,6 @@ const Order = ({ clientName, menuName, pax, items = [] }) => {
           <tr>
             <th className="text-center py-2">Items</th>
             <th className="text-center py-2">Quantity</th>
-            <th className="text-center py-2">Serving</th>
           </tr>
         </thead>
 
@@ -27,9 +26,9 @@ const Order = ({ clientName, menuName, pax, items = [] }) => {
             <tr key={index}>
               <td className="text-center py-1 text-sm">{item.name}</td>
 
-              <td className="text-center py-1 text-sm">{item.qty}</td>
-
-              <td className="text-center py-1 text-sm">{item.serving}</td>
+              <td className="text-center py-1 text-sm">
+                {item.qty} {item.serving}
+              </td>
             </tr>
           ))}
         </tbody>
