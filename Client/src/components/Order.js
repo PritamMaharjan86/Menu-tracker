@@ -1,38 +1,29 @@
 import React from "react";
 
 const Order = ({ clientName, menuName, pax, items = [] }) => {
+  const slices = items.filter((item) => item.name === "slice");
+
+  const totalQty = slices.reduce((sum, item) => sum + item.qty, 0);
+
   return (
-    <div className="uppercase border-t p-2 m-4">
-      <table className="w-full border-collapse table-fixed">
-        <thead className="border-b">
-          {/* Header row */}
-          <tr>
-            <th
-              colSpan={3}
-              className="text-left bg-yellow-300 py-1 px-2 text-md font-bold">
-              {clientName} {menuName}/{pax}
-            </th>
-          </tr>
+    <div className="uppercase p-2 m-4">
+      {/* TITLE ONCE */}
+      {slices.length > 0 && (
+        <>
+          <h1 className="font-bold mb-2">SLICES</h1>
 
-          {/* Column titles */}
-          <tr>
-            <th className="text-center py-2">Items</th>
-            <th className="text-center py-2">Quantity</th>
-          </tr>
-        </thead>
+          {/* ALL ORDERS BELOW TITLE */}
+          {slices.map((item, index) => (
+            <div key={index} className="flex justify-between items-center py-1">
+              <span>
+                {item.clientName || clientName} {menuName}/{pax}
+              </span>
 
-        <tbody>
-          {items.map((item, index) => (
-            <tr key={index}>
-              <td className="text-center py-1 text-sm">{item.name}</td>
-
-              <td className="text-center py-1 text-sm">
-                {item.qty} {item.serving}
-              </td>
-            </tr>
+              <span>{item.qty}</span>
+            </div>
           ))}
-        </tbody>
-      </table>
+        </>
+      )}
     </div>
   );
 };
