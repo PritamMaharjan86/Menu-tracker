@@ -39,15 +39,8 @@ const Paperwork = () => {
     <div>
       <Input form={form} setForm={setForm} handleSubmit={handleSubmit} />
 
-      {orders.map((order, index) => (
-        <Order
-          key={index}
-          clientName={order.clientName}
-          menuName={order.menuName}
-          pax={order.pax}
-          items={order.items}
-        />
-      ))}
+      {/* pass all orders from here */}
+      <Order orders={orders} />
     </div>
   );
 };

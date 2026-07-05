@@ -1,29 +1,38 @@
 import React from "react";
+import Section from "./Section";
 
-const Order = ({ clientName, menuName, pax, items = [] }) => {
-  const slices = items.filter((item) => item.name === "slice");
+const Order = ({ orders = [] }) => {
+  //group items
+  const groupedItems = {};
 
-  const totalQty = slices.reduce((sum, item) => sum + item.qty, 0);
+  //for each loop to go through every order
+  orders.forEach((order) => {
+    //create array if item type doesn't exist
+    order.items.forEach((item) => {
+      if (!groupedItems[item.name]) {
+        groupedItems[item.name] = [];
+      }
+
+      //to push the item into correct group with its info
+      groupedItems[item.name].push({
+        ...item,
+        clientName: order.clientName,
+        menuName: order.menuName,
+        pax: order.pax,
+      });
+    });
+  });
 
   return (
     <div className="uppercase p-2 m-4">
-      {/* TITLE ONCE */}
-      {slices.length > 0 && (
-        <>
-          <h1 className="font-bold mb-2">SLICES</h1>
+      {/* loop through group items */}
+      {Object.entries(groupedItems).map(([itemName, itemOrders]) => (
+        <div key={itemName} className="mb-6">
+          <h1 className="font-bold text-lg">{itemName}</h1>
 
-          {/* ALL ORDERS BELOW TITLE */}
-          {slices.map((item, index) => (
-            <div key={index} className="flex justify-between items-center py-1">
-              <span>
-                {item.clientName || clientName} {menuName}/{pax}
-              </span>
-
-              <span>{item.qty}</span>
-            </div>
-          ))}
-        </>
-      )}
+          <Section orders={itemOrders} />
+        </div>
+      ))}
     </div>
   );
 };

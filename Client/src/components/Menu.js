@@ -88,10 +88,12 @@ const Menu = (menuName, pax) => {
 
   if (!selectedMenu) return [];
 
+  const paxNumber = Number(pax);
+
   return Object.entries(selectedMenu).map(([name, item]) => ({
     name,
     serving: item.serving,
-    qty: Math.ceil(pax * item.ratio),
+    qty: Math.ceil(paxNumber * item.ratio),
   }));
 };
 
