@@ -30,12 +30,16 @@ const Input = ({ form, setForm, handleSubmit }) => {
           <option value="C">C</option>
           <option value="D">D</option>
           <option value="E">E</option>
+          <option value="ITALIAN">ITALIAN</option>
+          <option value="DELUXE">GREEK DELUXE</option>
+          <option value="LIGHT">GREEK LIGHT</option>
+          <option value="ASIAN">ASIAN</option>
         </select>
 
         <button
           type="submit"
           className="border rounded-lg shadow shadow-gray-300 px-5 py-2 active:scale-95">
-          Add
+          Add Menu
         </button>
       </form>
     </div>
