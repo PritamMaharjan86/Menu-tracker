@@ -4,17 +4,22 @@ import Section from "./Section";
 const Order = ({ orders = [] }) => {
   const groupedItems = {};
   const culturalOrders = [];
+  const sconeOrders = [];
 
   orders.forEach((order) => {
     // Cultural menus
     const isCultural =
-      order.menuName?.toLowerCase().includes("deluxe") ||
-      order.menuName?.toLowerCase().includes("italian") ||
-      order.menuName?.toLowerCase().includes("asian") ||
-      order.menuName?.toLowerCase().includes("light");
+      order.menuName === "DELUXE" ||
+      order.menuName === "ITALIAN" ||
+      order.menuName === "ASIAN" ||
+      order.menuName === "LIGHT";
+
+    const isScones = order.menuName === "A";
 
     if (isCultural) {
       culturalOrders.push(order);
+    } else if (isScones) {
+      sconeOrders.push(order);
     } else {
       // Normal menu grouping
       order.items.forEach((item) => {
@@ -71,6 +76,57 @@ const Order = ({ orders = [] }) => {
               ))}
             </div>
           ))}
+        </div>
+      )}
+
+      {sconeOrders.length > 0 && (
+        <div>
+          <h1 className="font-bold text-lg mb-3">SCONES</h1>
+
+          <table className="w-full border-collapse text-sm">
+            <thead>
+              <tr className="border-b">
+                <th className="text-left p-2 w-64">Order</th>
+                <th className="text-center p-2">Scones</th>
+                <th className="text-center p-2">Creams</th>
+                <th className="text-center p-2">Biscuits</th>
+                <th className="text-center p-2">Muffins</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {sconeOrders.map((order, index) => {
+                const scone = order.items.find((item) => item.name === "scone");
+                const cream = order.items.find((item) => item.name === "cream");
+                const biscuit = order.items.find(
+                  (item) => item.name === "biscuit",
+                );
+                const muffin = order.items.find(
+                  (item) => item.name === "muffin",
+                );
+
+                return (
+                  <tr key={index} className="border-b">
+                    <td className="p-2">
+                      {order.clientName} {order.menuName}/{order.pax}
+                    </td>
+                    <td className="text-center p-2">
+                      {scone ? `${scone.qty} ${scone.serving}` : "-"}
+                    </td>
+                    <td className="text-center p-2">
+                      {cream ? `${cream.qty} ${cream.serving}` : "-"}
+                    </td>
+                    <td className="text-center p-2">
+                      {biscuit ? `${biscuit.qty} ${biscuit.serving}` : "-"}
+                    </td>
+                    <td className="text-center p-2">
+                      {muffin ? `${muffin.qty} ${muffin.serving}` : "-"}
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       )}
     </div>
