@@ -80,13 +80,13 @@ const Order = ({ orders = [] }) => {
       )}
 
       {sconeOrders.length > 0 && (
-        <div>
+        <div className="mb-6">
           <h1 className="font-bold text-lg mb-3">SCONES</h1>
 
           <table className="w-full border-collapse text-sm">
             <thead>
               <tr className="border-b">
-                <th className="text-left p-2 w-64">Order</th>
+                <th className="text-left p-2 w-64"></th>
                 <th className="text-center p-2">Scones</th>
                 <th className="text-center p-2">Creams</th>
                 <th className="text-center p-2">Biscuits</th>

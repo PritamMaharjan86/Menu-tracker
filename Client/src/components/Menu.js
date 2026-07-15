@@ -6,7 +6,7 @@ const MenuData = {
     },
     cream: {
       ratio: 1 / 30,
-      serving: "tub",
+      serving: "bag",
     },
     biscuit: {
       ratio: 1.5,
