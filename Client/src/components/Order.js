@@ -57,11 +57,11 @@ const Order = ({ orders = [] }) => {
               </h2>
 
               {order.items.map((item, i) => (
-                <span key={i} className="mr-2 tracking-wide">
-                  {item.name} x{" "}
+                <span key={i} className="mr-2 tracking-tight text-sm">
                   <span className="font-semibold">
                     {item.qty} {item.serving}
-                  </span>{" "}
+                  </span>
+                  {""} X {item.name}
                   {i !== order.items.length - 1 && (
                     <>
                       <span>,</span>

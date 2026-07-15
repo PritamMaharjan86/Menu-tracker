@@ -12,14 +12,6 @@ const Input = ({ form, setForm, handleSubmit }) => {
           onChange={(e) => setForm({ ...form, clientName: e.target.value })}
         />
 
-        <input
-          type="number"
-          placeholder="Pax"
-          value={form.pax}
-          className="py-2 px-1  border rounded-lg text-gray-800 uppercase "
-          onChange={(e) => setForm({ ...form, pax: Number(e.target.value) })}
-        />
-
         <select
           value={form.menuName}
           className="px-5 py-3  border rounded-lg text-gray-800 uppercase "
@@ -35,6 +27,14 @@ const Input = ({ form, setForm, handleSubmit }) => {
           <option value="LIGHT">GREEK LIGHT</option>
           <option value="ASIAN">ASIAN</option>
         </select>
+
+        <input
+          type="number"
+          placeholder="Pax"
+          value={form.pax}
+          className="py-2 px-1  border rounded-lg text-gray-800 uppercase "
+          onChange={(e) => setForm({ ...form, pax: Number(e.target.value) })}
+        />
 
         <button
           type="submit"

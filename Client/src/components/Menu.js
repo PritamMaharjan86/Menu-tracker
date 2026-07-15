@@ -133,7 +133,7 @@ const MenuData = {
     },
   },
   LIGHT: {
-    mezze: {
+    "mezze (feta cheese, dolmades, kalamata olives)": {
       ratio: 1 / 50,
       serving: "platter",
     },
@@ -143,7 +143,7 @@ const MenuData = {
     },
     "pita bread": {
       ratio: 1 / 50,
-      serving: "platter",
+      serving: "packet",
     },
     fish: {
       ratio: 1,
@@ -159,7 +159,7 @@ const MenuData = {
     },
     taramasalata: {
       ratio: 1 / 50,
-      serving: "platter",
+      serving: "ramekin",
     },
     tzatziki: {
       ratio: 1 / 50,
@@ -177,18 +177,18 @@ const MenuData = {
       ratio: 1 / 2,
       serving: "pcs",
     },
-    "greek salad": {
-      ratio: 1 / 25,
+    "long greek salad": {
+      ratio: 1 / 35,
       serving: "tub",
     },
-    potatoes: {
+    "deep fried potatoes": {
       ratio: 1,
       serving: "pcs",
     },
   },
 
   DELUXE: {
-    mezze: {
+    "mezze (kessari, kefalograviera, feta cheese, dolmades, kalamata olives)": {
       ratio: 1 / 50,
       serving: "platter",
     },
@@ -198,7 +198,7 @@ const MenuData = {
     },
     "pita bread": {
       ratio: 1 / 50,
-      serving: "platter",
+      serving: "packet",
     },
     fish: {
       ratio: 3,
@@ -240,11 +240,11 @@ const MenuData = {
       ratio: 1,
       serving: "pcs",
     },
-    "greek salad": {
-      ratio: 1 / 25,
-      serving: "long salad tub",
+    "long greek salad": {
+      ratio: 1 / 35,
+      serving: "tub",
     },
-    potatoes: {
+    "deep fried potatoes": {
       ratio: 1,
       serving: "pcs",
     },
