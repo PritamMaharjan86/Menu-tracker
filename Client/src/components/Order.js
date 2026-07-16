@@ -38,12 +38,12 @@ const Order = ({ orders = [] }) => {
   });
 
   return (
-    <div className="uppercase p-2 m-4">
+    <div className="uppercase p-2 m-2">
       {/* NORMAL ITEMS */}
 
       {Object.entries(groupedItems).map(([itemName, itemOrders]) => (
         <div key={itemName} className="mb-6">
-          <h1 className="font-bold text-lg">{itemName}</h1>
+          <h1 className="font-bold text-lg mb-3">{itemName}</h1>
 
           <Section orders={itemOrders} />
         </div>
@@ -57,13 +57,13 @@ const Order = ({ orders = [] }) => {
 
           {culturalOrders.map((order, index) => (
             <div key={index} className="border rounded-lg p-3 mb-4">
-              <h2 className="font-semibold mb-2">
+              <h2 className="font-medium text-md mb-2">
                 {order.clientName} {order.menuName}/{order.pax}
               </h2>
 
               {order.items.map((item, i) => (
-                <span key={i} className="mr-2 tracking-tight text-sm">
-                  <span className="font-semibold">
+                <span key={i} className="mr-2 text-sm">
+                  <span className="font-medium">
                     {item.qty} {item.serving}
                   </span>
                   {""} X {item.name}
@@ -88,9 +88,9 @@ const Order = ({ orders = [] }) => {
               <tr className="border-b">
                 <th className="text-left p-2 w-64"></th>
                 <th className="text-center p-2">Scones</th>
-                <th className="text-center p-2">Creams</th>
-                <th className="text-center p-2">Biscuits</th>
-                <th className="text-center p-2">Muffins</th>
+                <th className="text-center p-2">Cream</th>
+                <th className="text-center p-2">Biscuit</th>
+                <th className="text-center p-2">Muffin</th>
               </tr>
             </thead>
 
