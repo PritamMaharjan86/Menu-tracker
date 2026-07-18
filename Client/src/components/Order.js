@@ -82,51 +82,56 @@ const Order = ({ orders = [] }) => {
       {sconeOrders.length > 0 && (
         <div className="mb-6">
           <h1 className="font-bold text-lg mb-3">SCONES</h1>
+          <div className="border rounded-lg p-3">
+            <table className="w-full text-sm ">
+              <thead>
+                <tr className="border-b ">
+                  <th className="text-left p-2 w-64 "></th>
+                  <th className="text-center p-2">Scones</th>
+                  <th className="text-center p-2">Cream</th>
+                  <th className="text-center p-2">Biscuit</th>
+                  <th className="text-center p-2">Muffin</th>
+                </tr>
+              </thead>
 
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b">
-                <th className="text-left p-2 w-64"></th>
-                <th className="text-center p-2">Scones</th>
-                <th className="text-center p-2">Cream</th>
-                <th className="text-center p-2">Biscuit</th>
-                <th className="text-center p-2">Muffin</th>
-              </tr>
-            </thead>
+              <tbody>
+                {sconeOrders.map((order, index) => {
+                  const scone = order.items.find(
+                    (item) => item.name === "scone",
+                  );
+                  const cream = order.items.find(
+                    (item) => item.name === "cream",
+                  );
+                  const biscuit = order.items.find(
+                    (item) => item.name === "biscuit",
+                  );
+                  const muffin = order.items.find(
+                    (item) => item.name === "muffin",
+                  );
 
-            <tbody>
-              {sconeOrders.map((order, index) => {
-                const scone = order.items.find((item) => item.name === "scone");
-                const cream = order.items.find((item) => item.name === "cream");
-                const biscuit = order.items.find(
-                  (item) => item.name === "biscuit",
-                );
-                const muffin = order.items.find(
-                  (item) => item.name === "muffin",
-                );
-
-                return (
-                  <tr key={index} className="border-b">
-                    <td className="p-2">
-                      {order.clientName} {order.menuName}/{order.pax}
-                    </td>
-                    <td className="text-center p-2">
-                      {scone ? `${scone.qty} ${scone.serving}` : "-"}
-                    </td>
-                    <td className="text-center p-2">
-                      {cream ? `${cream.qty} ${cream.serving}` : "-"}
-                    </td>
-                    <td className="text-center p-2">
-                      {biscuit ? `${biscuit.qty} ${biscuit.serving}` : "-"}
-                    </td>
-                    <td className="text-center p-2">
-                      {muffin ? `${muffin.qty} ${muffin.serving}` : "-"}
-                    </td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+                  return (
+                    <tr key={index} className="border-b">
+                      <td className="p-2">
+                        {order.clientName} {order.menuName}/{order.pax}
+                      </td>
+                      <td className="text-center p-2">
+                        {scone ? `${scone.qty} ${scone.serving}` : "-"}
+                      </td>
+                      <td className="text-center p-2">
+                        {cream ? `${cream.qty} ${cream.serving}` : "-"}
+                      </td>
+                      <td className="text-center p-2">
+                        {biscuit ? `${biscuit.qty} ${biscuit.serving}` : "-"}
+                      </td>
+                      <td className="text-center p-2">
+                        {muffin ? `${muffin.qty} ${muffin.serving}` : "-"}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>
